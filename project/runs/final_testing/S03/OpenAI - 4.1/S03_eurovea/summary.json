@@ -1,0 +1,562 @@
+{
+  "runId": "ce08bc9e-5e1f-4ebd-ba18-17ce3eb2dda1",
+  "url": "https://eurovea.sk/",
+  "task": "Na webovej stranke najdi kontaktny formular. Vyplnit nasledujuce udaje: Meno: Andrea Vyskusalova, E-mail: a.vyskusalova@testujem.sk, Sprava: \"Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den\" Formular neodosielaj! Len ho vyplneny zobraz",
+  "runMeta": {
+    "model": "gpt-4.1",
+    "difficulty": null,
+    "run": "ce08bc9e-5e1f-4ebd-ba18-17ce3eb2dda1"
+  },
+  "goalSpec": {
+    "goal": "Nájsť kontaktný formulár na webe eurovea.sk a vyplniť ho údajmi: Meno: Andrea Vyskusalova, E-mail: a.vyskusalova@testujem.sk, Správa: \"Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den\", ale formulár NEODOSIELAŤ.",
+    "successCriteria": [
+      "Kontaktný formulár je nájdený.",
+      "Polia Meno, E-mail a Správa sú vyplnené zadanými údajmi.",
+      "Formulár nebol odoslaný, je len vyplnený a zobrazený na stránke."
+    ],
+    "stopCondition": "Kontaktný formulár je vyplnený a jeho obsah je viditeľný, bez odoslania.",
+    "assumptions": [
+      "Kontaktný formulár je dostupný po odmietnutí/povolení cookies.",
+      "Na stránke alebo v sekcii Informácie bude sekcia Kontakt alebo Kontaktný formulár.",
+      "Formulár obsahuje polia pre meno, e-mail a správu."
+    ],
+    "constraints": [
+      "Nevykonávať žiadne odoslanie formulára.",
+      "Vyplniť len uvedené údaje a zmeniť len povolené polia.",
+      "Pri hľadaní formulára používať len navigáciu a odkazy na webe.",
+      "Ak je overlay, najprv ho odstrániť."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Meno",
+        "value": "Andrea Vyskusalova"
+      },
+      {
+        "kind": "field_equals",
+        "label": "E-mail",
+        "value": "a.vyskusalova@testujem.sk"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Správa",
+        "value": "Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Kontaktný formulár"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "close_cookie_overlay",
+        "title": "Zatvoriť alebo potvrdiť cookies overlay, aby bola stránka plne prístupná",
+        "doneWhen": "Overlay (súhlas cookie) zmizol",
+        "dependsOn": []
+      },
+      {
+        "id": "navigate_to_contact_or_information",
+        "title": "Prejsť do sekcie Kontakt alebo Informácie",
+        "doneWhen": "Stránka kontaktu alebo informácií je otvorená",
+        "dependsOn": [
+          "close_cookie_overlay"
+        ]
+      },
+      {
+        "id": "locate_contact_form",
+        "title": "Nájsť a zobraziť kontaktný formulár na stránke",
+        "doneWhen": "Formulár je viditeľný a pripravený na vyplnenie",
+        "dependsOn": [
+          "navigate_to_contact_or_information"
+        ]
+      },
+      {
+        "id": "fill_name_field",
+        "title": "Vyplniť pole Meno údajom 'Andrea Vyskusalova'",
+        "doneWhen": "Pole Meno obsahuje 'Andrea Vyskusalova'",
+        "dependsOn": [
+          "locate_contact_form"
+        ]
+      },
+      {
+        "id": "fill_email_field",
+        "title": "Vyplniť pole E-mail údajom 'a.vyskusalova@testujem.sk'",
+        "doneWhen": "Pole E-mail obsahuje 'a.vyskusalova@testujem.sk'",
+        "dependsOn": [
+          "locate_contact_form"
+        ]
+      },
+      {
+        "id": "fill_message_field",
+        "title": "Vyplniť pole Správa požadovaným textom",
+        "doneWhen": "Pole Správa obsahuje správny text",
+        "dependsOn": [
+          "locate_contact_form"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "llm_soft",
+  "stopReason": "LLM completion check confirmed task completion despite missing strict deterministic evidence.",
+  "finalVerdict": "Na stránke eurovea.sk bol nájdený kontaktný formulár. Polia boli vyplnené nasledovne: Meno: Andrea Vyskusalova, E-mail: a.vyskusalova@testujem.sk, Správa: \"Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den\". Formulár nie je odoslaný, iba vyplnený a zobrazený.",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Meno",
+        "value": "Andrea Vyskusalova"
+      },
+      {
+        "kind": "field_equals",
+        "label": "E-mail",
+        "value": "a.vyskusalova@testujem.sk"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Správa",
+        "value": "Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Kontaktný formulár"
+      }
+    ],
+    "fulfilled": [
+      "overlay_absent",
+      "field_equals(Meno=\"Andrea Vyskusalova\")",
+      "field_equals(E-mail=\"a.vyskusalova@testujem.sk\")",
+      "field_equals(Správa=\"Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den\")"
+    ],
+    "missing": [
+      "text_visible(\"Kontaktný formulár\")"
+    ],
+    "evidence": [
+      "Satisfied: overlay_absent",
+      "Satisfied: field_equals(Meno=\"Andrea Vyskusalova\")",
+      "Satisfied: field_equals(E-mail=\"a.vyskusalova@testujem.sk\")",
+      "Satisfied: field_equals(Správa=\"Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den\")",
+      "Visible phone found: +421 2 20 915 000"
+    ],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": true,
+      "answer": "+421 2 20 915 000",
+      "evidence": [
+        "Visible phone found: +421 2 20 915 000"
+      ],
+      "missing": [],
+      "confidence": "high"
+    }
+  },
+  "completionCheck": {
+    "done": true,
+    "reason": "Kontaktný formulár bol nájdený a všetky požadované polia (Meno, E-mail, Správa) sú vyplnené správnymi údajmi. Formulár je len vyplnený a stále zobrazený na stránke, nebol odoslaný.",
+    "evidence": [
+      "Stránka 'Kontakty | EUROVEA' obsahuje kontaktný formulár.",
+      "Input '#name' obsahuje hodnotu 'Andrea Vyskusalova'.",
+      "Input '#email' obsahuje hodnotu 'a.vyskusalova@testujem.sk'.",
+      "Textarea '#message_body' obsahuje správny text správy.",
+      "Button 'Odoslať správu' je stále zobrazený, formulár nebol odoslaný.",
+      "Text 'Kontaktný formulár' je viditeľný v snapshotu."
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4.1",
+    "Difficulty": null,
+    "Run": "ce08bc9e-5e1f-4ebd-ba18-17ce3eb2dda1",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 6,
+    "Total_Subtasks": 6,
+    "Partial_Success": 1,
+    "Steps": 9,
+    "Replans": 0,
+    "Duration_seconds": 177.971,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 101671,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://eurovea.sk/kontakty#form",
+    "Final_Verdict": "Na stránke eurovea.sk bol nájdený kontaktný formulár. Polia boli vyplnené nasledovne: Meno: Andrea Vyskusalova, E-mail: a.vyskusalova@testujem.sk, Správa: \"Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den\". Formulár nie je odoslaný, iba vyplnený a zobrazený."
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 2,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 9,
+    "durationSeconds": 177.971,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 6,
+    "totalSubtasks": 6,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": true,
+    "tokenUsage": {
+      "promptTokens": 95655,
+      "completionTokens": 6016,
+      "totalTokens": 101671,
+      "callCount": 28
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "close_cookie_overlay",
+    "navigate_to_contact_or_information",
+    "locate_contact_form",
+    "fill_name_field",
+    "fill_email_field",
+    "fill_message_field"
+  ],
+  "stepsExecuted": 9,
+  "finalUrl": "https://eurovea.sk/kontakty#form",
+  "helpHistory": [],
+  "blockerEvents": [
+    {
+      "ts": 1777230530988,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Povoliť všetko"
+    }
+  ],
+  "recoveryTransitions": [],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povoliť všetko",
+        "reason": "Dismissing cookie consent overlay by clicking \"Povoliť všetko\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 1,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Informácie",
+        "reason": "Na domovskej stránke sa nenachádza priamo kontaktný formulár ani pole na jeho vyplnenie. V hlavnom menu je však položka 'Informácie', kde sa často nachádzajú kontaktné údaje alebo formulár.",
+        "mayNavigate": true,
+        "expectedEffect": "Načíta sa sekcia Informácie, kde pravdepodobne bude možnosť nájsť kontakt alebo kontaktný formulár.",
+        "successSignal": "Stránka alebo sekcia s informáciami a potenciálne kontaktom je otvorená.",
+        "failureSignal": "Stránka zostane nezmenená alebo neobsahuje kontaktné informácie.",
+        "fallbackHint": "V prípade neúspechu skúsiť hľadať 'Kontakt' alebo prejsť do pätičky stránky."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Vyplniť formulár",
+        "expectedEffect": "The visible UI changes after clicking Vyplniť formulár.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    },
+    {
+      "step": 5,
+      "action": {
+        "action": "type",
+        "selector": "#name",
+        "text": "Andrea Vyskusalova",
+        "reason": "Našiel som kontaktný formulár. Teraz vyplním pole 'Meno a priezvisko' údajom 'Andrea Vyskusalova'.",
+        "mayNavigate": false,
+        "expectedEffect": "Pole Meno a priezvisko bude obsahovať text 'Andrea Vyskusalova'.",
+        "successSignal": "Zobrazený text v poli Meno a priezvisko sa rovná 'Andrea Vyskusalova'",
+        "failureSignal": "Hodnota sa v poli neobjaví alebo nastane chyba pri vkladaní textu.",
+        "fallbackHint": "Skontrolovať zhodu field label s požiadavkou, prípadne skúsiť znova."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "action": "type",
+        "selector": "#email",
+        "text": "a.vyskusalova@testujem.sk",
+        "reason": "Vyplnenie poľa E-mailová adresa požadovaným údajom.",
+        "expectedEffect": "Pole pre E-mail bude obsahovať zadaný text.",
+        "successSignal": "Zadaný text je viditeľný v poli E-mail.",
+        "failureSignal": "Pole E-mail zostáva prázdne alebo obsahuje chybové hlásenie.",
+        "fallbackHint": "Skontroluj, či je pole aktívne a správne označené."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 7,
+      "action": {
+        "action": "type",
+        "selector": "#message_body",
+        "text": "Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den",
+        "reason": "Pole 'Tvoja správa' ešte nie je vyplnené. Vyplním daný text do tohto poľa.",
+        "expectedEffect": "V texte poľa 'Tvoja správa' sa objaví požadovaná správa.",
+        "successSignal": "Pole 'Tvoja správa' obsahuje zadaný text.",
+        "failureSignal": "Pole zostane prázdne alebo sa text neuloží.",
+        "fallbackHint": "Skontrolovať, či je pole stále prístupné a správne označené."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"Povoliť všetko\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"Povoliť všetko\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povoliť všetko",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    },
+    {
+      "step": 1,
+      "activeSubtaskId": "navigate_to_contact_or_information",
+      "completedSubtasks": [
+        "close_cookie_overlay"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Na domovskej stránke sa nenachádza priamo kontaktný formulár ani pole na jeho vyplnenie. V hlavnom menu je však položka 'Informácie', kde sa často nachádzajú kontaktné údaje alebo formulár.",
+        "activeSubtaskId": "navigate_to_contact_or_information",
+        "markSubtasksDone": [
+          "close_cookie_overlay"
+        ],
+        "progressNote": "Overlay na cookies nie je prítomný, stránka je plne prístupná. Pokračujem do sekcie Informácie.",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Informácie",
+        "mayNavigate": true,
+        "expectedEffect": "Načíta sa sekcia Informácie, kde pravdepodobne bude možnosť nájsť kontakt alebo kontaktný formulár.",
+        "successSignal": "Stránka alebo sekcia s informáciami a potenciálne kontaktom je otvorená.",
+        "failureSignal": "Stránka zostane nezmenená alebo neobsahuje kontaktné informácie.",
+        "fallbackHint": "V prípade neúspechu skúsiť hľadať 'Kontakt' alebo prejsť do pätičky stránky."
+      }
+    },
+    {
+      "step": 4,
+      "activeSubtaskId": null,
+      "completedSubtasks": [
+        "close_cookie_overlay",
+        "navigate_to_contact_or_information"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "actions": [
+          {
+            "action": "click",
+            "selector": "button",
+            "text": "Vyplniť formulár"
+          }
+        ]
+      }
+    },
+    {
+      "step": 5,
+      "activeSubtaskId": "fill_name_field",
+      "completedSubtasks": [
+        "close_cookie_overlay",
+        "navigate_to_contact_or_information",
+        "locate_contact_form"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Našiel som kontaktný formulár. Teraz vyplním pole 'Meno a priezvisko' údajom 'Andrea Vyskusalova'.",
+        "activeSubtaskId": "fill_name_field",
+        "markSubtasksDone": [
+          "locate_contact_form"
+        ],
+        "progressNote": "Formulár je pripravený na vyplnenie, ideme postupne vyplniť potrebné polia.",
+        "needHelp": false,
+        "action": "type",
+        "selector": "#name",
+        "text": "Andrea Vyskusalova",
+        "mayNavigate": false,
+        "expectedEffect": "Pole Meno a priezvisko bude obsahovať text 'Andrea Vyskusalova'.",
+        "successSignal": "Zobrazený text v poli Meno a priezvisko sa rovná 'Andrea Vyskusalova'",
+        "failureSignal": "Hodnota sa v poli neobjaví alebo nastane chyba pri vkladaní textu.",
+        "fallbackHint": "Skontrolovať zhodu field label s požiadavkou, prípadne skúsiť znova."
+      }
+    },
+    {
+      "step": 6,
+      "activeSubtaskId": "fill_email_field",
+      "completedSubtasks": [
+        "close_cookie_overlay",
+        "navigate_to_contact_or_information",
+        "locate_contact_form",
+        "fill_name_field"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Pole pre meno je už vyplnené. Pokračujem vyplnením E-mailu a Správy požadovanými údajmi.",
+        "activeSubtaskId": "fill_email_field",
+        "markSubtasksDone": [
+          "fill_name_field"
+        ],
+        "needHelp": false,
+        "actions": [
+          {
+            "action": "type",
+            "selector": "#email",
+            "text": "a.vyskusalova@testujem.sk",
+            "reason": "Vyplnenie poľa E-mailová adresa požadovaným údajom.",
+            "expectedEffect": "Pole pre E-mail bude obsahovať zadaný text.",
+            "successSignal": "Zadaný text je viditeľný v poli E-mail.",
+            "failureSignal": "Pole E-mail zostáva prázdne alebo obsahuje chybové hlásenie.",
+            "fallbackHint": "Skontroluj, či je pole aktívne a správne označené."
+          }
+        ]
+      }
+    },
+    {
+      "step": 7,
+      "activeSubtaskId": "fill_message_field",
+      "completedSubtasks": [
+        "close_cookie_overlay",
+        "navigate_to_contact_or_information",
+        "locate_contact_form",
+        "fill_name_field"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Pole 'Tvoja správa' ešte nie je vyplnené. Vyplním daný text do tohto poľa.",
+        "activeSubtaskId": "fill_message_field",
+        "markSubtasksDone": [],
+        "progressNote": "Formulár je nájdený, polia Meno a E-mail sú správne vyplnené. Ostáva vyplniť pole Správa.",
+        "needHelp": false,
+        "action": "type",
+        "selector": "#message_body",
+        "text": "Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den",
+        "expectedEffect": "V texte poľa 'Tvoja správa' sa objaví požadovaná správa.",
+        "successSignal": "Pole 'Tvoja správa' obsahuje zadaný text.",
+        "failureSignal": "Pole zostane prázdne alebo sa text neuloží.",
+        "fallbackHint": "Skontrolovať, či je pole stále prístupné a správne označené."
+      }
+    }
+  ]
+}

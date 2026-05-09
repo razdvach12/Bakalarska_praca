@@ -1,0 +1,341 @@
+{
+  "runId": "7b1c964a-5854-4524-a348-8ad01e88fca0",
+  "url": "https://www.nehnutelnosti.sk/",
+  "task": "Na realitnom portali nastav filtre: typ \"2-izbovy byt\", lokalita \"Bratislava – Staré Mesto\", typ ponuky \"prenajom\", maximalna cena 800 EUR mesacne. Vypis nazov, cenu a m2 prvych 3 vysledkov.",
+  "runMeta": {
+    "model": "gpt-4.1",
+    "difficulty": null,
+    "run": "7b1c964a-5854-4524-a348-8ad01e88fca0"
+  },
+  "goalSpec": {
+    "goal": "Nastaviť filtre na realitnom portáli a vypísať názov, cenu a m2 prvých 3 relevantných výsledkov.",
+    "successCriteria": [
+      "Filtre sú nastavené: typ '2-izbový byt', lokalita 'Bratislava – Staré Mesto', typ ponuky 'prenájom', maximálna cena 800 EUR mesačne.",
+      "Na stránke je zobrazený zoznam relevantných výsledkov.",
+      "Viditeľné údaje: názov, cena a m2 prvých 3 výsledkov."
+    ],
+    "stopCondition": "Údaje o prvých 3 ponukách sú vypísané podľa požiadaviek.",
+    "assumptions": [
+      "Po odobratí cookie overlayu bude možné nastaviť filtre a zobraziť výsledky.",
+      "V ponuke sú dostupné relevantné byty podľa nastavených filtrov."
+    ],
+    "constraints": [
+      "Filtre musia byť nastavené presne podľa zadania.",
+      "Vypisovať len prvé 3 relevantné výsledky.",
+      "Údaje musia byť získané po nastavení filtrov a zobrazení výsledkov."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Kde"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Typ"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Typ ponuky"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Max cena"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Zoznam bytov"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Bratislava – Staré Mesto"
+      },
+      {
+        "kind": "text_visible",
+        "text": "2-izbový byt"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "accept_cookie_overlay",
+        "title": "Odobrat cookie consent overlay",
+        "doneWhen": "Cookie consent overlay je odstránený",
+        "dependsOn": []
+      },
+      {
+        "id": "set_location_filter",
+        "title": "Nastaviť filter lokalita na 'Bratislava – Staré Mesto'",
+        "doneWhen": "Filter lokalita je nastavený",
+        "dependsOn": [
+          "accept_cookie_overlay"
+        ]
+      },
+      {
+        "id": "set_property_type_filter",
+        "title": "Nastaviť filter typ na '2-izbový byt'",
+        "doneWhen": "Filter typ je nastavený",
+        "dependsOn": [
+          "accept_cookie_overlay"
+        ]
+      },
+      {
+        "id": "set_offer_type_filter",
+        "title": "Nastaviť filter typ ponuky na 'prenájom'",
+        "doneWhen": "Filter typ ponuky je nastavený",
+        "dependsOn": [
+          "accept_cookie_overlay"
+        ]
+      },
+      {
+        "id": "set_max_price_filter",
+        "title": "Nastaviť filter maximálna cena na 800 EUR",
+        "doneWhen": "Filter maximálna cena je nastavený",
+        "dependsOn": [
+          "accept_cookie_overlay"
+        ]
+      },
+      {
+        "id": "submit_filters",
+        "title": "Potvrdiť/odoslať filtre a zobraziť výsledky",
+        "doneWhen": "Relevantné výsledky sú zobrazené",
+        "dependsOn": [
+          "set_location_filter",
+          "set_property_type_filter",
+          "set_offer_type_filter",
+          "set_max_price_filter"
+        ]
+      },
+      {
+        "id": "extract_top_results_info",
+        "title": "Vypísať názov, cenu a m2 prvých 3 výsledkov",
+        "doneWhen": "Informácie o prvých 3 výsledkoch sú dostupné",
+        "dependsOn": [
+          "submit_filters"
+        ]
+      }
+    ]
+  },
+  "success": false,
+  "successMode": null,
+  "stopReason": "terminated_by_user",
+  "finalVerdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user",
+  "error": "terminated_by_user",
+  "failureClassification": "user_control",
+  "failureSubtype": "terminated_by_user",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Kde"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Typ"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Typ ponuky"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Max cena"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Zoznam bytov"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Bratislava – Staré Mesto"
+      },
+      {
+        "kind": "text_visible",
+        "text": "2-izbový byt"
+      }
+    ],
+    "fulfilled": [
+      "overlay_absent",
+      "text_visible(\"2-izbový byt\")"
+    ],
+    "missing": [
+      "field_filled(Kde)",
+      "field_filled(Typ)",
+      "field_filled(Typ ponuky)",
+      "field_filled(Max cena)",
+      "text_visible(\"Zoznam bytov\")",
+      "text_visible(\"Bratislava – Staré Mesto\")"
+    ],
+    "evidence": [
+      "Satisfied: overlay_absent",
+      "Satisfied: text_visible(\"2-izbový byt\")"
+    ],
+    "answerAssessment": null
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "Filtre na realitnom portáli ešte nie sú nastavené pre lokalitu 'Bratislava – Staré Mesto', typ '2-izbový byt', ponuku 'prenájom', ani maximálnu cenu 800 EUR. Zobrazujú sa predvolené alebo promo ponuky naprieč Slovenskom. K dispozícii nie sú žiadne vypísané údaje o prvých 3 relevantných výsledkoch podľa zadaných filtrov.",
+    "evidence": [
+      "Inputs na stránke majú prázdne hodnoty – filter lokalita, typ, typ ponuky, max cena nie sú nastavené ('value': null).",
+      "Reklamné ponuky sa nachádzajú z rôznych lokalít (Žilina, Trnava, Veľké Úľany, Dunajská Streda) – neodpovedajú požiadavke na 'Bratislava – Staré Mesto'.",
+      "Názvy, ceny a m2 prvých 3 relevantných výsledkov nie sú vypísané, žiadny zoznam bytov neviditeľný.",
+      "Kritéria úspešnosti (finalRequirements) nie sú naplnené: filtre nie sú vyplnené, požadované texty neviditeľné ('Bratislava – Staré Mesto', '2-izbový byt', 'prenájom', max cena 800 EUR)."
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4.1",
+    "Difficulty": null,
+    "Run": "7b1c964a-5854-4524-a348-8ad01e88fca0",
+    "Success 0/1": 0,
+    "Completed_Subtasks": 1,
+    "Total_Subtasks": 7,
+    "Partial_Success": 0.25,
+    "Steps": 9,
+    "Replans": 0,
+    "Duration_seconds": 330.734,
+    "HumanHelp_Verbal": 1,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 98379,
+    "Failure_Type": "user_control",
+    "Failure_Subtype": "terminated_by_user",
+    "Final_URL": "https://www.nehnutelnosti.sk/",
+    "Final_Verdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user"
+  },
+  "metrics": {
+    "humanHelpRequests": 1,
+    "humanHelpResponses": 1,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 4,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 9,
+    "durationSeconds": 330.734,
+    "partialSuccess": 0.25,
+    "completedSubtasksCount": 1,
+    "totalSubtasks": 7,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 93590,
+      "completionTokens": 4789,
+      "totalTokens": 98379,
+      "callCount": 21
+    }
+  },
+  "helpRound": 1,
+  "completedSubtasks": [
+    "accept_cookie_overlay"
+  ],
+  "stepsExecuted": 9,
+  "finalUrl": "https://www.nehnutelnosti.sk/",
+  "helpHistory": [
+    "Nezobrazili sa navrhy"
+  ],
+  "blockerEvents": [
+    {
+      "ts": 1777377365765,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Prijať všetko",
+      "attempt": 1
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1777377483212,
+      "step": 3,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "execution_error",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777377594505,
+      "step": 6,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "execution_error",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777377625513,
+      "step": 7,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "execution_error",
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Prijať všetko",
+        "reason": "Dismissing cookie consent overlay by clicking \"Prijať všetko\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"Prijať všetko\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"Prijať všetko\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Prijať všetko",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "runId": "a4c5bcba-f0e1-4807-8d4a-fa09da3ac5e0",
+  "url": "https://predaj.zssk.sk/",
+  "task": "Na stranke vyhladaj spojenie z Bratislavy do Kúty. Den chcem aby bol 18.4. Na stanici viem byť 18:30 Vypíš prvé spojenie, ktoré stíham a napíš Čas odchádzam a prichádzam.",
+  "runMeta": {
+    "model": "gpt-4.1",
+    "difficulty": null,
+    "run": "a4c5bcba-f0e1-4807-8d4a-fa09da3ac5e0"
+  },
+  "goalSpec": {
+    "goal": "Vyhľadať spojenie z Bratislavy do Kút pre 18.4. s odchodom po 18:30 a zobraziť čas odchodu a príchodu najskoršieho možného spojenia.",
+    "successCriteria": [
+      "Zobrazená stránka so zoznamom dostupných spojení z Bratislavy do Kút na 18.4.",
+      "Prvé spojenie odchádzajúce po 18:30 je vypísané s časom odchodu a príchodu."
+    ],
+    "stopCondition": "Zobrazí sa zoznam spojení a sú vypísané časy odchodu/príchodu pre najskoršie možné spojenie.",
+    "assumptions": [
+      "Používateľ vie vyriešiť CAPTCHA pre pokračovanie v hľadaní spojenia.",
+      "Webstránka po zadaní správneho kódu umožní vyhľadávanie spojenia."
+    ],
+    "constraints": [
+      "Overenie CAPTCHA musí byť úspešné pred hľadaním spojenia.",
+      "Musí sa zadať správne dátum (18.4.), čas (po 18:30), a správne stanice."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "text_absent",
+        "text": "What code is in the image?"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "captcha_solve",
+        "title": "Vyriešiť a potvrdiť CAPTCHA",
+        "doneWhen": "Stránka už nezobrazuje CAPTCHA formulár, umožňuje ďalšiu interakciu",
+        "dependsOn": []
+      },
+      {
+        "id": "open_search_form",
+        "title": "Otvoriť formulár na vyhľadávanie spojení",
+        "doneWhen": "Zobrazený formulár s políčkami na zadanie odkiaľ, kam, dátum a čas",
+        "dependsOn": [
+          "captcha_solve"
+        ]
+      },
+      {
+        "id": "fill_search_form",
+        "title": "Vyplniť údaje (Bratislava, Kúty, 18.4., odchod po 18:30)",
+        "doneWhen": "Správne vyplnené všetky relevantné polia formulára",
+        "dependsOn": [
+          "open_search_form"
+        ]
+      },
+      {
+        "id": "submit_search",
+        "title": "Odoslať formulár a zobraziť zoznam spojení",
+        "doneWhen": "Zobrazia sa spojenia medzi Bratislavou a Kútmi na zvolený dátum a čas",
+        "dependsOn": [
+          "fill_search_form"
+        ]
+      },
+      {
+        "id": "find_first_valid_connection",
+        "title": "Nájsť a vypísať najskoršie spojenie po 18:30 s časmi odchodu a príchodu",
+        "doneWhen": "Vypísané časy odchodu a príchodu najskoršieho vyhovujúceho spoja",
+        "dependsOn": [
+          "submit_search"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "strict",
+  "stopReason": "Deterministic final requirements satisfied on the current page.",
+  "finalVerdict": "Momentálne nie je zobrazený zoznam spojení ani konkrétne časy odchodu a príchodu spojov z Bratislavy do Kút pre 18.4. Prvé spojenie, ktoré by ste stihli o 18:30, preto nie je jasne viditeľné. Prosím, vyhľadajte konkrétne spojenia, aby sa zobrazili potrebné časy.",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": true,
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "text_absent",
+        "text": "What code is in the image?"
+      }
+    ],
+    "fulfilled": [
+      "overlay_absent",
+      "text_absent(\"What code is in the image?\")"
+    ],
+    "missing": [],
+    "evidence": [
+      "Satisfied: overlay_absent",
+      "Satisfied: text_absent(\"What code is in the image?\")"
+    ],
+    "answerAssessment": null
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "The page currently displays a CAPTCHA challenge asking 'What code is in the image?'. The search form for connections has not been reached, and no results for connections are visible yet.",
+    "evidence": [
+      "Page displays: 'What code is in the image?'",
+      "Only a CAPTCHA input and submit button are present",
+      "No search results or connection times are visible"
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Vision does not contradict deterministic success, but it is not strongly confirmatory either.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4.1",
+    "Difficulty": null,
+    "Run": "a4c5bcba-f0e1-4807-8d4a-fa09da3ac5e0",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 5,
+    "Total_Subtasks": 5,
+    "Partial_Success": 1,
+    "Steps": 5,
+    "Replans": 0,
+    "Duration_seconds": 188.809,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 32542,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://predaj.zssk.sk/search",
+    "Final_Verdict": "Momentálne nie je zobrazený zoznam spojení ani konkrétne časy odchodu a príchodu spojov z Bratislavy do Kút pre 18.4. Prvé spojenie, ktoré by ste stihli o 18:30, preto nie je jasne viditeľné. Prosím, vyhľadajte konkrétne spojenia, aby sa zobrazili potrebné časy."
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 3,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 5,
+    "durationSeconds": 188.809,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 5,
+    "totalSubtasks": 5,
+    "deterministicGateSatisfied": true,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 29883,
+      "completionTokens": 2659,
+      "totalTokens": 32542,
+      "callCount": 15
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "captcha_solve",
+    "open_search_form",
+    "fill_search_form",
+    "submit_search",
+    "find_first_valid_connection"
+  ],
+  "stepsExecuted": 5,
+  "finalUrl": "https://predaj.zssk.sk/search",
+  "helpHistory": [],
+  "blockerEvents": [],
+  "recoveryTransitions": [],
+  "actionVerifications": [
+    {
+      "step": 2,
+      "action": {
+        "action": "type",
+        "selector": "#ans",
+        "text": "fu668L",
+        "reason": "Na stránke je zobrazený CAPTCHA formulár, ktorý vyžaduje zadanie kódu z obrázka. Správny kód je 'fu668L', preto ho treba zadať do políčka a následne potvrdiť tlačidlom submit.",
+        "expectedEffect": "The field fu668L contains the requested value.",
+        "successSignal": "The input value for fu668L changed.",
+        "failureSignal": "The input value for fu668L stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 2,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 1,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Na stránke je zobrazený CAPTCHA formulár, ktorý vyžaduje zadanie kódu z obrázka. Správny kód je 'fu668L', preto ho treba zadať do políčka a následne potvrdiť tlačidlom submit.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "type",
+        "selector": "#ans",
+        "text": "fu668L"
+      }
+    }
+  ]
+}

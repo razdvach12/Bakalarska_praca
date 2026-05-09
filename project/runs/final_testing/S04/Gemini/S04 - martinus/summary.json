@@ -1,0 +1,312 @@
+{
+  "runId": "c6c1a612-31bc-44c1-bb24-6caa143da41a",
+  "url": "https://www.martinus.sk/",
+  "task": "Vyhľadajte v internetovom obchode ľubovoľnú knihu od Franka Herberta a vložte ju do košíka. Potom vyhľadajte ďalšiu knihu (ktora nemusi byt od Franka Herberta) z sekcie sci-fi a tú tiež vložte do košíka. Nakoniec otvorte košík.",
+  "runMeta": {
+    "model": "gemini-2.5-flash",
+    "difficulty": null,
+    "run": "c6c1a612-31bc-44c1-bb24-6caa143da41a"
+  },
+  "goalSpec": {
+    "goal": "Vyhľadajte knihu od Franka Herberta a sci-fi knihu a vložte ich do košíka, potom otvorte košík.",
+    "successCriteria": [
+      "V košíku sú aspoň dve položky.",
+      "Je otvorený košík."
+    ],
+    "stopCondition": "cart_page_open_with_two_items",
+    "assumptions": [
+      "Na stránke sú dostupné knihy od Franka Herberta.",
+      "Na stránke sú dostupné sci-fi knihy."
+    ],
+    "constraints": [
+      "Používajte iba vyhľadávanie a kategórie na stránke."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "url_contains",
+        "text": "/cart"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "Frank Herbert"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "sci-fi"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "search_frank_herbert",
+        "title": "Vyhľadajte knihu od Franka Herberta.",
+        "doneWhen": "Na stránke sú zobrazené výsledky vyhľadávania pre 'Frank Herbert'.",
+        "dependsOn": []
+      },
+      {
+        "id": "add_frank_herbert_book_to_cart",
+        "title": "Pridajte ľubovoľnú knihu od Franka Herberta do košíka.",
+        "doneWhen": "Aspoň jedna kniha od Franka Herberta je v košíku.",
+        "dependsOn": [
+          "search_frank_herbert"
+        ]
+      },
+      {
+        "id": "search_sci_fi_book",
+        "title": "Vyhľadajte knihu z kategórie sci-fi.",
+        "doneWhen": "Na stránke sú zobrazené výsledky vyhľadávania alebo kategórie pre 'sci-fi'.",
+        "dependsOn": [
+          "add_frank_herbert_book_to_cart"
+        ]
+      },
+      {
+        "id": "add_sci_fi_book_to_cart",
+        "title": "Pridajte ľubovoľnú knihu z kategórie sci-fi do košíka.",
+        "doneWhen": "Aspoň jedna sci-fi kniha je v košíku (spolu s knihou od Franka Herberta, ak už bola pridaná).",
+        "dependsOn": [
+          "search_sci_fi_book"
+        ]
+      },
+      {
+        "id": "open_cart",
+        "title": "Otvorte košík.",
+        "doneWhen": "Je otvorená stránka košíka.",
+        "dependsOn": [
+          "add_frank_herbert_book_to_cart",
+          "add_sci_fi_book_to_cart"
+        ]
+      }
+    ]
+  },
+  "success": false,
+  "successMode": null,
+  "stopReason": "",
+  "finalVerdict": "Beh sa skoncil bez finalnej odpovede.",
+  "error": "Help timeout (180000ms) for c6c1a612-31bc-44c1-bb24-6caa143da41a:b77566a1-bb52-4774-aef7-158892519cee",
+  "failureClassification": "recovery_exhausted",
+  "failureSubtype": "selector_safety",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "url_contains",
+        "text": "/cart"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "Frank Herbert"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "sci-fi"
+      }
+    ],
+    "fulfilled": [
+      "cart_contains_product(Frank Herbert)"
+    ],
+    "missing": [
+      "url_contains(\"/cart\")",
+      "cart_contains_product(sci-fi)"
+    ],
+    "evidence": [
+      "Satisfied: cart_contains_product(Frank Herbert)"
+    ],
+    "answerAssessment": null
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "The current page shows search results for 'Frank Herbert' but indicates '0 titulov' (0 titles) for all availability options, meaning no books are currently displayed on the page to be added to the cart. The subtask 'Pridajte ľubovoľnú knihu od Franka Herberta do košíka.' cannot be completed.",
+    "evidence": []
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gemini-2.5-flash",
+    "Difficulty": null,
+    "Run": "c6c1a612-31bc-44c1-bb24-6caa143da41a",
+    "Success 0/1": 0,
+    "Completed_Subtasks": 1,
+    "Total_Subtasks": 5,
+    "Partial_Success": 0.333,
+    "Steps": 5,
+    "Replans": 0,
+    "Duration_seconds": 402.365,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 112786,
+    "Failure_Type": "recovery_exhausted",
+    "Failure_Subtype": "selector_safety",
+    "Final_URL": "https://www.martinus.sk/2879359-kolekcia-knih-duna-frank-herbert/kniha",
+    "Final_Verdict": "Beh sa skoncil bez finalnej odpovede."
+  },
+  "metrics": {
+    "humanHelpRequests": 1,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 2,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 5,
+    "durationSeconds": 402.365,
+    "partialSuccess": 0.333,
+    "completedSubtasksCount": 1,
+    "totalSubtasks": 5,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 87057,
+      "completionTokens": 3423,
+      "totalTokens": 112786,
+      "callCount": 18
+    }
+  },
+  "helpRound": 1,
+  "completedSubtasks": [
+    "search_frank_herbert"
+  ],
+  "stepsExecuted": 5,
+  "finalUrl": "https://www.martinus.sk/2879359-kolekcia-knih-duna-frank-herbert/kniha",
+  "helpHistory": [],
+  "blockerEvents": [],
+  "recoveryTransitions": [
+    {
+      "ts": 1776253715689,
+      "step": 2,
+      "kind": "selector_safety",
+      "detail": "Selector \"div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > form:nth-of-type(1) > button:nth-of-type(1)\" is not grounded in the current snapshot.",
+      "action": {
+        "action": "click",
+        "selector": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > form:nth-of-type(1) > button:nth-of-type(1)",
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "Kniha by mala byť pridaná do košíka a ikona košíka by sa mala aktualizovať.",
+        "successSignal": "cartBadge",
+        "failureSignal": "An error message appears or the cart badge does not update.",
+        "fallbackHint": "Try adding another Frank Herbert book to the cart."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776253776705,
+      "step": 3,
+      "kind": "selector_safety",
+      "detail": "Selector \"form:nth-of-type(2) button:nth-of-type(1)\" is not grounded in the current snapshot.",
+      "action": {
+        "action": "click",
+        "selector": "form:nth-of-type(2) button:nth-of-type(1)",
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking form:nth-of-type(2) button:nth-of-type(1).",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "type",
+        "selector": "#search-in-header",
+        "text": "Frank Herbert",
+        "reason": "No further actions needed.",
+        "expectedEffect": "Text 'Frank Herbert' will appear in the search bar.",
+        "successSignal": "The search input value is 'Frank Herbert'.",
+        "failureSignal": "The search input value is not 'Frank Herbert'.",
+        "fallbackHint": "Try clicking the search input first, then typing."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 1,
+      "action": {
+        "action": "click",
+        "selector": "a[href=\"/search?q=Frank+Herbert\"]",
+        "text": "Ďalšie výsledky",
+        "reason": "I have typed 'Frank Herbert' into the search bar and now need to navigate to the search results page. Clicking 'Ďalšie výsledky' will achieve this.",
+        "mayNavigate": true,
+        "expectedEffect": "Navigates to the search results page for 'Frank Herbert'.",
+        "successSignal": "url_contains:/search?q=Frank+Herbert",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "If clicking 'Ďalšie výsledky' fails, try clicking the search button next to the input field."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": "search_frank_herbert",
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": "search_frank_herbert",
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "type",
+        "selector": "#search-in-header",
+        "text": "Frank Herbert",
+        "expectedEffect": "Text 'Frank Herbert' will appear in the search bar.",
+        "successSignal": "The search input value is 'Frank Herbert'.",
+        "failureSignal": "The search input value is not 'Frank Herbert'.",
+        "fallbackHint": "Try clicking the search input first, then typing."
+      }
+    },
+    {
+      "step": 1,
+      "activeSubtaskId": "search_frank_herbert",
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "I have typed 'Frank Herbert' into the search bar and now need to navigate to the search results page. Clicking 'Ďalšie výsledky' will achieve this.",
+        "activeSubtaskId": "search_frank_herbert",
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "click",
+        "selector": "a[href=\"/search?q=Frank+Herbert\"]",
+        "text": "Ďalšie výsledky",
+        "mayNavigate": true,
+        "expectedEffect": "Navigates to the search results page for 'Frank Herbert'.",
+        "successSignal": "url_contains:/search?q=Frank+Herbert",
+        "fallbackHint": "If clicking 'Ďalšie výsledky' fails, try clicking the search button next to the input field."
+      }
+    }
+  ]
+}

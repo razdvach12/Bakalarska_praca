@@ -1,0 +1,745 @@
+{
+  "runId": "8c06405b-68d2-4d21-a6bd-1aa76a6e3c21",
+  "url": "https://www.topreality.sk/",
+  "task": "Na realitnom portali nastav filtre: typ \"2-izbovy byt\", lokalita \"Bratislava – Staré Mesto\", typ ponuky \"prenajom\", maximalna cena 800 EUR mesacne. Vypis nazov, cenu a m2 prvych 3 vysledkov.",
+  "runMeta": {
+    "model": "gpt-4.1",
+    "difficulty": null,
+    "run": "8c06405b-68d2-4d21-a6bd-1aa76a6e3c21"
+  },
+  "goalSpec": {
+    "goal": "Vyhľadať 2-izbové byty na prenájom v Bratislava – Staré Mesto s maximálnou cenou 800 EUR a vypísať názov, cenu a m2 prvých 3 výsledkov.",
+    "successCriteria": [
+      "Filtre sú nastavené na: typ \"2-izbový byt\", lokalita \"Bratislava – Staré Mesto\", typ ponuky \"prenájom\", maximálna cena 800 EUR mesačne.",
+      "Zobrazia sa relevantné výsledky pre požiadavku.",
+      "Pre prvé tri výsledky je uvedený názov, cena a výmera v m2.",
+      "Nezobrazuje sa žiadna overlay blokujúca interakciu."
+    ],
+    "stopCondition": "Po zobrazení zoznamu ponúk s danými filtrami a vypísaní požadovaných údajov k prvým trom bytom.",
+    "assumptions": [
+      "Overlay s ochranou osobných údajov musí byť odstránený pred nastavením filtrov.",
+      "Výsledky vyhľadávania obsahujú požadované informácie (názov bytu, cena, m2).",
+      "Filtre fungujú správne a umožňujú zvoliť požadovaný typ, lokalitu a cenu."
+    ],
+    "constraints": [
+      "Nastavenie filtrov a spracovanie výsledkov môže začať až po odstránení overlay.",
+      "Filtrovanie musí presne zodpovedať špecifikovaným parametrom."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Typ",
+        "value": "Prenájom"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Lokalita"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Cena celkom v €",
+        "value": "800"
+      },
+      {
+        "kind": "text_visible",
+        "text": "2-izbový byt"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Bratislava – Staré Mesto"
+      },
+      {
+        "kind": "text_visible",
+        "text": "EUR"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "accept_overlay",
+        "title": "Prijať cookies súhlas alebo odstrániť overlay",
+        "doneWhen": "Overlay s ochranou osobných údajov už nie je viditeľný",
+        "dependsOn": []
+      },
+      {
+        "id": "select_2_izbovy_byt",
+        "title": "Zvoliť typ \"2-izbový byt\" v druhoch nehnuteľností",
+        "doneWhen": "Typ nehnuteľnosti je nastavený na \"2-izbový byt\"",
+        "dependsOn": [
+          "accept_overlay"
+        ]
+      },
+      {
+        "id": "set_location",
+        "title": "Vyplniť lokalitu \"Bratislava – Staré Mesto\"",
+        "doneWhen": "Pole Lokalite obsahuje \"Bratislava – Staré Mesto\"",
+        "dependsOn": [
+          "accept_overlay"
+        ]
+      },
+      {
+        "id": "set_offer_type_rent",
+        "title": "Vybrať typ ponuky \"Prenájom\"",
+        "doneWhen": "Typ ponuky je nastavený na \"Prenájom\"",
+        "dependsOn": [
+          "accept_overlay"
+        ]
+      },
+      {
+        "id": "set_max_price",
+        "title": "Nastaviť maximálnu cenu na 800 EUR mesačne",
+        "doneWhen": "Pole maximálnej ceny je nastavené na 800",
+        "dependsOn": [
+          "accept_overlay"
+        ]
+      },
+      {
+        "id": "search_and_list_results",
+        "title": "Vyhľadať a vypísať názov, cenu a m2 prvých 3 výsledkov",
+        "doneWhen": "Pre prvé tri výsledky je viditeľný názov, cena a m2",
+        "dependsOn": [
+          "select_2_izbovy_byt",
+          "set_location",
+          "set_offer_type_rent",
+          "set_max_price"
+        ]
+      }
+    ]
+  },
+  "success": false,
+  "successMode": null,
+  "stopReason": "terminated_by_user",
+  "finalVerdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user",
+  "error": "terminated_by_user",
+  "failureClassification": "user_control",
+  "failureSubtype": "terminated_by_user",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Typ",
+        "value": "Prenájom"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Lokalita"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Cena celkom v €",
+        "value": "800"
+      },
+      {
+        "kind": "text_visible",
+        "text": "2-izbový byt"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Bratislava – Staré Mesto"
+      },
+      {
+        "kind": "text_visible",
+        "text": "EUR"
+      }
+    ],
+    "fulfilled": [
+      "overlay_absent",
+      "field_equals(Cena celkom v €=\"800\")"
+    ],
+    "missing": [
+      "field_equals(Typ=\"Prenájom\")",
+      "field_filled(Lokalita)",
+      "text_visible(\"2-izbový byt\")",
+      "text_visible(\"Bratislava – Staré Mesto\")",
+      "text_visible(\"EUR\")"
+    ],
+    "evidence": [
+      "Satisfied: overlay_absent",
+      "Satisfied: field_equals(Cena celkom v €=\"800\")"
+    ],
+    "answerAssessment": null
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "Nie sú splnené všetky finálne požiadavky – zoznam výsledkov neobsahuje prvé tri byty v lokalite \"Bratislava – Staré Mesto\". Prvé tri ponuky z výpisu sú z Prešova a Košíc, iba tretia je z Bratislava – Staré Mesto. Lokálny filter síce bol nastavený, ale výsledky nie sú zatriedené podľa lokality, a potrebné údaje (názov, cena, m2) pre tri relevantné byty v Starom Meste nie sú vypísané.",
+    "evidence": [
+      "Výsledky: 1. Prostějovská, Prešov – 2-izbový byt, 600 €/mes., 40 m²; 2. Popradská, Košice – 2-izbový byt, 670 €/mes., 36 m²; 3. Gunduličova, Bratislava-Staré Mesto – 2-izbový byt, 610+180 €/mes., 35 m²",
+      "Filtre: Typ nehnuteľnosti je '2-izbový byt', typ ponuky je 'Prenájom', cena do 800, lokalita zadaná v poli, ale nevypísaná priamo v DOM – chýba jednoznačná evidence o výbere Bratislava – Staré Mesto vo výsledkoch.",
+      "Finálne kritériá: Nevyhovuje podmienke, že prvé tri výsledky musia byť z 'Bratislava – Staré Mesto' a vypísané názov, cena, m2."
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4.1",
+    "Difficulty": null,
+    "Run": "8c06405b-68d2-4d21-a6bd-1aa76a6e3c21",
+    "Success 0/1": 0,
+    "Completed_Subtasks": 6,
+    "Total_Subtasks": 6,
+    "Partial_Success": 1,
+    "Steps": 14,
+    "Replans": 2,
+    "Duration_seconds": 322.657,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 199675,
+    "Failure_Type": "user_control",
+    "Failure_Subtype": "terminated_by_user",
+    "Final_URL": "https://www.topreality.sk/vyhladavanie-nehnutelnosti.html?form=3&type%5B%5D=103&obec=&searchType=string&distance=&q=&cena_od=&cena_do=800&vymera_od=0&vymera_do=0&n_search=search&page=estate&gpsPolygon=",
+    "Final_Verdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user"
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 7,
+    "replanCount": 2,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 2
+    },
+    "stepsExecuted": 14,
+    "durationSeconds": 322.657,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 6,
+    "totalSubtasks": 6,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 188021,
+      "completionTokens": 11654,
+      "totalTokens": 199675,
+      "callCount": 51
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "accept_overlay",
+    "set_offer_type_rent",
+    "select_2_izbovy_byt",
+    "set_location",
+    "set_max_price",
+    "search_and_list_results"
+  ],
+  "stepsExecuted": 14,
+  "finalUrl": "https://www.topreality.sk/vyhladavanie-nehnutelnosti.html?form=3&type%5B%5D=103&obec=&searchType=string&distance=&q=&cena_od=&cena_do=800&vymera_od=0&vymera_do=0&n_search=search&page=estate&gpsPolygon=",
+  "helpHistory": [],
+  "blockerEvents": [
+    {
+      "ts": 1777378131945,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Prijať všetko",
+      "attempt": 1
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1777378165140,
+      "step": 1,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#n_srch_typ",
+        "text": "Prenájom",
+        "reason": "Je potrebné nastaviť typ ponuky na 'Prenájom' pomocou filtra 'Typ'.",
+        "mayNavigate": false,
+        "expectedEffect": "Filtračný výber 'Typ' sa nastaví na možnosť 'Prenájom'.",
+        "successSignal": "Typ je zmenený na 'Prenájom'.",
+        "failureSignal": "Typ nie je zmenený alebo sa nezobrazí možnosť prenájom.",
+        "fallbackHint": "Ak možnosť 'Prenájom' nie je prijatá, vyskúšať výber zo zoznamu manuálne."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777378190299,
+      "step": 3,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "no_action_executed",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777378212385,
+      "step": 4,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "input[placeholder=\"Okres, obec\"]",
+        "text": "Bratislava – Staré Mesto",
+        "reason": "Je potrebné nastaviť ďalšie filtre podľa zadania: lokalita, druh nehnuteľnosti (2-izbový byt), a maximálna cena.",
+        "mayNavigate": false,
+        "expectedEffect": "Pole lokality bude vyplnené hodnotou 'Bratislava – Staré Mesto'.",
+        "successSignal": "Zobrazená alebo potvrdená lokalita v poli.",
+        "failureSignal": "Žiadna zmena v poli alebo chyba pri zadávaní.",
+        "fallbackHint": "Ak je v ponuke autocomplete návrh, klikni naň po zadaní."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777378212385,
+      "step": 4,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "failed_expected_effect",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777378302557,
+      "step": 8,
+      "kind": "post_action_verification",
+      "detail": "The page stayed unchanged after clicking and no success signal appeared.",
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "2 izbový byt",
+        "reason": "Ešte nie sú nastavené všetky požadované filtre. Neprebehol výber typu \"2-izbový byt\" a nebola nastavená maximálna cena 800 EUR mesačne.",
+        "mayNavigate": false,
+        "expectedEffect": "Vyberie sa druh nehnuteľnosti 2-izbový byt, aktivuje sa príslušný filter.",
+        "successSignal": "2-izbový byt zobrazený vo filtroch alebo ako aktívny výber.",
+        "failureSignal": "Výber nehnuteľnosti sa nezmení alebo filter sa nenastaví.",
+        "fallbackHint": "Ak pole Druh nemá priamo možnosť výberu, skúsiť cestu cez rozbaľovací zoznam alebo iný UI prvok na spresnenie filtra."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777378344747,
+      "step": 10,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#n_srch_obec_suggest > div:nth-of-type(1) > input:nth-of-type(1)",
+        "text": "Bratislava – Staré Mesto",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Bratislava – Staré Mesto contains the requested value.",
+        "successSignal": "The input value for Bratislava – Staré Mesto changed.",
+        "failureSignal": "The input value for Bratislava – Staré Mesto stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777378368180,
+      "step": 11,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#n_srch_typ",
+        "text": "Prenájom",
+        "expectedEffect": "The field Prenájom contains the requested value.",
+        "successSignal": "The input value for Prenájom changed.",
+        "failureSignal": "The input value for Prenájom stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Prijať všetko",
+        "reason": "Dismissing cookie consent overlay by clicking \"Prijať všetko\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 1,
+      "action": {
+        "action": "type",
+        "selector": "#n_srch_typ",
+        "text": "Prenájom",
+        "reason": "Je potrebné nastaviť typ ponuky na 'Prenájom' pomocou filtra 'Typ'.",
+        "mayNavigate": false,
+        "expectedEffect": "Filtračný výber 'Typ' sa nastaví na možnosť 'Prenájom'.",
+        "successSignal": "Typ je zmenený na 'Prenájom'.",
+        "failureSignal": "Typ nie je zmenený alebo sa nezobrazí možnosť prenájom.",
+        "fallbackHint": "Ak možnosť 'Prenájom' nie je prijatá, vyskúšať výber zo zoznamu manuálne."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "action": "type",
+        "selector": "input[placeholder=\"Okres, obec\"]",
+        "text": "Bratislava – Staré Mesto",
+        "reason": "Je potrebné nastaviť ďalšie filtre podľa zadania: lokalita, druh nehnuteľnosti (2-izbový byt), a maximálna cena.",
+        "mayNavigate": false,
+        "expectedEffect": "Pole lokality bude vyplnené hodnotou 'Bratislava – Staré Mesto'.",
+        "successSignal": "Zobrazená alebo potvrdená lokalita v poli.",
+        "failureSignal": "Žiadna zmena v poli alebo chyba pri zadávaní.",
+        "fallbackHint": "Ak je v ponuke autocomplete návrh, klikni naň po zadaní."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 5,
+      "action": {
+        "action": "click",
+        "selector": "a[href=\"https://www.topreality.sk/byty-k100.html\"]",
+        "text": null,
+        "reason": "Filtrovanie podľa počtu izieb (2-izbový byt) ešte nebolo nastavené. Je potrebné nastaviť filter na druh nehnuteľnosti (2-izbový byt).",
+        "mayNavigate": true,
+        "expectedEffect": "Zobrazí sa ponuka bytov, kde bude možné nastaviť počet izieb na 2-izbové byty.",
+        "successSignal": "Zobrazí sa filter na výber typu bytu alebo konkrétnych izieb.",
+        "failureSignal": "Nezmení sa obsah alebo sa nedá ďalej filtrovať na 2-izbové byty.",
+        "fallbackHint": "Ak sa filter na počet izieb neobjaví, bude potrebné vrátiť sa späť alebo skúsiť inú cestu výberu druhu nehnuteľnosti."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "action": "click",
+        "selector": "#druh_ms",
+        "text": null,
+        "reason": "Filtre pre typ ponuky Prenájom sú už nastavené, overlay nie je prítomný. Ďalší krok je nastaviť typ nehnuteľnosti na '2-izbový byt'.",
+        "mayNavigate": false,
+        "expectedEffect": "Otvorí sa rozbaľovací zoznam na výber typu bytu.",
+        "successSignal": "Zobrazí sa ponuka typov bytov, medzi ktorými je možné zvoliť 2-izbový byt.",
+        "failureSignal": "Nič sa nezmení alebo sa typ bytu nezobrazí.",
+        "fallbackHint": "Ak sa zoznam neotvorí, môže byť potrebné použiť iný spôsob na zvolenie typu bytu."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 7,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "2 izbový byt",
+        "reason": "Je otvorený dropdown filtrov typu bytu, treba zvoliť možnosť '2 izbový byt'.",
+        "expectedEffect": "Zaškrtne sa filter 2 izbový byt a vybraný typ sa aplikuje.",
+        "successSignal": "Filter na 2 izbový byt je aktívny.",
+        "failureSignal": "Filter sa nezvolí alebo ostanú vybrané iné typy.",
+        "fallbackHint": "Skontroluj, či filter na 2 izbový byt nie je už zvolený, prípadne rozklikni filter znova."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 8,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "2 izbový byt",
+        "reason": "Ešte nie sú nastavené všetky požadované filtre. Neprebehol výber typu \"2-izbový byt\" a nebola nastavená maximálna cena 800 EUR mesačne.",
+        "mayNavigate": false,
+        "expectedEffect": "Vyberie sa druh nehnuteľnosti 2-izbový byt, aktivuje sa príslušný filter.",
+        "successSignal": "2-izbový byt zobrazený vo filtroch alebo ako aktívny výber.",
+        "failureSignal": "Výber nehnuteľnosti sa nezmení alebo filter sa nenastaví.",
+        "fallbackHint": "Ak pole Druh nemá priamo možnosť výberu, skúsiť cestu cez rozbaľovací zoznam alebo iný UI prvok na spresnenie filtra."
+      },
+      "verification": {
+        "changed": false,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The page stayed unchanged after clicking and no success signal appeared."
+      }
+    },
+    {
+      "step": 10,
+      "action": {
+        "action": "type",
+        "selector": "#n_srch_obec_suggest > div:nth-of-type(1) > input:nth-of-type(1)",
+        "text": "Bratislava – Staré Mesto",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Bratislava – Staré Mesto contains the requested value.",
+        "successSignal": "The input value for Bratislava – Staré Mesto changed.",
+        "failureSignal": "The input value for Bratislava – Staré Mesto stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 11,
+      "action": {
+        "action": "type",
+        "selector": "#n_srch_typ",
+        "text": "Prenájom",
+        "expectedEffect": "The field Prenájom contains the requested value.",
+        "successSignal": "The input value for Prenájom changed.",
+        "failureSignal": "The input value for Prenájom stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 12,
+      "action": {
+        "action": "type",
+        "selector": "#n_srch_cdo",
+        "text": "800",
+        "expectedEffect": "The field 800 contains the requested value.",
+        "successSignal": "The input value for 800 changed.",
+        "failureSignal": "The input value for 800 stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 12,
+      "action": {
+        "action": "click",
+        "selector": "button[name=\"n_search\"]",
+        "text": null,
+        "expectedEffect": "The visible UI changes after clicking button[name=\"n_search\"].",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"Prijať všetko\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"Prijať všetko\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Prijať všetko",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    },
+    {
+      "step": 5,
+      "activeSubtaskId": "select_2_izbovy_byt",
+      "completedSubtasks": [
+        "accept_overlay",
+        "set_offer_type_rent"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Filtrovanie podľa počtu izieb (2-izbový byt) ešte nebolo nastavené. Je potrebné nastaviť filter na druh nehnuteľnosti (2-izbový byt).",
+        "activeSubtaskId": "select_2_izbovy_byt",
+        "markSubtasksDone": [],
+        "progressNote": "Overlay je odstránený, ponuka Prenájom je nastavená, ale typ 2-izbový byt chýba. Ďalší krok je zvoliť správny druh/byty/2-izbový byt.",
+        "needHelp": false,
+        "action": "click",
+        "selector": "a[href=\"https://www.topreality.sk/byty-k100.html\"]",
+        "text": null,
+        "mayNavigate": true,
+        "expectedEffect": "Zobrazí sa ponuka bytov, kde bude možné nastaviť počet izieb na 2-izbové byty.",
+        "successSignal": "Zobrazí sa filter na výber typu bytu alebo konkrétnych izieb.",
+        "failureSignal": "Nezmení sa obsah alebo sa nedá ďalej filtrovať na 2-izbové byty.",
+        "fallbackHint": "Ak sa filter na počet izieb neobjaví, bude potrebné vrátiť sa späť alebo skúsiť inú cestu výberu druhu nehnuteľnosti."
+      }
+    },
+    {
+      "step": 6,
+      "activeSubtaskId": "select_2_izbovy_byt",
+      "completedSubtasks": [
+        "accept_overlay",
+        "set_offer_type_rent"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Filtre pre typ ponuky Prenájom sú už nastavené, overlay nie je prítomný. Ďalší krok je nastaviť typ nehnuteľnosti na '2-izbový byt'.",
+        "activeSubtaskId": "select_2_izbovy_byt",
+        "markSubtasksDone": [],
+        "progressNote": "Overlay je odstránený, typ ponuky Prenájom nastavený. Idem nastaviť typ '2-izbový byt'.",
+        "needHelp": false,
+        "action": "click",
+        "selector": "#druh_ms",
+        "text": null,
+        "mayNavigate": false,
+        "expectedEffect": "Otvorí sa rozbaľovací zoznam na výber typu bytu.",
+        "successSignal": "Zobrazí sa ponuka typov bytov, medzi ktorými je možné zvoliť 2-izbový byt.",
+        "failureSignal": "Nič sa nezmení alebo sa typ bytu nezobrazí.",
+        "fallbackHint": "Ak sa zoznam neotvorí, môže byť potrebné použiť iný spôsob na zvolenie typu bytu."
+      }
+    },
+    {
+      "step": 7,
+      "activeSubtaskId": "select_2_izbovy_byt",
+      "completedSubtasks": [
+        "accept_overlay",
+        "set_offer_type_rent"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Je otvorený dropdown filtrov typu bytu, treba zvoliť možnosť '2 izbový byt'.",
+        "activeSubtaskId": "select_2_izbovy_byt",
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "2 izbový byt",
+        "expectedEffect": "Zaškrtne sa filter 2 izbový byt a vybraný typ sa aplikuje.",
+        "successSignal": "Filter na 2 izbový byt je aktívny.",
+        "failureSignal": "Filter sa nezvolí alebo ostanú vybrané iné typy.",
+        "fallbackHint": "Skontroluj, či filter na 2 izbový byt nie je už zvolený, prípadne rozklikni filter znova."
+      }
+    },
+    {
+      "step": 12,
+      "activeSubtaskId": null,
+      "completedSubtasks": [
+        "accept_overlay",
+        "set_offer_type_rent"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "actions": [
+          {
+            "action": "type",
+            "selector": "#n_srch_cdo",
+            "text": "800"
+          },
+          {
+            "action": "click",
+            "selector": "button[name=\"n_search\"]",
+            "text": null
+          }
+        ]
+      }
+    }
+  ]
+}

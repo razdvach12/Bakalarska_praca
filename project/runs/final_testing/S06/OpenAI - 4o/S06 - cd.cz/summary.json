@@ -1,0 +1,531 @@
+{
+  "runId": "bd997928-18a7-48ee-b41f-848fd6937482",
+  "url": "https://www.cd.cz/",
+  "task": "Na stranke vyhladaj spojenie z Prahy do Bratislavy. Den chcem aby bol 18.4. Na stanici viem byť 18:30 Vypíš prvé spojenie, ktoré stíham a napíš Čas odchádzam a prichádzam.",
+  "runMeta": {
+    "model": "gpt-4o-mini",
+    "difficulty": null,
+    "run": "bd997928-18a7-48ee-b41f-848fd6937482"
+  },
+  "goalSpec": {
+    "goal": "Find the next train connection from Prague to Bratislava on 18.4, departing after 18:30.",
+    "successCriteria": [
+      "The page shows available train connections.",
+      "The first valid train connection after 18:30 is displayed.",
+      "Departure and arrival times for the selected connection are visible."
+    ],
+    "stopCondition": "The first valid train connection is found and displayed.",
+    "assumptions": [
+      "User is searching for trains using the provided interface.",
+      "The system can process the provided travel details."
+    ],
+    "constraints": [
+      "Travel date must be set to 18.4.",
+      "Departure time must be set to a time after 18:30."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "field_filled",
+        "label": "connection-from"
+      },
+      {
+        "kind": "field_filled",
+        "label": "connection-to"
+      },
+      {
+        "kind": "field_filled",
+        "label": "calendar"
+      },
+      {
+        "kind": "field_filled",
+        "label": "time"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "fill_departure",
+        "title": "Fill in departure station",
+        "doneWhen": "Departure station field is filled with 'Praha'",
+        "dependsOn": []
+      },
+      {
+        "id": "fill_arrival",
+        "title": "Fill in arrival station",
+        "doneWhen": "Arrival station field is filled with 'Bratislava'",
+        "dependsOn": [
+          "fill_departure"
+        ]
+      },
+      {
+        "id": "set_date",
+        "title": "Set travel date",
+        "doneWhen": "Travel date is set to '18.4.'",
+        "dependsOn": [
+          "fill_arrival"
+        ]
+      },
+      {
+        "id": "set_time",
+        "title": "Set departure time",
+        "doneWhen": "Departure time is set to a time after '18:30'",
+        "dependsOn": [
+          "set_date"
+        ]
+      },
+      {
+        "id": "submit_search",
+        "title": "Submit search form",
+        "doneWhen": "Train connections are displayed on the page",
+        "dependsOn": [
+          "set_time"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "llm_soft",
+  "stopReason": "Odchod: 18:37, Príchod: 00:10.",
+  "finalVerdict": "Odchod: 18:37, Príchod: 00:10.",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "field_filled",
+        "label": "connection-from"
+      },
+      {
+        "kind": "field_filled",
+        "label": "connection-to"
+      },
+      {
+        "kind": "field_filled",
+        "label": "calendar"
+      },
+      {
+        "kind": "field_filled",
+        "label": "time"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "fulfilled": [],
+    "missing": [
+      "field_filled(connection-from)",
+      "field_filled(connection-to)",
+      "field_filled(calendar)",
+      "field_filled(time)",
+      "answer_visible"
+    ],
+    "evidence": [],
+    "answerAssessment": {
+      "pageRelevant": false,
+      "answerVisible": false,
+      "answer": "",
+      "evidence": [],
+      "missing": [
+        "No high-confidence visible answer detected on the current page."
+      ],
+      "confidence": "low"
+    }
+  },
+  "completionCheck": {
+    "done": true,
+    "reason": "The first valid train connection is displayed with departure and arrival times visible.",
+    "evidence": [
+      "First connection from Praha hl.n. at 18:37 with arrival in Bratislava hl.st. at 00:10"
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4o-mini",
+    "Difficulty": null,
+    "Run": "bd997928-18a7-48ee-b41f-848fd6937482",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 5,
+    "Total_Subtasks": 5,
+    "Partial_Success": 1,
+    "Steps": 8,
+    "Replans": 0,
+    "Duration_seconds": 331.049,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 1072587,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://www.cd.cz/spojeni-a-jizdenka/spojeni-tam/dbd786a0-9a5b-49ee-a4ef-29d1a9c1f19a",
+    "Final_Verdict": "Odchod: 18:37, Príchod: 00:10."
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 4,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 8,
+    "durationSeconds": 331.049,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 5,
+    "totalSubtasks": 5,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": true,
+    "tokenUsage": {
+      "promptTokens": 1067941,
+      "completionTokens": 4646,
+      "totalTokens": 1072587,
+      "callCount": 34
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "fill_departure",
+    "fill_arrival",
+    "set_date",
+    "set_time",
+    "submit_search"
+  ],
+  "stepsExecuted": 8,
+  "finalUrl": "https://www.cd.cz/spojeni-a-jizdenka/spojeni-tam/dbd786a0-9a5b-49ee-a4ef-29d1a9c1f19a",
+  "helpHistory": [],
+  "blockerEvents": [
+    {
+      "ts": 1776288184066,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Povolit pouze nezbytné cookie"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1776288260363,
+      "step": 1,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "candidateId": "c57",
+        "selector": "#connection-from",
+        "text": "Praha",
+        "targetLabel": null,
+        "reason": "Fill in departure station",
+        "expectedEffect": "Departure station field is filled with 'Praha'",
+        "successSignal": "'Praha' appears in the departure field",
+        "failureSignal": "Departure field remains empty",
+        "fallbackHint": "Check the spelling of the station name"
+      },
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776288421022,
+      "step": 4,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "candidateId": "c58",
+        "selector": "#connection-to",
+        "text": "Bratislava",
+        "targetLabel": null,
+        "reason": "Fill in arrival station",
+        "expectedEffect": "Arrival station is filled with 'Bratislava'",
+        "successSignal": "Field is filled with 'Bratislava'",
+        "failureSignal": "Field not updated",
+        "fallbackHint": "Verify if the input accepts the text."
+      },
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776288469616,
+      "step": 6,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#connection-to",
+        "text": "Bratislava",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Bratislava contains the requested value.",
+        "successSignal": "The input value for Bratislava changed.",
+        "failureSignal": "The input value for Bratislava stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povolit pouze nezbytné cookie",
+        "reason": "Dismissing cookie consent overlay by clicking \"Povolit pouze nezbytné cookie\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 1,
+      "action": {
+        "action": "type",
+        "candidateId": "c57",
+        "selector": "#connection-from",
+        "text": "Praha",
+        "targetLabel": null,
+        "reason": "Fill in departure station",
+        "expectedEffect": "Departure station field is filled with 'Praha'",
+        "successSignal": "'Praha' appears in the departure field",
+        "failureSignal": "Departure field remains empty",
+        "fallbackHint": "Check the spelling of the station name"
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 2,
+      "action": {
+        "action": "type",
+        "selector": "#connection-from",
+        "text": "Praha",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Praha contains the requested value.",
+        "successSignal": "The input value for Praha changed.",
+        "failureSignal": "The input value for Praha stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "action": "type",
+        "candidateId": "c57",
+        "selector": "#connection-from",
+        "text": "Praha",
+        "targetLabel": "ODKUD",
+        "reason": "Fill in departure station",
+        "expectedEffect": "Departure station field is filled with 'Praha'",
+        "successSignal": "Field shows 'Praha'",
+        "failureSignal": "Field does not show 'Praha'",
+        "fallbackHint": "Try to click the suggestion for 'Praha hl.n.'"
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "action": "type",
+        "candidateId": "c58",
+        "selector": "#connection-to",
+        "text": "Bratislava",
+        "targetLabel": null,
+        "reason": "Fill in arrival station",
+        "expectedEffect": "Arrival station is filled with 'Bratislava'",
+        "successSignal": "Field is filled with 'Bratislava'",
+        "failureSignal": "Field not updated",
+        "fallbackHint": "Verify if the input accepts the text."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "action": "type",
+        "selector": "#connection-to",
+        "text": "Bratislava",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Bratislava contains the requested value.",
+        "successSignal": "The input value for Bratislava changed.",
+        "failureSignal": "The input value for Bratislava stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"Povolit pouze nezbytné cookie\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"Povolit pouze nezbytné cookie\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povolit pouze nezbytné cookie",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    },
+    {
+      "step": 2,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "type",
+        "candidateId": null,
+        "selector": "#connection-from",
+        "text": "Praha",
+        "targetLabel": null
+      }
+    },
+    {
+      "step": 3,
+      "activeSubtaskId": "fill_departure",
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Currently no connection fields are filled out completely.",
+        "activeSubtaskId": "fill_departure",
+        "markSubtasksDone": [],
+        "progressNote": "Filling in the departure station.",
+        "needHelp": false,
+        "actions": [
+          {
+            "action": "type",
+            "candidateId": "c57",
+            "selector": null,
+            "text": "Praha",
+            "targetLabel": "ODKUD",
+            "reason": "Fill in departure station",
+            "expectedEffect": "Departure station field is filled with 'Praha'",
+            "successSignal": "Field shows 'Praha'",
+            "failureSignal": "Field does not show 'Praha'",
+            "fallbackHint": "Try to click the suggestion for 'Praha hl.n.'"
+          },
+          {
+            "action": "type",
+            "candidateId": "c58",
+            "selector": null,
+            "text": "Bratislava",
+            "targetLabel": "KAM",
+            "reason": "Fill in arrival station",
+            "expectedEffect": "Arrival station field is filled with 'Bratislava'",
+            "successSignal": "Field shows 'Bratislava'",
+            "failureSignal": "Field does not show 'Bratislava'",
+            "fallbackHint": "Make sure to click the suggestion for 'Bratislava'."
+          },
+          {
+            "action": "pickDate",
+            "candidateId": "c59",
+            "selector": null,
+            "text": "2026-04-18",
+            "targetLabel": null,
+            "reason": "Set travel date to 18.4.",
+            "expectedEffect": "Travel date shows '18.4.'",
+            "successSignal": "Date field shows '18.4.'",
+            "failureSignal": "Date field does not show '18.4.'",
+            "fallbackHint": "Type the date directly in 'dd/mm/yyyy' format."
+          },
+          {
+            "action": "pickTime",
+            "candidateId": "c60",
+            "selector": null,
+            "text": "18:30",
+            "targetLabel": null,
+            "reason": "Set departure time after 18:30",
+            "expectedEffect": "Time field shows a value after '18:30'",
+            "successSignal": "Time field shows a valid time",
+            "failureSignal": "Time field shows a time before '18:30'",
+            "fallbackHint": "Select time after 18:30 using the time picker."
+          }
+        ]
+      }
+    }
+  ]
+}

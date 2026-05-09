@@ -1,0 +1,562 @@
+{
+  "runId": "5f291813-da16-458c-b4c9-e6962ab87ada",
+  "url": "https://aupark-bratislava.sk/",
+  "task": "Na webovej stranke najdi kontaktny formular. Vyplnit nasledujuce udaje: Meno: Andrea Vyskusalova, E-mail: a.vyskusalova@testujem.sk, Sprava: \"Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den\" Formular neodosielaj! Len ho vyplneny zobraz",
+  "runMeta": {
+    "model": "gpt-4.1",
+    "difficulty": null,
+    "run": "5f291813-da16-458c-b4c9-e6962ab87ada"
+  },
+  "goalSpec": {
+    "goal": "Vyhľadať kontaktný formulár na webovej stránke Aupark Bratislava, vyplniť meno, e-mail a správu podľa zadania bez jeho odoslania a zobraziť vyplnený formulár.",
+    "successCriteria": [
+      "Kontaktný formulár je nájdený a zobrazený",
+      "Políčko Meno je vyplnené hodnotou 'Andrea Vyskusalova'",
+      "Políčko E-mail je vyplnené hodnotou 'a.vyskusalova@testujem.sk'",
+      "Políčko Správa je vyplnené daným textom",
+      "Formulár zostáva neodoslaný a viditeľne vyplnený"
+    ],
+    "stopCondition": "Formulár je vyplnený a zobrazený, bez jeho odoslania.",
+    "assumptions": [
+      "Kontaktný formulár je dostupný po kliknutí na 'Kontakt' v hlavnom menu alebo pätičke stránky.",
+      "Formulár obsahuje polia na meno, e-mail a správu."
+    ],
+    "constraints": [
+      "Formulár nesmie byť odoslaný, len vyplnený a zobrazený.",
+      "Musí byť použitý správny formát e-mailu a slovenský text správy."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "url_contains",
+        "text": "kontakt"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Meno",
+        "value": "Andrea Vyskusalova"
+      },
+      {
+        "kind": "field_equals",
+        "label": "E-mail",
+        "value": "a.vyskusalova@testujem.sk"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Správa",
+        "value": "Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "navigate_contact_page",
+        "title": "Prejsť na stránku s kontaktným formulárom (cez menu Kontakt)",
+        "doneWhen": "Stránka URL obsahuje 'kontakt' alebo podobný text a je viditeľný formulár",
+        "dependsOn": []
+      },
+      {
+        "id": "find_contact_form",
+        "title": "Vyhľadať a zobraziť samotný kontaktný formulár",
+        "doneWhen": "Formulár s poľami Meno, E-mail, Správa je viditeľný",
+        "dependsOn": [
+          "navigate_contact_page"
+        ]
+      },
+      {
+        "id": "fill_name_field",
+        "title": "Vyplniť pole Meno údajom 'Andrea Vyskusalova'",
+        "doneWhen": "Pole Meno obsahuje 'Andrea Vyskusalova'",
+        "dependsOn": [
+          "find_contact_form"
+        ]
+      },
+      {
+        "id": "fill_email_field",
+        "title": "Vyplniť pole E-mail údajom 'a.vyskusalova@testujem.sk'",
+        "doneWhen": "Pole E-mail obsahuje 'a.vyskusalova@testujem.sk'",
+        "dependsOn": [
+          "find_contact_form"
+        ]
+      },
+      {
+        "id": "fill_message_field",
+        "title": "Vyplniť pole Správa textom 'Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den'",
+        "doneWhen": "Pole Správa obsahuje zadaný text",
+        "dependsOn": [
+          "find_contact_form"
+        ]
+      },
+      {
+        "id": "display_filled_form",
+        "title": "Zobraziť celý vyplnený formulár bez odoslania",
+        "doneWhen": "Formulár je vyplnený a stále zobrazený na stránke",
+        "dependsOn": [
+          "fill_name_field",
+          "fill_email_field",
+          "fill_message_field"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "strict",
+  "stopReason": "Visible answer found: info@aupark-bratislava.sk",
+  "finalVerdict": "Kontaktný formulár je vyplnený nasledovne: meno Andrea Vyskusalova, e-mail a.vyskusalova@testujem.sk, správa: \"Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den\". Formulár nebol odoslaný a všetky polia sú správne vyplnené a viditeľné na stránke.",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": true,
+    "finalRequirements": [
+      {
+        "kind": "url_contains",
+        "text": "kontakt"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Meno",
+        "value": "Andrea Vyskusalova"
+      },
+      {
+        "kind": "field_equals",
+        "label": "E-mail",
+        "value": "a.vyskusalova@testujem.sk"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Správa",
+        "value": "Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den"
+      }
+    ],
+    "fulfilled": [
+      "url_contains(\"kontakt\")",
+      "field_equals(Meno=\"Andrea Vyskusalova\")",
+      "field_equals(E-mail=\"a.vyskusalova@testujem.sk\")",
+      "field_equals(Správa=\"Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den\")"
+    ],
+    "missing": [],
+    "evidence": [
+      "Satisfied: url_contains(\"kontakt\")",
+      "Satisfied: field_equals(Meno=\"Andrea Vyskusalova\")",
+      "Satisfied: field_equals(E-mail=\"a.vyskusalova@testujem.sk\")",
+      "Satisfied: field_equals(Správa=\"Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den\")",
+      "Visible email found: info@aupark-bratislava.sk"
+    ],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": true,
+      "answer": "info@aupark-bratislava.sk",
+      "evidence": [
+        "Visible email found: info@aupark-bratislava.sk"
+      ],
+      "missing": [],
+      "confidence": "high"
+    }
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "Formulár je nájdený na stránke kontakt, pole Meno je vyplnené správne a pole E-mail je vyplnené správne, ale pole Správa nie je ešte vyplnené požadovaným textom. Vyplnený formulár musí obsahovať aj správu presne podľa zadania a stále zostať neodoslaný a zobrazený.",
+    "evidence": [
+      "URL obsahuje 'kontakt' – nachádzame sa na kontaktnej stránke.",
+      "Input s id='full_name' má hodnotu 'Andrea Vyskusalova'.",
+      "Input s placeholderom 'E-mail' má hodnotu 'a.vyskusalova@testujem.sk'.",
+      "Textarea s aria-label 'Správa' má hodnotu null (nie je vyplnené)."
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "confirmed",
+    "reason": "Vision signals support the deterministic success decision.",
+    "evidence": [
+      "Vision page type: form",
+      "Visible answer assessment supports success."
+    ]
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4.1",
+    "Difficulty": null,
+    "Run": "5f291813-da16-458c-b4c9-e6962ab87ada",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 6,
+    "Total_Subtasks": 6,
+    "Partial_Success": 1,
+    "Steps": 12,
+    "Replans": 0,
+    "Duration_seconds": 166.216,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 160254,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://aupark-bratislava.sk/sk/a/kontakty",
+    "Final_Verdict": "Kontaktný formulár je vyplnený nasledovne: meno Andrea Vyskusalova, e-mail a.vyskusalova@testujem.sk, správa: \"Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den\". Formulár nebol odoslaný a všetky polia sú správne vyplnené a viditeľné na stránke."
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 4,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 12,
+    "durationSeconds": 166.216,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 6,
+    "totalSubtasks": 6,
+    "deterministicGateSatisfied": true,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 152362,
+      "completionTokens": 7892,
+      "totalTokens": 160254,
+      "callCount": 39
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "navigate_contact_page",
+    "find_contact_form",
+    "fill_name_field",
+    "fill_email_field",
+    "fill_message_field",
+    "display_filled_form"
+  ],
+  "stepsExecuted": 12,
+  "finalUrl": "https://aupark-bratislava.sk/sk/a/kontakty",
+  "helpHistory": [],
+  "blockerEvents": [
+    {
+      "ts": 1777230772781,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Prijať"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1777230782207,
+      "step": 0,
+      "kind": "post_action_verification",
+      "detail": "The page stayed unchanged after clicking and no success signal appeared.",
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Prijať",
+        "reason": "Dismissing cookie consent overlay by clicking \"Prijať\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777230801276,
+      "step": 2,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "execution_error",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777230835296,
+      "step": 5,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "execution_error",
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Prijať",
+        "reason": "Dismissing cookie consent overlay by clicking \"Prijať\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": false,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The page stayed unchanged after clicking and no success signal appeared."
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Kontakt",
+        "reason": "Na stránke 'Novinky a udalosti' nie je kontaktný formulár. V hornej lište vidím možnosť 'Kontakt', ktorá pravdepodobne vedie na stránku s kontaktným formulárom.",
+        "mayNavigate": true,
+        "expectedEffect": "Presunie na kontaktnú stránku, kde by mal byť viditeľný formulár.",
+        "successSignal": "URL bude obsahovať 'kontakt' a zobrazí sa formulár.",
+        "failureSignal": "Žiadny formulár nebude na stránke Kontakt viditeľný.",
+        "fallbackHint": "Ak kontaktný formulár nebude na stránke, prejsť na inú sekciu s možným formulárom."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    },
+    {
+      "step": 7,
+      "action": {
+        "action": "scroll",
+        "selector": null,
+        "text": null,
+        "reason": "Na stránke sú zatiaľ viditeľné iba kontaktné údaje, ale v snapshot inputs je prítomný formulár s poľami na meno, e-mail aj správu. Treba stránku posunúť/poskrolovať nižšie, aby sa formulár zobrazil.",
+        "expectedEffect": "Kontaktný formulár sa zobrazí na stránke.",
+        "successSignal": "Zobrazí sa formulár na zadanie mena, e-mailu a správy.",
+        "failureSignal": "Nižšie na stránke stále nie je viditeľný formulár.",
+        "fallbackHint": "Pokračovať v hľadaní formulára nižšie na stránke alebo skontrolovať ďalšie sekcie."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "Visible page content changed after scrolling."
+      }
+    },
+    {
+      "step": 8,
+      "action": {
+        "action": "type",
+        "selector": "#full_name",
+        "text": "Andrea Vyskusalova",
+        "reason": "Vyplním pole pre meno hodnotou podľa zadania.",
+        "expectedEffect": "Pole Celé meno bude obsahovať text 'Andrea Vyskusalova'.",
+        "successSignal": "Vidím zadaný text v poli pre meno.",
+        "failureSignal": "Text sa nezobrazí v poli pre meno alebo sa objaví chyba.",
+        "fallbackHint": "Ak sa vyskytne problém, skontroluj prítomnosť editovateľného poľa pre meno."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 9,
+      "action": {
+        "action": "type",
+        "selector": "input[placeholder=\"E-mail\"]",
+        "text": "a.vyskusalova@testujem.sk",
+        "reason": "Vyplním pole E-mail požadovanou hodnotou.",
+        "expectedEffect": "Pole E-mail bude vyplnené údajom.",
+        "successSignal": "E-mail je viditeľne zobrazený vo formulári.",
+        "failureSignal": "Chyba validácie alebo pole ostane prázdne.",
+        "fallbackHint": "Ak sa e-mail neuloží, skúsiť nájsť iné pole s e-mailom."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 10,
+      "action": {
+        "action": "type",
+        "selector": "textarea[aria-label=\"Správa\"]",
+        "text": "Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den",
+        "reason": "Formulár má ešte prázdne pole Správa - treba ho vyplniť požadovaným textom pred zobrazením celého vyplneného formulára.",
+        "expectedEffect": "Text v poli Správa bude vyplnený zadanou správou.",
+        "successSignal": "Text sa objaví v textovom poli a formulár bude celý vyplnený.",
+        "failureSignal": "Text sa do poľa nenapíše alebo sa objaví chybová hláška.",
+        "fallbackHint": "Uistiť sa, že pole Správa je prázdne a aktívne na editáciu."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 6,
+      "activeSubtaskId": "navigate_contact_page",
+      "completedSubtasks": [],
+      "stalePageCount": 1,
+      "pageKind": "unknown",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Na stránke 'Novinky a udalosti' nie je kontaktný formulár. V hornej lište vidím možnosť 'Kontakt', ktorá pravdepodobne vedie na stránku s kontaktným formulárom.",
+        "activeSubtaskId": "navigate_contact_page",
+        "markSubtasksDone": [],
+        "progressNote": "Je potrebné prejsť na stránku 'Kontakt' pre ďalší postup.",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Kontakt",
+        "mayNavigate": true,
+        "expectedEffect": "Presunie na kontaktnú stránku, kde by mal byť viditeľný formulár.",
+        "successSignal": "URL bude obsahovať 'kontakt' a zobrazí sa formulár.",
+        "failureSignal": "Žiadny formulár nebude na stránke Kontakt viditeľný.",
+        "fallbackHint": "Ak kontaktný formulár nebude na stránke, prejsť na inú sekciu s možným formulárom."
+      }
+    },
+    {
+      "step": 7,
+      "activeSubtaskId": "find_contact_form",
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Na stránke sú zatiaľ viditeľné iba kontaktné údaje, ale v snapshot inputs je prítomný formulár s poľami na meno, e-mail aj správu. Treba stránku posunúť/poskrolovať nižšie, aby sa formulár zobrazil.",
+        "activeSubtaskId": "find_contact_form",
+        "markSubtasksDone": [],
+        "progressNote": "Formulár nie je v hlavnom pohľade, ale v inputs snapshotu jasne existuje so správnymi poľami.",
+        "needHelp": false,
+        "action": "scroll",
+        "selector": null,
+        "text": null,
+        "expectedEffect": "Kontaktný formulár sa zobrazí na stránke.",
+        "successSignal": "Zobrazí sa formulár na zadanie mena, e-mailu a správy.",
+        "failureSignal": "Nižšie na stránke stále nie je viditeľný formulár.",
+        "fallbackHint": "Pokračovať v hľadaní formulára nižšie na stránke alebo skontrolovať ďalšie sekcie."
+      }
+    },
+    {
+      "step": 8,
+      "activeSubtaskId": "fill_name_field",
+      "completedSubtasks": [
+        "navigate_contact_page",
+        "find_contact_form"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Formulár Kontaktovať podporu je už zobrazený s požadovanými poľami. Pokračujem vyplnením Meno, E-mail a Správa, pričom formulár neodosielam.",
+        "activeSubtaskId": "fill_name_field",
+        "markSubtasksDone": [
+          "navigate_contact_page",
+          "find_contact_form"
+        ],
+        "progressNote": "Stránka kontakt je zobrazená, formulár identifikovaný.",
+        "needHelp": false,
+        "actions": [
+          {
+            "action": "type",
+            "selector": "#full_name",
+            "text": "Andrea Vyskusalova",
+            "reason": "Vyplním pole pre meno hodnotou podľa zadania.",
+            "expectedEffect": "Pole Celé meno bude obsahovať text 'Andrea Vyskusalova'.",
+            "successSignal": "Vidím zadaný text v poli pre meno.",
+            "failureSignal": "Text sa nezobrazí v poli pre meno alebo sa objaví chyba.",
+            "fallbackHint": "Ak sa vyskytne problém, skontroluj prítomnosť editovateľného poľa pre meno."
+          }
+        ]
+      }
+    },
+    {
+      "step": 9,
+      "activeSubtaskId": "fill_email_field",
+      "completedSubtasks": [
+        "navigate_contact_page",
+        "find_contact_form",
+        "fill_name_field"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Pole Meno už je vyplnené. Teraz je potrebné vyplniť e-mail a správu v kontaktnom formulári.",
+        "activeSubtaskId": "fill_email_field",
+        "markSubtasksDone": [
+          "fill_name_field"
+        ],
+        "needHelp": false,
+        "actions": [
+          {
+            "action": "type",
+            "selector": "input[placeholder=\"E-mail\"]",
+            "text": "a.vyskusalova@testujem.sk",
+            "reason": "Vyplním pole E-mail požadovanou hodnotou.",
+            "expectedEffect": "Pole E-mail bude vyplnené údajom.",
+            "successSignal": "E-mail je viditeľne zobrazený vo formulári.",
+            "failureSignal": "Chyba validácie alebo pole ostane prázdne.",
+            "fallbackHint": "Ak sa e-mail neuloží, skúsiť nájsť iné pole s e-mailom."
+          }
+        ]
+      }
+    },
+    {
+      "step": 10,
+      "activeSubtaskId": "fill_message_field",
+      "completedSubtasks": [
+        "navigate_contact_page",
+        "find_contact_form",
+        "fill_name_field"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Formulár má ešte prázdne pole Správa - treba ho vyplniť požadovaným textom pred zobrazením celého vyplneného formulára.",
+        "activeSubtaskId": "fill_message_field",
+        "markSubtasksDone": [],
+        "progressNote": "Polia pre e-mail a meno sú už správne vyplnené, ešte treba doplniť správu.",
+        "needHelp": false,
+        "action": "type",
+        "selector": "textarea[aria-label=\"Správa\"]",
+        "text": "Dobry den, toto je testovacia sprava od UI agenta pre test S03. Dakujem a prajem pekny den",
+        "expectedEffect": "Text v poli Správa bude vyplnený zadanou správou.",
+        "successSignal": "Text sa objaví v textovom poli a formulár bude celý vyplnený.",
+        "failureSignal": "Text sa do poľa nenapíše alebo sa objaví chybová hláška.",
+        "fallbackHint": "Uistiť sa, že pole Správa je prázdne a aktívne na editáciu."
+      }
+    }
+  ]
+}

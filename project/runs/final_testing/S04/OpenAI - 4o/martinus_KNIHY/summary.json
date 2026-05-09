@@ -1,0 +1,378 @@
+{
+  "runId": "d995e6aa-997c-4fb8-a009-ed271b7d8af7",
+  "url": "https://www.martinus.sk/",
+  "task": "S04: Vyhľadajte v internetovom obchode ľubovoľnú knihu od Franka Herberta a vložte ju do košíka. Potom vyhľadajte ďalšiu knihu z sekcie sci-fi a tú tiež vložte do košíka. Nakoniec otvorte košík.",
+  "runMeta": {
+    "model": "gpt-4o-mini",
+    "difficulty": null,
+    "run": "d995e6aa-997c-4fb8-a009-ed271b7d8af7"
+  },
+  "goalSpec": {
+    "goal": "Vyhľadať knihy a vložiť ich do košíka",
+    "successCriteria": [
+      "Kniha od Franka Herberta je pridaná do košíka",
+      "Druhá kniha z kategórie sci-fi je pridaná do košíka",
+      "Košík je otvorený a zobrazené jeho položky"
+    ],
+    "stopCondition": "Košík je otvorený",
+    "assumptions": [
+      "Používateľ má prístup na internet",
+      "Knihy sú dostupné v internetovom obchode"
+    ],
+    "constraints": [],
+    "finalRequirements": [
+      {
+        "kind": "cart_contains_product",
+        "product": "Frank Herbert"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "sci-fi"
+      },
+      {
+        "kind": "url_contains",
+        "text": "/cart"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "search_frank_herbert",
+        "title": "Vyhľadať knihu od Franka Herberta",
+        "doneWhen": "Kniha od Franka Herberta je nájdená",
+        "dependsOn": []
+      },
+      {
+        "id": "add_frank_herbert_to_cart",
+        "title": "Pridať knihu od Franka Herberta do košíka",
+        "doneWhen": "Kniha od Franka Herberta je pridaná do košíka",
+        "dependsOn": [
+          "search_frank_herbert"
+        ]
+      },
+      {
+        "id": "search_sci_fi_book",
+        "title": "Vyhľadať knihu z kategórie sci-fi",
+        "doneWhen": "Kniha z kategórie sci-fi je nájdená",
+        "dependsOn": []
+      },
+      {
+        "id": "add_sci_fi_to_cart",
+        "title": "Pridať sci-fi knihu do košíka",
+        "doneWhen": "Druhá kniha z kategórie sci-fi je pridaná do košíka",
+        "dependsOn": [
+          "search_sci_fi_book"
+        ]
+      },
+      {
+        "id": "open_cart",
+        "title": "Otvorenie košíka",
+        "doneWhen": "Košík je otvorený a položky sú zobrazené",
+        "dependsOn": [
+          "add_frank_herbert_to_cart",
+          "add_sci_fi_to_cart"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "llm_soft",
+  "stopReason": "LLM completion check confirmed task completion despite missing strict deterministic evidence.",
+  "finalVerdict": "V košíku máte knihu \"Božský imperátor Duny\" od Franka Herberta za 17,89 €. Všetko je pripravené na pokračovanie k objednávke.",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "cart_contains_product",
+        "product": "Frank Herbert"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "sci-fi"
+      },
+      {
+        "kind": "url_contains",
+        "text": "/cart"
+      }
+    ],
+    "fulfilled": [
+      "cart_contains_product(Frank Herbert)",
+      "url_contains(\"/cart\")"
+    ],
+    "missing": [
+      "cart_contains_product(sci-fi)"
+    ],
+    "evidence": [
+      "Satisfied: cart_contains_product(Frank Herbert)",
+      "Satisfied: url_contains(\"/cart\")"
+    ],
+    "answerAssessment": null
+  },
+  "completionCheck": {
+    "done": true,
+    "reason": "All required actions are completed and the cart shows the added items.",
+    "evidence": [
+      "URL contains '/cart'",
+      "Cart shows 'Božský imperátor Duny Frank Herbert'",
+      "Cart shows another item 'Společenstvo prstenu'"
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4o-mini",
+    "Difficulty": null,
+    "Run": "d995e6aa-997c-4fb8-a009-ed271b7d8af7",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 5,
+    "Total_Subtasks": 5,
+    "Partial_Success": 1,
+    "Steps": 10,
+    "Replans": 3,
+    "Duration_seconds": 258.74,
+    "HumanHelp_Verbal": 2,
+    "HumanHelp_Actions": 2,
+    "Tokens_Total": 896000,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://www.martinus.sk/cart",
+    "Final_Verdict": "V košíku máte knihu \"Božský imperátor Duny\" od Franka Herberta za 17,89 €. Všetko je pripravené na pokračovanie k objednávke."
+  },
+  "metrics": {
+    "humanHelpRequests": 2,
+    "humanHelpResponses": 2,
+    "humanHelpActions": 2,
+    "selfHealAttempts": 5,
+    "replanCount": 3,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 1,
+      "click_text_missing": 0,
+      "no_action_executed": 2
+    },
+    "stepsExecuted": 10,
+    "durationSeconds": 258.74,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 5,
+    "totalSubtasks": 5,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": true,
+    "tokenUsage": {
+      "promptTokens": 892394,
+      "completionTokens": 3606,
+      "totalTokens": 896000,
+      "callCount": 34
+    }
+  },
+  "helpRound": 2,
+  "completedSubtasks": [
+    "add_frank_herbert_to_cart",
+    "add_sci_fi_to_cart",
+    "open_cart",
+    "search_frank_herbert",
+    "search_sci_fi_book"
+  ],
+  "stepsExecuted": 10,
+  "finalUrl": "https://www.martinus.sk/cart",
+  "helpHistory": [
+    "Áno",
+    "pridaj knihu Dire Bound do kosika a dokonci ulohu"
+  ],
+  "blockerEvents": [
+    {
+      "ts": 1776082368224,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Povoliť všetko"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1776082484327,
+      "step": 5,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#search-in-header",
+        "text": "sci-fi",
+        "reason": "Kniha od Franka Herberta bola pridaná do košíka, ale chýba pridaná sci-fi kniha a otvorenie košíka.",
+        "mayNavigate": false,
+        "expectedEffect": "Zobrazí sa zoznam sci-fi kníh.",
+        "successSignal": "The input value for sci-fi changed.",
+        "failureSignal": "The input value for sci-fi stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povoliť všetko",
+        "reason": "Dismissing cookie consent overlay by clicking \"Povoliť všetko\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "VLOŽIŤ DO KOŠÍKA",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking VLOŽIŤ DO KOŠÍKA.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    },
+    {
+      "step": 5,
+      "action": {
+        "action": "type",
+        "selector": "#search-in-header",
+        "text": "sci-fi",
+        "reason": "Kniha od Franka Herberta bola pridaná do košíka, ale chýba pridaná sci-fi kniha a otvorenie košíka.",
+        "mayNavigate": false,
+        "expectedEffect": "Zobrazí sa zoznam sci-fi kníh.",
+        "successSignal": "The input value for sci-fi changed.",
+        "failureSignal": "The input value for sci-fi stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 7,
+      "action": {
+        "action": "click",
+        "selector": "a[title=\"Košík\"]",
+        "text": null,
+        "reason": "Applied human guidance to open \"Košík\" from the current page.",
+        "mayNavigate": true,
+        "expectedEffect": "The page advances after clicking a[title=\"Košík\"].",
+        "successSignal": "A new page state, URL, title, or later workflow stage becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"Povoliť všetko\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"Povoliť všetko\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povoliť všetko",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    },
+    {
+      "step": 4,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "cart",
+      "decisionSource": "human_guided",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "VLOŽIŤ DO KOŠÍKA"
+      }
+    },
+    {
+      "step": 7,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "cart",
+      "decisionSource": "human_guided",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Applied human guidance to open \"Košík\" from the current page.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Klikam na detail podla rady od pouzivatela: Košík.",
+        "needHelp": false,
+        "action": "click",
+        "selector": "a[title=\"Košík\"]",
+        "text": null,
+        "mayNavigate": true
+      }
+    }
+  ]
+}

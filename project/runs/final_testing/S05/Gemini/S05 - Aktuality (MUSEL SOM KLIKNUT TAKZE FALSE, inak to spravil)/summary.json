@@ -1,0 +1,209 @@
+{
+  "runId": "7d570ae7-620c-46be-a892-6c9482f5c944",
+  "url": "https://www.aktuality.sk/",
+  "task": "Na spravodajskom portáli nájdi sekciu Ekonónia (ak je potrebné vyhľadaj články o ekonómii). Bez otvárania detailov vypíš nadpisy prvých 3 viditeľných článkov. Počas navigácie ignoruj cookie/subscribe/newsletter popupy.",
+  "runMeta": {
+    "model": "gemini-2.5-flash",
+    "difficulty": null,
+    "run": "7d570ae7-620c-46be-a892-6c9482f5c944"
+  },
+  "goalSpec": {
+    "goal": "Na spravodajskom portáli nájdi sekciu Ekonónia a vypíš nadpisy prvých 3 viditeľných článkov.",
+    "successCriteria": [
+      "Identifikované nadpisy prvých 3 článkov v sekcii Ekonómia.",
+      "Detailné zobrazenie článkov nebolo otvorené."
+    ],
+    "stopCondition": "The titles of the first 3 articles from the 'Ekonómia' section are extracted and returned.",
+    "assumptions": [
+      "The 'EKONOMIKA' link leads to the Ekonómia section.",
+      "There will be at least 3 visible articles on the Ekonómia page."
+    ],
+    "constraints": [
+      "Ignorovať cookie/subscribe/newsletter popupy.",
+      "Nevstupovať do detailov článkov."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "url_contains",
+        "text": "/ekonomika/"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Extracted article titles:"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "dismiss_cookie_consent",
+        "title": "Zatvor cookie popup.",
+        "doneWhen": "Cookie consent overlay is no longer visible.",
+        "dependsOn": []
+      },
+      {
+        "id": "navigate_to_ekonomika_section",
+        "title": "Prejdi na sekciu Ekonómia.",
+        "doneWhen": "The current URL is for the Ekonomika section.",
+        "dependsOn": [
+          "dismiss_cookie_consent"
+        ]
+      },
+      {
+        "id": "extract_article_titles",
+        "title": "Vypíš nadpisy prvých 3 viditeľných článkov.",
+        "doneWhen": "The titles of the first 3 visible articles have been extracted.",
+        "dependsOn": [
+          "navigate_to_ekonomika_section"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "llm_soft",
+  "stopReason": "LLM completion check confirmed task completion despite missing strict deterministic evidence.",
+  "finalVerdict": "Na stránke Ekonomika sú viditeľné tieto nadpisy článkov: Budeme musieť pracovať do smrti? Nové prognózy dôchodkov môžu mnohých Slovákov nepríjemne zaskočiť. Štát na základe nového zákona hromadne vyradí z evidencie tisíce dlhodobo nepoistených áut. Vedenie bánovskej spoločnosti Gabor vyvrátilo správy o plánovanom hromadnom prepúšťaní.",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "url_contains",
+        "text": "/ekonomika/"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Extracted article titles:"
+      }
+    ],
+    "fulfilled": [
+      "overlay_absent",
+      "url_contains(\"/ekonomika/\")"
+    ],
+    "missing": [
+      "text_visible(\"Extracted article titles:\")"
+    ],
+    "evidence": [
+      "Satisfied: overlay_absent",
+      "Satisfied: url_contains(\"/ekonomika/\")"
+    ],
+    "answerAssessment": null
+  },
+  "completionCheck": {
+    "done": true,
+    "reason": "Successfully navigated to the 'Ekonómia' section and extracted the titles of the first 3 visible articles without opening their details. All subtasks and success criteria are met.",
+    "evidence": [
+      "Extracted article titles:",
+      "1. Budeme musieť pracovať do smrti? Nové prognózy dôchodkov môžu mnohých Slovákov nepríjemne zaskočiť",
+      "2. Štát na základe nového zákona hromadne vyradí z evidencie tisíce dlhodobo nepoistených áut",
+      "3. Vedenie bánovskej spoločnosti Gabor vyvrátilo správy o plánovanom hromadnom prepúšťaní"
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gemini-2.5-flash",
+    "Difficulty": null,
+    "Run": "7d570ae7-620c-46be-a892-6c9482f5c944",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 3,
+    "Total_Subtasks": 3,
+    "Partial_Success": 1,
+    "Steps": 11,
+    "Replans": 4,
+    "Duration_seconds": 188.835,
+    "HumanHelp_Verbal": 1,
+    "HumanHelp_Actions": 1,
+    "Tokens_Total": 104190,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://www.aktuality.sk/ekonomika/",
+    "Final_Verdict": "Na stránke Ekonomika sú viditeľné tieto nadpisy článkov: Budeme musieť pracovať do smrti? Nové prognózy dôchodkov môžu mnohých Slovákov nepríjemne zaskočiť. Štát na základe nového zákona hromadne vyradí z evidencie tisíce dlhodobo nepoistených áut. Vedenie bánovskej spoločnosti Gabor vyvrátilo správy o plánovanom hromadnom prepúšťaní."
+  },
+  "metrics": {
+    "humanHelpRequests": 1,
+    "humanHelpResponses": 1,
+    "humanHelpActions": 1,
+    "selfHealAttempts": 8,
+    "replanCount": 4,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 2,
+      "click_text_missing": 0,
+      "no_action_executed": 2
+    },
+    "stepsExecuted": 11,
+    "durationSeconds": 188.835,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 3,
+    "totalSubtasks": 3,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": true,
+    "tokenUsage": {
+      "promptTokens": 87422,
+      "completionTokens": 4584,
+      "totalTokens": 104190,
+      "callCount": 33
+    }
+  },
+  "helpRound": 1,
+  "completedSubtasks": [
+    "dismiss_cookie_consent",
+    "navigate_to_ekonomika_section",
+    "extract_article_titles"
+  ],
+  "stepsExecuted": 11,
+  "finalUrl": "https://www.aktuality.sk/ekonomika/",
+  "helpHistory": [
+    "Áno, klikni"
+  ],
+  "blockerEvents": [],
+  "recoveryTransitions": [
+    {
+      "ts": 1776247425897,
+      "step": 2,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "no_action_executed",
+      "pageKind": "unknown"
+    },
+    {
+      "ts": 1776247456992,
+      "step": 4,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "execution_error",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776247505903,
+      "step": 6,
+      "kind": "selector_safety",
+      "detail": "clickByText requires visible text.",
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking clickByText.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [],
+  "stepTrace": []
+}

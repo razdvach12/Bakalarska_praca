@@ -1,0 +1,382 @@
+{
+  "runId": "06eaea81-de0a-4d35-a646-e8911fe7b9d2",
+  "url": "https://www.regiojet.sk/",
+  "task": "Na stranke vyhladaj spojenie z Prahy do Bratislavy. Den chcem aby bol 18.4. Na stanici viem byť 18:30 Vypíš prvé spojenie, ktoré stíham a napíš Čas odchádzam a prichádzam.",
+  "runMeta": {
+    "model": "gpt-4o-mini",
+    "difficulty": null,
+    "run": "06eaea81-de0a-4d35-a646-e8911fe7b9d2"
+  },
+  "goalSpec": {
+    "goal": "Find a train connection from Prague to Bratislava on April 18 that arrives after 18:30.",
+    "successCriteria": [
+      "Correct departure location is filled as 'Praha'.",
+      "Correct arrival location is filled as 'Bratislava'.",
+      "Departure date is set to '18. apríla 2026'.",
+      "First available connection that meets the criteria is displayed."
+    ],
+    "stopCondition": "The first suitable train connection is found and displayed.",
+    "assumptions": [
+      "User is looking for a train connection.",
+      "There are train connections available on the given date."
+    ],
+    "constraints": [
+      "Departure time must allow arrival after 18:30.",
+      "Connection must be on April 18, 2026."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "field_filled",
+        "label": "Odkiaľ"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Kam"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Odchod"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "fill_departure_location",
+        "title": "Fill departure location as 'Praha'",
+        "doneWhen": "Departure location is filled as 'Praha'.",
+        "dependsOn": []
+      },
+      {
+        "id": "fill_arrival_location",
+        "title": "Fill arrival location as 'Bratislava'",
+        "doneWhen": "Arrival location is filled as 'Bratislava'.",
+        "dependsOn": [
+          "fill_departure_location"
+        ]
+      },
+      {
+        "id": "set_departure_date",
+        "title": "Set departure date to '18.4.2026'",
+        "doneWhen": "Departure date is set to '18.4.2026'.",
+        "dependsOn": [
+          "fill_arrival_location"
+        ]
+      },
+      {
+        "id": "search_for_connection",
+        "title": "Search for the train connection",
+        "doneWhen": "The first suitable train connection is displayed.",
+        "dependsOn": [
+          "set_departure_date"
+        ]
+      }
+    ]
+  },
+  "success": false,
+  "successMode": null,
+  "stopReason": "terminated_by_user",
+  "finalVerdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user",
+  "error": "terminated_by_user",
+  "failureClassification": "user_control",
+  "failureSubtype": "terminated_by_user",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "field_filled",
+        "label": "Odkiaľ"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Kam"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Odchod"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "fulfilled": [],
+    "missing": [
+      "field_filled(Odkiaľ)",
+      "field_filled(Kam)",
+      "field_filled(Odchod)",
+      "answer_visible"
+    ],
+    "evidence": [],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": false,
+      "answer": "",
+      "evidence": [],
+      "missing": [
+        "No high-confidence visible answer detected on the current page."
+      ],
+      "confidence": "low"
+    }
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "The required fields for departure and arrival locations have not been filled yet, and the first suitable train connection is not displayed.",
+    "evidence": []
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4o-mini",
+    "Difficulty": null,
+    "Run": "06eaea81-de0a-4d35-a646-e8911fe7b9d2",
+    "Success 0/1": 0,
+    "Completed_Subtasks": 0,
+    "Total_Subtasks": 4,
+    "Partial_Success": 0,
+    "Steps": 15,
+    "Replans": 5,
+    "Duration_seconds": 400.659,
+    "HumanHelp_Verbal": 1,
+    "HumanHelp_Actions": 4,
+    "Tokens_Total": 1482705,
+    "Failure_Type": "user_control",
+    "Failure_Subtype": "terminated_by_user",
+    "Final_URL": "https://regiojet.sk/?departureDate=2026-04-18&tariffs=REGULAR&fromLocationId=372825000&fromLocationType=STATION&toLocationId=1841058000&toLocationType=STATION",
+    "Final_Verdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user"
+  },
+  "metrics": {
+    "humanHelpRequests": 1,
+    "humanHelpResponses": 1,
+    "humanHelpActions": 4,
+    "selfHealAttempts": 8,
+    "replanCount": 5,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 3,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 2
+    },
+    "stepsExecuted": 15,
+    "durationSeconds": 400.659,
+    "partialSuccess": 0,
+    "completedSubtasksCount": 0,
+    "totalSubtasks": 4,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 1477892,
+      "completionTokens": 4813,
+      "totalTokens": 1482705,
+      "callCount": 48
+    }
+  },
+  "helpRound": 1,
+  "completedSubtasks": [],
+  "stepsExecuted": 15,
+  "finalUrl": "https://regiojet.sk/?departureDate=2026-04-18&tariffs=REGULAR&fromLocationId=372825000&fromLocationType=STATION&toLocationId=1841058000&toLocationType=STATION",
+  "helpHistory": [
+    "ziadna tam nieje..."
+  ],
+  "blockerEvents": [],
+  "recoveryTransitions": [
+    {
+      "ts": 1776287716167,
+      "step": 0,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "candidateId": "c61",
+        "selector": "#react-select-2-input",
+        "text": "Praha",
+        "targetLabel": null,
+        "reason": "Fill departure location",
+        "expectedEffect": "Departure location updated to 'Praha'",
+        "successSignal": "Departure location shows 'Praha'",
+        "failureSignal": "Departure location not updated",
+        "fallbackHint": "Make sure to select 'Praha' from suggestions if needed."
+      },
+      "pageKind": "unknown"
+    },
+    {
+      "ts": 1776287782699,
+      "step": 3,
+      "kind": "selector_safety",
+      "detail": "Selector \"#react-select-2-input\" is not grounded in the current snapshot for type.",
+      "action": {
+        "action": "type",
+        "selector": "#react-select-2-input",
+        "text": "Praha",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Praha contains the requested value.",
+        "successSignal": "The input value for Praha changed.",
+        "failureSignal": "The input value for Praha stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776287797944,
+      "step": 4,
+      "kind": "selector_safety",
+      "detail": "Selector \"#react-select-2-input\" is not grounded in the current snapshot for type.",
+      "action": {
+        "action": "type",
+        "selector": "#react-select-2-input",
+        "text": "Praha",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Praha contains the requested value.",
+        "successSignal": "The input value for Praha changed.",
+        "failureSignal": "The input value for Praha stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776287797945,
+      "step": 4,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "selector_safety",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776288036483,
+      "step": 12,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "candidateId": "c63",
+        "selector": "#react-select-4-input",
+        "text": "Praha",
+        "targetLabel": null,
+        "reason": "Fill departure location as 'Praha'.",
+        "expectedEffect": "The departure location field is filled with 'Praha'.",
+        "successSignal": "Departure location shows 'Praha'.",
+        "failureSignal": "Field does not update.",
+        "fallbackHint": "Try typing again."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776288062150,
+      "step": 13,
+      "kind": "selector_safety",
+      "detail": "click action requires candidateId, a grounded selector, or visible text.",
+      "action": {
+        "action": "click",
+        "selector": null,
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking click.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "form"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "type",
+        "candidateId": "c61",
+        "selector": "#react-select-2-input",
+        "text": "Praha",
+        "targetLabel": null,
+        "reason": "Fill departure location",
+        "expectedEffect": "Departure location updated to 'Praha'",
+        "successSignal": "Departure location shows 'Praha'",
+        "failureSignal": "Departure location not updated",
+        "fallbackHint": "Make sure to select 'Praha' from suggestions if needed."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 11,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Vyhľadať",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking Vyhľadať.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    },
+    {
+      "step": 12,
+      "action": {
+        "action": "type",
+        "candidateId": "c63",
+        "selector": "#react-select-4-input",
+        "text": "Praha",
+        "targetLabel": null,
+        "reason": "Fill departure location as 'Praha'.",
+        "expectedEffect": "The departure location field is filled with 'Praha'.",
+        "successSignal": "Departure location shows 'Praha'.",
+        "failureSignal": "Field does not update.",
+        "fallbackHint": "Try typing again."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 11,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "human_guided",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "clickByText",
+        "candidateId": null,
+        "selector": null,
+        "text": "Vyhľadať",
+        "targetLabel": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,733 @@
+{
+  "runId": "173d7e46-e110-4072-b2cd-a11869a840b1",
+  "url": "https://www.megaknihy.sk/",
+  "task": "Vyhľadajte v internetovom obchode ľubovoľnú knihu od Franka Herberta a vložte ju do košíka. Potom vyhľadajte ďalšiu knihu (ktora nemusi byt od Franka Herberta) z sekcie sci-fi a tú tiež vložte do košíka. Nakoniec otvorte košík.",
+  "goalSpec": {
+    "goal": "Add a book by Frank Herbert and a sci-fi book to the cart, then open the cart.",
+    "successCriteria": [
+      "The cart contains a book by Frank Herbert.",
+      "The cart contains a sci-fi book.",
+      "The cart is opened successfully."
+    ],
+    "stopCondition": "The user has opened the cart.",
+    "assumptions": [
+      "The website contains books by Frank Herbert.",
+      "The website has a sci-fi section."
+    ],
+    "constraints": [
+      "The process must be completed using the current page layout."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "cart_contains_product",
+        "product": "book by Frank Herbert"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "sci-fi book"
+      },
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "text_visible",
+        "text": "0"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "search_frank_herbert_book",
+        "title": "Search for a book by Frank Herbert.",
+        "doneWhen": "The search results show books by Frank Herbert.",
+        "dependsOn": []
+      },
+      {
+        "id": "add_frank_herbert_book_to_cart",
+        "title": "Add the selected Frank Herbert book to the cart.",
+        "doneWhen": "The cart shows the Frank Herbert book.",
+        "dependsOn": [
+          "search_frank_herbert_book"
+        ]
+      },
+      {
+        "id": "search_sci_fi_book",
+        "title": "Search for a sci-fi book.",
+        "doneWhen": "The search results show sci-fi books.",
+        "dependsOn": []
+      },
+      {
+        "id": "add_sci_fi_book_to_cart",
+        "title": "Add the selected sci-fi book to the cart.",
+        "doneWhen": "The cart shows the sci-fi book.",
+        "dependsOn": [
+          "search_sci_fi_book"
+        ]
+      },
+      {
+        "id": "open_cart",
+        "title": "Open the cart.",
+        "doneWhen": "The user is viewing the cart.",
+        "dependsOn": [
+          "add_frank_herbert_book_to_cart",
+          "add_sci_fi_book_to_cart"
+        ]
+      }
+    ]
+  },
+  "success": false,
+  "stopReason": "",
+  "finalVerdict": "Beh sa skoncil bez finalnej odpovede.",
+  "error": "page.evaluate: Execution context was destroyed, most likely because of a navigation",
+  "failureClassification": "blocker_loop_guard",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "cart_contains_product",
+        "product": "book by Frank Herbert"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "sci-fi book"
+      },
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "text_visible",
+        "text": "0"
+      }
+    ],
+    "fulfilled": [
+      "overlay_absent",
+      "text_visible(\"0\")"
+    ],
+    "missing": [
+      "cart_contains_product(book by Frank Herbert)",
+      "cart_contains_product(sci-fi book)"
+    ],
+    "evidence": [
+      "Satisfied: overlay_absent",
+      "Satisfied: text_visible(\"0\")"
+    ],
+    "answerAssessment": null
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "selfHealAttempts": 11,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 18,
+    "tokenUsage": {
+      "promptTokens": 958867,
+      "completionTokens": 3922,
+      "totalTokens": 962789,
+      "callCount": 38
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "search_frank_herbert_book"
+  ],
+  "stepsExecuted": 18,
+  "finalUrl": "https://www.megaknihy.sk/rychla-objednavka",
+  "helpHistory": [],
+  "blockerEvents": [
+    {
+      "ts": 1776176689396,
+      "step": 0,
+      "kind": "attempt",
+      "detail": "Runtime blocker handling for cookie_consent.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::o cookies|prispôsobiť|povoliť všetko|vyhľadať",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogNavAbout",
+        "text": null,
+        "mayNavigate": false
+      }
+    },
+    {
+      "ts": 1776176689400,
+      "step": 0,
+      "kind": "loop_guard",
+      "detail": "Blocked repeated blocker action on the same blocker evidence.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::o cookies|prispôsobiť|povoliť všetko|vyhľadať",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogNavAbout",
+        "text": null,
+        "reason": "Resolving visible cookie_consent blocker before continuing the main task.",
+        "mayNavigate": false,
+        "expectedEffect": "The visible blocker disappears or stops blocking the main page.",
+        "successSignal": "The blocker overlay or its dismiss controls are no longer visible.",
+        "failureSignal": "The same blocker remains visible on the same page state.",
+        "fallbackHint": "Try a different visible reject/close control or re-check the blocker with vision."
+      }
+    },
+    {
+      "ts": 1776176693337,
+      "step": 1,
+      "kind": "attempt",
+      "detail": "Runtime blocker handling for cookie_consent.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.closeVisible|vision.overlay.cookie_consent::o cookies|prispôsobiť|povoliť všetko|vyhľadať",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogNavAbout",
+        "text": null,
+        "mayNavigate": false
+      }
+    },
+    {
+      "ts": 1776176693340,
+      "step": 1,
+      "kind": "loop_guard",
+      "detail": "Blocked repeated blocker action on the same blocker evidence.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.closeVisible|vision.overlay.cookie_consent::o cookies|prispôsobiť|povoliť všetko|vyhľadať",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogNavAbout",
+        "text": null,
+        "reason": "Resolving visible cookie_consent blocker before continuing the main task.",
+        "mayNavigate": false,
+        "expectedEffect": "The visible blocker disappears or stops blocking the main page.",
+        "successSignal": "The blocker overlay or its dismiss controls are no longer visible.",
+        "failureSignal": "The same blocker remains visible on the same page state.",
+        "fallbackHint": "Try a different visible reject/close control or re-check the blocker with vision."
+      }
+    },
+    {
+      "ts": 1776176693342,
+      "step": 1,
+      "kind": "safe_fallback",
+      "detail": "Trying generic blocker fallback for cookie_consent.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.closeVisible|vision.overlay.cookie_consent::o cookies|prispôsobiť|povoliť všetko|vyhľadať",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogBodyLevelButtonCustomize",
+        "text": null,
+        "mayNavigate": false
+      }
+    },
+    {
+      "ts": 1776176698767,
+      "step": 2,
+      "kind": "attempt",
+      "detail": "Runtime blocker handling for cookie_consent.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.closeVisible|vision.overlay.cookie_consent::odmietnuť|o cookies|menu|potrebné",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogBodyButtonDecline",
+        "text": null,
+        "mayNavigate": false
+      }
+    },
+    {
+      "ts": 1776176698771,
+      "step": 2,
+      "kind": "loop_guard",
+      "detail": "Blocked repeated blocker action on the same blocker evidence.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.closeVisible|vision.overlay.cookie_consent::odmietnuť|o cookies|menu|potrebné",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogBodyButtonDecline",
+        "text": null,
+        "reason": "Resolving visible cookie_consent blocker before continuing the main task.",
+        "mayNavigate": false,
+        "expectedEffect": "The visible blocker disappears or stops blocking the main page.",
+        "successSignal": "The blocker overlay or its dismiss controls are no longer visible.",
+        "failureSignal": "The same blocker remains visible on the same page state.",
+        "fallbackHint": "Try a different visible reject/close control or re-check the blocker with vision."
+      }
+    },
+    {
+      "ts": 1776176707093,
+      "step": 3,
+      "kind": "attempt",
+      "detail": "Runtime blocker handling for cookie_consent.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::odmietnuť|o cookies|menu|potrebné",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogBodyButtonDecline",
+        "text": null,
+        "mayNavigate": false
+      }
+    },
+    {
+      "ts": 1776176707097,
+      "step": 3,
+      "kind": "loop_guard",
+      "detail": "Blocked repeated blocker action on the same blocker evidence.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::odmietnuť|o cookies|menu|potrebné",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogBodyButtonDecline",
+        "text": null,
+        "reason": "Resolving visible cookie_consent blocker before continuing the main task.",
+        "mayNavigate": false,
+        "expectedEffect": "The visible blocker disappears or stops blocking the main page.",
+        "successSignal": "The blocker overlay or its dismiss controls are no longer visible.",
+        "failureSignal": "The same blocker remains visible on the same page state.",
+        "fallbackHint": "Try a different visible reject/close control or re-check the blocker with vision."
+      }
+    },
+    {
+      "ts": 1776176712847,
+      "step": 4,
+      "kind": "attempt",
+      "detail": "Runtime blocker handling for cookie_consent.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::odmietnuť|o cookies|menu|potrebné",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogBodyButtonDecline",
+        "text": null,
+        "mayNavigate": false
+      }
+    },
+    {
+      "ts": 1776176712853,
+      "step": 4,
+      "kind": "loop_guard",
+      "detail": "Blocked repeated blocker action on the same blocker evidence.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::odmietnuť|o cookies|menu|potrebné",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogBodyButtonDecline",
+        "text": null,
+        "reason": "Resolving visible cookie_consent blocker before continuing the main task.",
+        "mayNavigate": false,
+        "expectedEffect": "The visible blocker disappears or stops blocking the main page.",
+        "successSignal": "The blocker overlay or its dismiss controls are no longer visible.",
+        "failureSignal": "The same blocker remains visible on the same page state.",
+        "fallbackHint": "Try a different visible reject/close control or re-check the blocker with vision."
+      }
+    },
+    {
+      "ts": 1776176716880,
+      "step": 5,
+      "kind": "attempt",
+      "detail": "Runtime blocker handling for cookie_consent.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::odmietnuť|o cookies|menu|potrebné",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogNavAbout",
+        "text": null,
+        "mayNavigate": false
+      }
+    },
+    {
+      "ts": 1776176716884,
+      "step": 5,
+      "kind": "loop_guard",
+      "detail": "Blocked repeated blocker action on the same blocker evidence.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::odmietnuť|o cookies|menu|potrebné",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogNavAbout",
+        "text": null,
+        "reason": "Resolving visible cookie_consent blocker before continuing the main task.",
+        "mayNavigate": false,
+        "expectedEffect": "The visible blocker disappears or stops blocking the main page.",
+        "successSignal": "The blocker overlay or its dismiss controls are no longer visible.",
+        "failureSignal": "The same blocker remains visible on the same page state.",
+        "fallbackHint": "Try a different visible reject/close control or re-check the blocker with vision."
+      }
+    },
+    {
+      "ts": 1776176716886,
+      "step": 5,
+      "kind": "safe_fallback",
+      "detail": "Trying generic blocker fallback for cookie_consent.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::odmietnuť|o cookies|menu|potrebné",
+      "action": {
+        "action": "click",
+        "selector": "button[aria-expanded]",
+        "text": null,
+        "mayNavigate": false
+      }
+    },
+    {
+      "ts": 1776176721935,
+      "step": 6,
+      "kind": "attempt",
+      "detail": "Runtime blocker handling for cookie_consent.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.closeVisible|vision.overlay.cookie_consent::odmietnuť|o cookies|menu|potrebné",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogBodyButtonDecline",
+        "text": null,
+        "mayNavigate": false
+      }
+    },
+    {
+      "ts": 1776176721939,
+      "step": 6,
+      "kind": "loop_guard",
+      "detail": "Blocked repeated blocker action on the same blocker evidence.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.closeVisible|vision.overlay.cookie_consent::odmietnuť|o cookies|menu|potrebné",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogBodyButtonDecline",
+        "text": null,
+        "reason": "Resolving visible cookie_consent blocker before continuing the main task.",
+        "mayNavigate": false,
+        "expectedEffect": "The visible blocker disappears or stops blocking the main page.",
+        "successSignal": "The blocker overlay or its dismiss controls are no longer visible.",
+        "failureSignal": "The same blocker remains visible on the same page state.",
+        "fallbackHint": "Try a different visible reject/close control or re-check the blocker with vision."
+      }
+    },
+    {
+      "ts": 1776176725893,
+      "step": 7,
+      "kind": "attempt",
+      "detail": "Runtime blocker handling for cookie_consent.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::odmietnuť|o cookies|menu|potrebné",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogBodyButtonDecline",
+        "text": null,
+        "mayNavigate": false
+      }
+    },
+    {
+      "ts": 1776176725899,
+      "step": 7,
+      "kind": "loop_guard",
+      "detail": "Blocked repeated blocker action on the same blocker evidence.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::odmietnuť|o cookies|menu|potrebné",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogBodyButtonDecline",
+        "text": null,
+        "reason": "Resolving visible cookie_consent blocker before continuing the main task.",
+        "mayNavigate": false,
+        "expectedEffect": "The visible blocker disappears or stops blocking the main page.",
+        "successSignal": "The blocker overlay or its dismiss controls are no longer visible.",
+        "failureSignal": "The same blocker remains visible on the same page state.",
+        "fallbackHint": "Try a different visible reject/close control or re-check the blocker with vision."
+      }
+    },
+    {
+      "ts": 1776176725902,
+      "step": 7,
+      "kind": "safe_fallback",
+      "detail": "Trying generic blocker fallback for cookie_consent.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::odmietnuť|o cookies|menu|potrebné",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogNavAbout",
+        "text": null,
+        "mayNavigate": false
+      }
+    },
+    {
+      "ts": 1776176731534,
+      "step": 8,
+      "kind": "attempt",
+      "detail": "Runtime blocker handling for cookie_consent.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::o cookies|prispôsobiť|povoliť všetko|vyhľadať",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogNavAbout",
+        "text": null,
+        "mayNavigate": false
+      }
+    },
+    {
+      "ts": 1776176731537,
+      "step": 8,
+      "kind": "loop_guard",
+      "detail": "Blocked repeated blocker action on the same blocker evidence.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::o cookies|prispôsobiť|povoliť všetko|vyhľadať",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogNavAbout",
+        "text": null,
+        "reason": "Resolving visible cookie_consent blocker before continuing the main task.",
+        "mayNavigate": false,
+        "expectedEffect": "The visible blocker disappears or stops blocking the main page.",
+        "successSignal": "The blocker overlay or its dismiss controls are no longer visible.",
+        "failureSignal": "The same blocker remains visible on the same page state.",
+        "fallbackHint": "Try a different visible reject/close control or re-check the blocker with vision."
+      }
+    },
+    {
+      "ts": 1776176749713,
+      "step": 9,
+      "kind": "attempt",
+      "detail": "Runtime blocker handling for cookie_consent.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::o cookies|prispôsobiť|povoliť všetko|vyhľadať",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogBodyLevelButtonCustomize",
+        "text": null,
+        "mayNavigate": false
+      }
+    },
+    {
+      "ts": 1776176749716,
+      "step": 9,
+      "kind": "loop_guard",
+      "detail": "Blocked repeated blocker action on the same blocker evidence.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::o cookies|prispôsobiť|povoliť všetko|vyhľadať",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogBodyLevelButtonCustomize",
+        "text": null,
+        "reason": "Resolving visible cookie_consent blocker before continuing the main task.",
+        "mayNavigate": false,
+        "expectedEffect": "The visible blocker disappears or stops blocking the main page.",
+        "successSignal": "The blocker overlay or its dismiss controls are no longer visible.",
+        "failureSignal": "The same blocker remains visible on the same page state.",
+        "fallbackHint": "Try a different visible reject/close control or re-check the blocker with vision."
+      }
+    },
+    {
+      "ts": 1776176749718,
+      "step": 9,
+      "kind": "safe_fallback",
+      "detail": "Trying generic blocker fallback for cookie_consent.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext|vision.overlay.cookie_consent::o cookies|prispôsobiť|povoliť všetko|vyhľadať",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll",
+        "text": null,
+        "mayNavigate": false
+      }
+    },
+    {
+      "ts": 1776176767121,
+      "step": 10,
+      "kind": "attempt",
+      "detail": "Runtime blocker handling for cookie_consent.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext::o cookies|prispôsobiť|povoliť všetko|vyhľadať",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogNavAbout",
+        "text": null,
+        "mayNavigate": false
+      }
+    },
+    {
+      "ts": 1776176767125,
+      "step": 10,
+      "kind": "loop_guard",
+      "detail": "Blocked repeated blocker action on the same blocker evidence.",
+      "evidenceKey": "cookie_consent::snapshot.cookieLikeOverlay|snapshot.modalOpen|surface.cookieContext::o cookies|prispôsobiť|povoliť všetko|vyhľadať",
+      "action": {
+        "action": "click",
+        "selector": "#CybotCookiebotDialogNavAbout",
+        "text": null,
+        "reason": "Resolving visible cookie_consent blocker before continuing the main task.",
+        "mayNavigate": false,
+        "expectedEffect": "The visible blocker disappears or stops blocking the main page.",
+        "successSignal": "The blocker overlay or its dismiss controls are no longer visible.",
+        "failureSignal": "The same blocker remains visible on the same page state.",
+        "fallbackHint": "Try a different visible reject/close control or re-check the blocker with vision."
+      }
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1776176693342,
+      "step": 1,
+      "kind": "safe_fallback",
+      "detail": "Trying generic blocker dismissal before human help.",
+      "reason": "blocker_loop_guard",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776176716886,
+      "step": 5,
+      "kind": "safe_fallback",
+      "detail": "Trying generic blocker dismissal before human help.",
+      "reason": "blocker_loop_guard",
+      "pageKind": "unknown"
+    },
+    {
+      "ts": 1776176725902,
+      "step": 7,
+      "kind": "safe_fallback",
+      "detail": "Trying generic blocker dismissal before human help.",
+      "reason": "blocker_loop_guard",
+      "pageKind": "unknown"
+    },
+    {
+      "ts": 1776176749718,
+      "step": 9,
+      "kind": "safe_fallback",
+      "detail": "Trying generic blocker dismissal before human help.",
+      "reason": "blocker_loop_guard",
+      "pageKind": "unknown"
+    },
+    {
+      "ts": 1776176802603,
+      "step": 12,
+      "kind": "selector_safety",
+      "detail": "Rejected synthetic selector \"button:contains('Do košíka')\" without grounded visible text fallback.",
+      "action": {
+        "action": "click",
+        "selector": "button:contains('Do košíka')",
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking button:contains('Do košíka').",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776176832706,
+      "step": 13,
+      "kind": "selector_safety",
+      "detail": "Rejected synthetic selector \"button:contains('Do košíka')\" without grounded visible text fallback.",
+      "action": {
+        "action": "click",
+        "selector": "button:contains('Do košíka')",
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking button:contains('Do košíka').",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776176852652,
+      "step": 14,
+      "kind": "selector_safety",
+      "detail": "Rejected synthetic selector \"button:contains('Do košíka'):nth-of-type(1)\" without grounded visible text fallback.",
+      "action": {
+        "action": "click",
+        "selector": "button:contains('Do košíka'):nth-of-type(1)",
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking button:contains('Do košíka'):nth-of-type(1).",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776176852653,
+      "step": 14,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "selector_safety",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776176897860,
+      "step": 16,
+      "kind": "post_action_verification",
+      "detail": "The page stayed unchanged after clicking and no success signal appeared.",
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Do košíka",
+        "reason": "Add one of the visible Frank Herbert books to the cart.",
+        "mayNavigate": true,
+        "expectedEffect": "Selected book is added to the cart.",
+        "successSignal": "Cart count or cart contents update.",
+        "failureSignal": "No add-to-cart action occurs or an error appears.",
+        "fallbackHint": "If multiple add buttons exist, choose the one next to a visible Frank Herbert title."
+      },
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 15,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Do košíka",
+        "reason": "Search results for Frank Herbert are already visible. Next safe step is to add one Frank Herbert book from the results to the cart.",
+        "mayNavigate": false,
+        "expectedEffect": "Adds the first visible Frank Herbert book to the cart.",
+        "successSignal": "Cart count increases or item is added.",
+        "failureSignal": "No item added or the page changes unexpectedly.",
+        "fallbackHint": "If the first Do košíka adds the wrong item, use the visible Frank Herbert title and try its own add-to-cart button."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    },
+    {
+      "step": 16,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Do košíka",
+        "reason": "Add one of the visible Frank Herbert books to the cart.",
+        "mayNavigate": true,
+        "expectedEffect": "Selected book is added to the cart.",
+        "successSignal": "Cart count or cart contents update.",
+        "failureSignal": "No add-to-cart action occurs or an error appears.",
+        "fallbackHint": "If multiple add buttons exist, choose the one next to a visible Frank Herbert title."
+      },
+      "verification": {
+        "changed": false,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The page stayed unchanged after clicking and no success signal appeared."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 15,
+      "activeSubtaskId": "add_frank_herbert_book_to_cart",
+      "completedSubtasks": [
+        "search_frank_herbert_book"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Search results for Frank Herbert are already visible. Next safe step is to add one Frank Herbert book from the results to the cart.",
+        "activeSubtaskId": "add_frank_herbert_book_to_cart",
+        "markSubtasksDone": [
+          "search_frank_herbert_book"
+        ],
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Do košíka",
+        "mayNavigate": false,
+        "expectedEffect": "Adds the first visible Frank Herbert book to the cart.",
+        "successSignal": "Cart count increases or item is added.",
+        "failureSignal": "No item added or the page changes unexpectedly.",
+        "fallbackHint": "If the first Do košíka adds the wrong item, use the visible Frank Herbert title and try its own add-to-cart button."
+      }
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "runId": "d55c5edd-ea32-4c9e-9e52-9a31ef2a8a6f",
+  "url": "https://webscraper.io/test-sites",
+  "task": "Na webovej stránke nájdi stránku s kontaktnými údajmi. Otvor ju a vypíš e-mailovú adresu a telefónne číslo na zákaznícku podporu alebo reklamácie a vrátenie tovaru.",
+  "goalSpec": {
+    "goal": "Find customer support contact information on the website.",
+    "successCriteria": [
+      "Email address is listed on the contact page.",
+      "Phone number is listed on the contact page."
+    ],
+    "stopCondition": "Contact information retrieved",
+    "assumptions": [
+      "The contact page contains necessary information."
+    ],
+    "constraints": [],
+    "finalRequirements": [
+      {
+        "kind": "url_contains",
+        "text": "/contact"
+      },
+      {
+        "kind": "answer_contains_email"
+      },
+      {
+        "kind": "answer_contains_phone"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "navigate_to_contact_page",
+        "title": "Navigate to the contact page.",
+        "doneWhen": "User is on the contact page.",
+        "dependsOn": []
+      },
+      {
+        "id": "retrieve_contact_information",
+        "title": "Retrieve email and phone number from the contact page.",
+        "doneWhen": "Email and phone number are extracted.",
+        "dependsOn": [
+          "navigate_to_contact_page"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "stopReason": "Contact page is open and the support email is visible on the page.",
+  "finalVerdict": "E-mailová adresa zákazníckej podpory je info@webscraper.io. Telefónne číslo nie je jasne viditeľné.",
+  "failureClassification": "completed",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "url_contains",
+        "text": "/contact"
+      },
+      {
+        "kind": "answer_contains_email"
+      },
+      {
+        "kind": "answer_contains_phone"
+      }
+    ],
+    "fulfilled": [
+      "url_contains(\"/contact\")",
+      "answer_contains_email"
+    ],
+    "missing": [
+      "answer_contains_phone"
+    ],
+    "evidence": [
+      "Satisfied: url_contains(\"/contact\")",
+      "Satisfied: answer_contains_email",
+      "Visible email found: info@webscraper.io"
+    ],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": true,
+      "answer": "info@webscraper.io",
+      "evidence": [
+        "Visible email found: info@webscraper.io"
+      ],
+      "missing": [],
+      "confidence": "high"
+    }
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "metrics": {
+    "humanHelpRequests": 1,
+    "humanHelpResponses": 1,
+    "selfHealAttempts": 1,
+    "replanCount": 1,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 1
+    },
+    "stepsExecuted": 5,
+    "tokenUsage": {
+      "promptTokens": 434891,
+      "completionTokens": 1966,
+      "totalTokens": 436857,
+      "callCount": 21
+    }
+  },
+  "helpRound": 1,
+  "completedSubtasks": [
+    "navigate_to_contact_page",
+    "retrieve_contact_information"
+  ],
+  "stepsExecuted": 5,
+  "finalUrl": "https://webscraper.io/contact",
+  "helpHistory": [
+    "uplne dole je footer tam najdes kontakt  page"
+  ],
+  "blockerEvents": [
+    {
+      "ts": 1776006998523,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Accept",
+      "closeVisible": false
+    }
+  ],
+  "recoveryTransitions": [],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Accept",
+        "reason": "Vision sees cookie_consent overlay with \"Accept\". Dismissing it.",
+        "mayNavigate": false,
+        "expectedEffect": "The overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Try clicking the close button or ask human for help."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Contact",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking Contact.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Vision sees cookie_consent overlay with \"Accept\". Dismissing it.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookie_consent overlay kliknutim na \"Accept\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Accept",
+        "mayNavigate": false,
+        "expectedEffect": "The overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Try clicking the close button or ask human for help."
+      }
+    },
+    {
+      "step": 3,
+      "activeSubtaskId": null,
+      "completedSubtasks": [
+        "navigate_to_contact_page",
+        "retrieve_contact_information"
+      ],
+      "stalePageCount": 1,
+      "pageKind": "inventory",
+      "decisionSource": "human_guided",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Contact"
+      }
+    }
+  ]
+}

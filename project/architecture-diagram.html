@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8" />
+<title>Architektúra — UI Control Agent</title>
+<style>
+  :root {
+    --bg: #15181d;
+    --fg: #e7e9ee;
+    --muted: #a0a6b3;
+    --dash: #4a5160;
+
+    --client: #3b4c8a;
+    --server: #2f6b58;
+    --orchestration: #8a5a2b;
+    --decision: #4a3a85;
+    --vision: #6a2f63;
+    --model: #2b5a7a;
+    --tools: #2f6b58;
+    --browser: #3a3f4a;
+    --eval: #8a3a2b;
+    --storage: #5b4a2a;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg); color: var(--fg);
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    font-size: 14px; line-height: 1.4;
+  }
+  .page {
+    max-width: 1160px;
+    margin: 40px auto;
+    padding: 32px;
+  }
+  h1 {
+    font-size: 22px; font-weight: 600; margin: 0 0 4px;
+  }
+  .subtitle {
+    color: var(--muted); margin-bottom: 28px;
+  }
+  .outer {
+    border: 1.5px dashed var(--dash);
+    border-radius: 16px;
+    padding: 22px;
+    position: relative;
+  }
+  .outer-label {
+    position: absolute;
+    top: -11px; left: 22px;
+    background: var(--bg);
+    padding: 0 10px;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.3px;
+  }
+  .row {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .row.one   { grid-template-columns: 1fr; }
+  .row.two   { grid-template-columns: 1fr 1fr; }
+  .row.three { grid-template-columns: 1fr 1fr 1fr; }
+
+  .box {
+    border-radius: 12px;
+    padding: 16px 18px;
+    color: #fff;
+    position: relative;
+  }
+  .box .title {
+    font-size: 15px; font-weight: 600; margin-bottom: 4px;
+  }
+  .box .desc {
+    font-size: 12.5px; color: rgba(255,255,255,0.78);
+  }
+  .box .tag {
+    position: absolute; top: 10px; right: 12px;
+    font-size: 10.5px; color: rgba(255,255,255,0.6);
+    text-transform: uppercase; letter-spacing: 0.6px;
+  }
+
+  .c-client        { background: var(--client); }
+  .c-server        { background: var(--server); }
+  .c-orchestration { background: var(--orchestration); }
+  .c-decision      { background: var(--decision); }
+  .c-vision        { background: var(--vision); }
+  .c-model         { background: var(--model); }
+  .c-tools         { background: var(--tools); }
+  .c-browser       { background: var(--browser); }
+  .c-eval          { background: var(--eval); }
+  .c-storage       { background: var(--storage); }
+
+  .arrow {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    margin: -4px 0 10px;
+    letter-spacing: 0.3px;
+  }
+  .arrow::before { content: "↓  "; color: #6b7180; }
+  .arrow.up::before { content: "↑  "; color: #6b7180; }
+  .arrow.both::before { content: "↕  "; color: #6b7180; }
+
+  .legend {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 24px;
+    color: var(--muted);
+    font-size: 12.5px;
+  }
+  .legend b { color: var(--fg); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Architektúra — UI Control Agent</h1>
+  <div class="subtitle">Vrstvová architektúra behu jedného pokusu (one run): od operátora cez orchestráciu až po prehliadač a artefakty.</div>
+
+  <!-- Operator / Client -->
+  <div class="row one">
+    <div class="box c-client">
+      <div class="tag">monitor-ui · React + Vite</div>
+      <div class="title">Operátorské rozhranie — Monitor UI</div>
+      <div class="desc">spustenie behu · živé sledovanie krokov cez SSE · ovládanie (stop / finish / terminate) · poskytnutie human-help odpovede</div>
+    </div>
+  </div>
+  <div class="arrow both">REST (/api/runs, /help, /stop, …) &nbsp;·&nbsp; SSE (/events)</div>
+
+  <!-- Server container -->
+  <div class="outer" style="margin-bottom: 16px;">
+    <div class="outer-label">Server · Node.js · Express</div>
+
+    <div class="row two">
+      <div class="box c-server">
+        <div class="tag">server/index.ts</div>
+        <div class="title">API vrstva — Express endpoints</div>
+        <div class="desc">POST /api/runs · /help · /stop · /finish · /terminate · GET /state · statický /runs</div>
+      </div>
+      <div class="box c-server">
+        <div class="tag">server/sse.ts · runControl.ts · help.ts</div>
+        <div class="title">Event bus a riadenie behu</div>
+        <div class="desc">SSE broadcast udalostí · stav behu (running/paused/finished) · čakanie na human-help</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow">runOnce(runId, url, task, maxSteps, options)</div>
+
+  <!-- Orchestration -->
+  <div class="row one">
+    <div class="box c-orchestration">
+      <div class="tag">src/runner/runOnce/core.ts (+ actions · pageState · clarification · verification · blockers · models · media · shared)</div>
+      <div class="title">Orchestračná vrstva — runOnceCore (observe → plan → act loop)</div>
+      <div class="desc">riadi kroky a replanning · self-heal · completion-check · deterministic final gate · progress a help-historia · agreguje token usage a artefakty</div>
+    </div>
+  </div>
+
+  <div class="arrow both">snapshot + vision notes + progress &nbsp;⇄&nbsp; JSON decision (action / batch / needHelp)</div>
+
+  <!-- Decision + Vision -->
+  <div class="row two">
+    <div class="box c-decision">
+      <div class="tag">mastra/agents/ui-agent.ts</div>
+      <div class="title">Rozhodovacia vrstva — UI Agent (Mastra)</div>
+      <div class="desc">state-driven planner · výber subtasku · vracia JSON (action, selector, text, needHelp, expectedEffect, successSignal…)</div>
+    </div>
+    <div class="box c-vision">
+      <div class="tag">mastra/agents/vision-agent.ts</div>
+      <div class="title">Vizuálna vrstva — Vision Agent</div>
+      <div class="desc">screenshot → JSON (page type · overlay/cookie consent · error · UI hints) — sekundárny signál pre plánovanie</div>
+    </div>
+  </div>
+
+  <div class="arrow">generateText() cez @ai-sdk</div>
+
+  <!-- Model providers -->
+  <div class="row one">
+    <div class="box c-model">
+      <div class="tag">shared/modelFactory.ts</div>
+      <div class="title">Model providers</div>
+      <div class="desc">OpenAI (gpt-4.1 default) · Azure OpenAI (deployment + api-version) · Google Gemini (gemini-2.5-flash) — prepínané podľa prefixu/názvu modelu</div>
+    </div>
+  </div>
+
+  <div class="arrow up">odpoveď modelu (JSON rozhodnutie / vision notes)</div>
+
+  <!-- Execution container -->
+  <div class="outer" style="margin-bottom: 16px;">
+    <div class="outer-label">Výkonná vrstva · Playwright tools</div>
+
+    <div class="row three">
+      <div class="box c-tools">
+        <div class="tag">mastra/tools/*</div>
+        <div class="title">Akcie</div>
+        <div class="desc">click · clickByText · clickAtPoint · type · pressKey · scroll · waitFor · openPage</div>
+      </div>
+      <div class="box c-tools">
+        <div class="tag">getSnapshot.ts</div>
+        <div class="title">Observácia</div>
+        <div class="desc">DOM snapshot: url · title · inputs · buttons · clickables · pageMeta · cookie/modal flags</div>
+      </div>
+      <div class="box c-tools">
+        <div class="tag">runOnce/media.ts</div>
+        <div class="title">Vizuálny capture</div>
+        <div class="desc">viewport + full-page screenshoty · data-URL pre vision pass · artefakty pre bežný adresár</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow">DOM action + snapshot request</div>
+
+  <!-- Browser -->
+  <div class="row one">
+    <div class="box c-browser">
+      <div class="tag">playwright/browser.ts · Chromium</div>
+      <div class="title">Prehliadač — cieľová webová aplikácia</div>
+      <div class="desc">singleton browser + page · testované webové rozhranie pod kontrolou agenta</div>
+    </div>
+  </div>
+
+  <div class="arrow up">SSE eventy · artefakty · záznamy</div>
+
+  <!-- Eval + Storage -->
+  <div class="row two">
+    <div class="box c-eval">
+      <div class="tag">runOnce/verification.ts + scorers</div>
+      <div class="title">Evaluačná vrstva</div>
+      <div class="desc">per-step verify · deterministic final gate · visual final verdict · completion check · partial success · replan reasons</div>
+    </div>
+    <div class="box c-storage">
+      <div class="tag">runs/&lt;runId&gt;/ · LibSQL (in-memory) · Mastra observability</div>
+      <div class="title">Perzistencia a artefakty</div>
+      <div class="desc">screenshoty · JSON step trace · blocker/recovery events · token usage · finálny výsledok behu</div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div><b>Primárny tok</b> — operátor → server → orchestrácia → agent (LLM) → tools → prehliadač → späť snapshot/screenshot.</div>
+    <div><b>Dva nezávislé modely</b> — UI Agent robí rozhodnutia, Vision Agent iba komentuje vizuálny stav.</div>
+    <div><b>Sekundárny tok</b> — SSE udalosti z orchestrácie späť do Monitor UI v reálnom čase.</div>
+    <div><b>Human-in-the-loop</b> — ak agent označí needHelp, server čaká na odpoveď operátora cez /help.</div>
+  </div>
+
+</div>
+</body>
+</html>

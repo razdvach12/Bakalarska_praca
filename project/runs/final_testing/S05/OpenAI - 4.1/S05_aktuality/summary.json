@@ -1,0 +1,244 @@
+{
+  "runId": "312dd72a-4c8f-403d-bac6-217991a6e179",
+  "url": "https://www.aktuality.sk/",
+  "task": "Na spravodajskom portáli nájdi sekciu Ekonónia (ak je potrebné vyhľadaj články o ekonómii). Bez otvárania detailov vypíš nadpisy prvých 3 viditeľných článkov. Počas navigácie ignoruj cookie/subscribe/newsletter popupy.",
+  "runMeta": {
+    "model": "gpt-4.1",
+    "difficulty": null,
+    "run": "312dd72a-4c8f-403d-bac6-217991a6e179"
+  },
+  "goalSpec": {
+    "goal": "Nájsť sekciu Ekonomika na spravodajskom portáli a bez otvárania detailov vypísať nadpisy prvých 3 viditeľných článkov.",
+    "successCriteria": [
+      "Sekcia Ekonomika na portáli je zobrazená.",
+      "Sú identifikované a vypísané nadpisy prvých troch viditeľných článkov zo sekcie Ekonomika.",
+      "Nadpisy článkov sú vypísané bez potreby otvárať ich detail."
+    ],
+    "stopCondition": "Tri nadpisy článkov zo sekcie Ekonomika sú jasne viditeľné a vypísané.",
+    "assumptions": [
+      "Používateľ nevyžaduje žiadne rozklikávanie detailov článkov.",
+      "Popupy ako cookie lišta môžu byť ignorované v navigácii."
+    ],
+    "constraints": [
+      "Žiadne otváranie detailných zobrazení článkov.",
+      "Vypísať iba to, čo je viditeľné priamo v zozname článkov sekcie Ekonomika."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "url_contains",
+        "text": "ekonomika"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "navigate_to_ekonomika",
+        "title": "Prejsť do sekcie Ekonomika",
+        "doneWhen": "Je zobrazená hlavná stránka sekcie Ekonomika (url obsahuje 'ekonomika').",
+        "dependsOn": []
+      },
+      {
+        "id": "locate_article_headings",
+        "title": "Nájsť nadpisy prvých troch viditeľných článkov",
+        "doneWhen": "Identifikované tri viditeľné nadpisy článkov v sekcii Ekonomika.",
+        "dependsOn": [
+          "navigate_to_ekonomika"
+        ]
+      },
+      {
+        "id": "output_headings",
+        "title": "Vypísať nadpisy článkov",
+        "doneWhen": "Sú jasne vypísané nadpisy troch viditeľných článkov bez otvárania ich detailov.",
+        "dependsOn": [
+          "locate_article_headings"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "strict",
+  "stopReason": "Deterministic final requirements satisfied on the current page.",
+  "finalVerdict": "Sekcia Ekonomika je zobrazená. Nadpisy prvých troch viditeľných článkov sú: 1. Firmy zápasia s nedostatkom zamestnancov. Zahraniční pracovníci sa stávajú nevyhnutnou oporou slovenskej ekonomiky 2. Ruský sen sa rozplynul: Čech vymenil domov za život v tajge, jeho výplata vás šokuje 3. Inšpektori našli stovky nedostatkov pri kontrolách potravín, padli vysoké pokuty",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": true,
+    "finalRequirements": [
+      {
+        "kind": "url_contains",
+        "text": "ekonomika"
+      }
+    ],
+    "fulfilled": [
+      "url_contains(\"ekonomika\")"
+    ],
+    "missing": [],
+    "evidence": [
+      "Satisfied: url_contains(\"ekonomika\")"
+    ],
+    "answerAssessment": null
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "Ešte nie je zobrazená sekcia Ekonomika (URL neobsahuje 'ekonomika'), ale je prítomný odkaz do sekcie Ekonomika v hlavnej navigácii. Nadpisy článkov zo sekcie Ekonomika zatiaľ nie sú vypísané.",
+    "evidence": [
+      "URL je https://www.aktuality.sk/ (neobsahuje 'ekonomika')",
+      "V navigácii identifikovaný odkaz: EKONOMIKA -> https://www.aktuality.sk/ekonomika/",
+      "Nie sú vypísané ani viditeľné nadpisy troch článkov zo sekcie Ekonomika"
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Vision does not contradict deterministic success, but it is not strongly confirmatory either.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4.1",
+    "Difficulty": null,
+    "Run": "312dd72a-4c8f-403d-bac6-217991a6e179",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 3,
+    "Total_Subtasks": 3,
+    "Partial_Success": 1,
+    "Steps": 6,
+    "Replans": 0,
+    "Duration_seconds": 150.609,
+    "HumanHelp_Verbal": 2,
+    "HumanHelp_Actions": 2,
+    "Tokens_Total": 41763,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://www.aktuality.sk/ekonomika/",
+    "Final_Verdict": "Sekcia Ekonomika je zobrazená. Nadpisy prvých troch viditeľných článkov sú: 1. Firmy zápasia s nedostatkom zamestnancov. Zahraniční pracovníci sa stávajú nevyhnutnou oporou slovenskej ekonomiky 2. Ruský sen sa rozplynul: Čech vymenil domov za život v tajge, jeho výplata vás šokuje 3. Inšpektori našli stovky nedostatkov pri kontrolách potravín, padli vysoké pokuty"
+  },
+  "metrics": {
+    "humanHelpRequests": 2,
+    "humanHelpResponses": 2,
+    "humanHelpActions": 2,
+    "selfHealAttempts": 2,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 6,
+    "durationSeconds": 150.609,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 3,
+    "totalSubtasks": 3,
+    "deterministicGateSatisfied": true,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 38928,
+      "completionTokens": 2835,
+      "totalTokens": 41763,
+      "callCount": 17
+    }
+  },
+  "helpRound": 2,
+  "completedSubtasks": [
+    "navigate_to_ekonomika",
+    "locate_article_headings",
+    "output_headings"
+  ],
+  "stepsExecuted": 6,
+  "finalUrl": "https://www.aktuality.sk/ekonomika/",
+  "helpHistory": [
+    "Áno, pokračuj bez ohľadu na overlay",
+    "Vyber nadpisy priamo zo sekcie EKONOMIKA"
+  ],
+  "blockerEvents": [
+    {
+      "ts": 1777233494183,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Prijať všetko"
+    },
+    {
+      "ts": 1777233497543,
+      "step": 1,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Prijať všetko"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1777233497562,
+      "step": 1,
+      "kind": "safe_fallback",
+      "detail": "Vision sees overlay, trying clickByText(\"Prijať všetko\").",
+      "reason": "execution_error",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777233512050,
+      "step": 2,
+      "kind": "selector_safety",
+      "detail": "clickByText requires visible text.",
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking clickByText.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 4,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "EKONOMIKA",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking EKONOMIKA.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 4,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "human_guided",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "EKONOMIKA"
+      }
+    }
+  ]
+}

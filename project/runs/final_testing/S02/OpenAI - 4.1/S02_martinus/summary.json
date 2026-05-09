@@ -1,0 +1,470 @@
+{
+  "runId": "910e2ec8-5d99-428c-b41e-f4770ee3cb77",
+  "url": "https://www.martinus.sk/",
+  "task": "Na e-shope vyhladaj knihu \"Duna\" od Franka Herberta. Ak je dostupna, pridaj ho do kosika. Nakoniec otvor kosik a napis kolko to bude stat",
+  "runMeta": {
+    "model": "gpt-4.1",
+    "difficulty": null,
+    "run": "910e2ec8-5d99-428c-b41e-f4770ee3cb77"
+  },
+  "goalSpec": {
+    "goal": "Vyhľadať knihu 'Duna' od Franka Herberta na e-shope Martinus, ak je dostupná, pridať ju do košíka a zistiť jej cenu.",
+    "successCriteria": [
+      "Kniha 'Duna' je úspešne vyhľadaná.",
+      "Kniha 'Duna' je dostupná na sklade.",
+      "Kniha bola pridaná do košíka.",
+      "Košík je otvorený a zobrazená celková cena položky v ňom."
+    ],
+    "stopCondition": "Zobrazená cena knihy 'Duna' v košíku po otvorení košíka.",
+    "assumptions": [
+      "Používateľ chce vyhľadať konkrétnu knihu podľa názvu a autora.",
+      "Produkt 'Duna' bude identifikovateľný vo výsledkoch vyhľadávania.",
+      "Košík zobrazí finálnu cenu bez nutnosti prihlásenia."
+    ],
+    "constraints": [
+      "Všetky interakcie musia byť vykonané na stránke Martinus.",
+      "Interakcie najskôr vyžadujú odsúhlasenie cookies pre plnú funkcionalitu.",
+      "Vyber len tlačidlo 'Povoliť všetko', žiadne iné nastavenia cookies."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "Duna"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Duna"
+      },
+      {
+        "kind": "url_contains",
+        "text": "/cart"
+      },
+      {
+        "kind": "text_visible",
+        "text": "€"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "allow_cookies",
+        "title": "Odsúhlas cookies kliknutím na 'Povoliť všetko'",
+        "doneWhen": "Overlay pre cookies je skrytý",
+        "dependsOn": []
+      },
+      {
+        "id": "search_duna",
+        "title": "Vyhľadať 'Duna Frank Herbert' cez vyhľadávacie pole",
+        "doneWhen": "Zobrazia sa výsledky obsahujúce 'Duna' od Franka Herberta",
+        "dependsOn": [
+          "allow_cookies"
+        ]
+      },
+      {
+        "id": "add_to_cart",
+        "title": "Pridať knihu 'Duna' do košíka, pokiaľ je dostupná",
+        "doneWhen": "Kniha 'Duna' je v košíku",
+        "dependsOn": [
+          "search_duna"
+        ]
+      },
+      {
+        "id": "open_cart",
+        "title": "Otvoriť košík kliknutím na ikonu alebo odkaz 'Košík'",
+        "doneWhen": "Zobrazený obsah košíka",
+        "dependsOn": [
+          "add_to_cart"
+        ]
+      },
+      {
+        "id": "check_price",
+        "title": "Zaznamenať cenu produktu 'Duna' v košíku",
+        "doneWhen": "V košíku je zobrazená cena knihy",
+        "dependsOn": [
+          "open_cart"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "strict",
+  "stopReason": "Deterministic final requirements satisfied on the current page.",
+  "finalVerdict": "Kniha \"Duna\" od Franka Herberta bola úspešne pridaná do košíka a je na sklade (1 ks). Cena za túto kolekciu kníh DUNA je 149,00 €. Celková suma v košíku je 149,00 €.",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": true,
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "Duna"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Duna"
+      },
+      {
+        "kind": "url_contains",
+        "text": "/cart"
+      },
+      {
+        "kind": "text_visible",
+        "text": "€"
+      }
+    ],
+    "fulfilled": [
+      "overlay_absent",
+      "cart_contains_product(Duna)",
+      "text_visible(\"Duna\")",
+      "url_contains(\"/cart\")",
+      "text_visible(\"€\")"
+    ],
+    "missing": [],
+    "evidence": [
+      "Satisfied: overlay_absent",
+      "Satisfied: cart_contains_product(Duna)",
+      "Satisfied: text_visible(\"Duna\")",
+      "Satisfied: url_contains(\"/cart\")",
+      "Satisfied: text_visible(\"€\")"
+    ],
+    "answerAssessment": null
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "Košík ešte nebol otvorený ani nie je viditeľné, že by kniha 'Duna' bola pridaná do košíka. Nie je zobrazená cena v košíku.",
+    "evidence": [
+      "Nachádzame sa na stránke produktu 'Kolekcia kníh DUNA Frank Herbert', kde je možné kliknúť na 'VLOŽIŤ DO KOŠÍKA'.",
+      "Zatiaľ žiaden dôkaz, že bola pridaná do košíka, ani že je košík otvorený.",
+      "Žiadna informácia o celkovej cene v košíku nie je na stránke viditeľná.",
+      "URL neobsahuje '/cart' a v texte stránky nie je zobrazená cena položky v košíku."
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Vision does not contradict deterministic success, but it is not strongly confirmatory either.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4.1",
+    "Difficulty": null,
+    "Run": "910e2ec8-5d99-428c-b41e-f4770ee3cb77",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 5,
+    "Total_Subtasks": 5,
+    "Partial_Success": 1,
+    "Steps": 19,
+    "Replans": 4,
+    "Duration_seconds": 382.602,
+    "HumanHelp_Verbal": 4,
+    "HumanHelp_Actions": 5,
+    "Tokens_Total": 179866,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://www.martinus.sk/cart",
+    "Final_Verdict": "Kniha \"Duna\" od Franka Herberta bola úspešne pridaná do košíka a je na sklade (1 ks). Cena za túto kolekciu kníh DUNA je 149,00 €. Celková suma v košíku je 149,00 €."
+  },
+  "metrics": {
+    "humanHelpRequests": 4,
+    "humanHelpResponses": 4,
+    "humanHelpActions": 5,
+    "selfHealAttempts": 7,
+    "replanCount": 4,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 4
+    },
+    "stepsExecuted": 19,
+    "durationSeconds": 382.602,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 5,
+    "totalSubtasks": 5,
+    "deterministicGateSatisfied": true,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 170799,
+      "completionTokens": 9067,
+      "totalTokens": 179866,
+      "callCount": 50
+    }
+  },
+  "helpRound": 4,
+  "completedSubtasks": [
+    "allow_cookies",
+    "search_duna",
+    "add_to_cart",
+    "open_cart",
+    "check_price"
+  ],
+  "stepsExecuted": 19,
+  "finalUrl": "https://www.martinus.sk/cart",
+  "helpHistory": [
+    "Áno, pridaj do košíka",
+    "knihu si vlozil do kosika, pokracuj v tasku",
+    "Áno, otvor košík",
+    "Áno, otvoriť košík"
+  ],
+  "blockerEvents": [
+    {
+      "ts": 1777231422309,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Povoliť všetko"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1777231496002,
+      "step": 4,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "execution_error",
+      "pageKind": "product_detail"
+    },
+    {
+      "ts": 1777231517215,
+      "step": 6,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "execution_error",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777231693760,
+      "step": 9,
+      "kind": "selector_safety",
+      "detail": "clickByText requires visible text.",
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking clickByText.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "product_detail"
+    },
+    {
+      "ts": 1777231698665,
+      "step": 10,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "no_action_executed",
+      "pageKind": "product_detail"
+    },
+    {
+      "ts": 1777231703424,
+      "step": 11,
+      "kind": "selector_safety",
+      "detail": "clickByText requires visible text.",
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking clickByText.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777231743641,
+      "step": 15,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "no_action_executed",
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povoliť všetko",
+        "reason": "Dismissing cookie consent overlay by clicking \"Povoliť všetko\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 1,
+      "action": {
+        "action": "type",
+        "selector": "#search-in-header",
+        "text": "Duna Frank Herbert",
+        "reason": "Vyhľadám knihu 'Duna' od Franka Herberta použitím hlavného vyhľadávacieho poľa.",
+        "expectedEffect": "Text bude zadaný do vyhľadávacieho poľa.",
+        "successSignal": "Vyhľadávacie pole obsahuje hľadaný text.",
+        "failureSignal": "Text sa nezobrazí vo vyhľadávacom poli.",
+        "fallbackHint": "Skontroluj, či je po vyhľadávaní k dispozícii tlačidlo na potvrdenie alebo je automaticky vykonané vyhľadávanie."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 2,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Kolekcia kníh DUNA Frank Herbert",
+        "reason": "Kliknutím na výsledok vyhľadávania otvoríme stránku knihy DUNA od Franka Herberta.",
+        "mayNavigate": true,
+        "expectedEffect": "Zobrazí sa detail produktu knihy DUNA od Franka Herberta.",
+        "successSignal": "Detail knihy DUNA viditeľný.",
+        "failureSignal": "Stránka neobsahuje DUNA, alebo dôjde k chybe.",
+        "fallbackHint": "Ak sa neotvorí správna stránka produktu, skúsiť ďalší výsledok alebo požiadať o pomoc."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"Povoliť všetko\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"Povoliť všetko\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povoliť všetko",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    },
+    {
+      "step": 1,
+      "activeSubtaskId": "search_duna",
+      "completedSubtasks": [
+        "allow_cookies"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Prvým krokom je vyhľadať knihu 'Duna Frank Herbert' cez vyhľadávacie pole.",
+        "activeSubtaskId": "search_duna",
+        "markSubtasksDone": [
+          "allow_cookies"
+        ],
+        "progressNote": "Overlay na cookies nebol rozpoznaný ako blokujúci, preto pokračujem k vyhľadaniu knihy.",
+        "needHelp": false,
+        "actions": [
+          {
+            "action": "type",
+            "selector": "#search-in-header",
+            "text": "Duna Frank Herbert",
+            "reason": "Vyhľadám knihu 'Duna' od Franka Herberta použitím hlavného vyhľadávacieho poľa.",
+            "expectedEffect": "Text bude zadaný do vyhľadávacieho poľa.",
+            "successSignal": "Vyhľadávacie pole obsahuje hľadaný text.",
+            "failureSignal": "Text sa nezobrazí vo vyhľadávacom poli.",
+            "fallbackHint": "Skontroluj, či je po vyhľadávaní k dispozícii tlačidlo na potvrdenie alebo je automaticky vykonané vyhľadávanie."
+          },
+          {
+            "action": "click",
+            "selector": "div:nth-of-type(1) > form:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1) > button:nth-of-type(1)",
+            "text": null,
+            "reason": "Potvrdím vyhľadávanie kliknutím na tlačidlo 'Hľadať'.",
+            "mayNavigate": true,
+            "expectedEffect": "Na stránke sa zobrazia výsledky vyhľadávania pre 'Duna Frank Herbert'.",
+            "successSignal": "Viditeľné výsledky obsahujú titul alebo autora 'Duna'/'Frank Herbert'.",
+            "failureSignal": "Nedôjde k načítaniu výsledkov vyhľadávania.",
+            "fallbackHint": "Ak vyhľadávanie nefunguje, skontroluj správnosť zadania textu alebo dostupnosť vyhľadávacieho tlačidla."
+          }
+        ]
+      }
+    },
+    {
+      "step": 2,
+      "activeSubtaskId": "search_duna",
+      "completedSubtasks": [
+        "allow_cookies",
+        "search_duna"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "product_detail",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Vo vyhľadávacom rozhraní sa zobrazila ponuka s výsledkami vrátane 'Kolekcia kníh DUNA Frank Herbert' a 'Kolekcia kníh DUNA grafický román Frank Herbert'. Je potrebné kliknúť na správny výsledok, aby sa zobrazila stránka produktu.",
+        "activeSubtaskId": "search_duna",
+        "markSubtasksDone": [
+          "search_duna"
+        ],
+        "progressNote": "Vyhľadávacie výsledky načítané, pripravené na výber produktu DUNA od Franka Herberta.",
+        "needHelp": false,
+        "actions": [
+          {
+            "action": "clickByText",
+            "selector": null,
+            "text": "Kolekcia kníh DUNA Frank Herbert",
+            "reason": "Kliknutím na výsledok vyhľadávania otvoríme stránku knihy DUNA od Franka Herberta.",
+            "mayNavigate": true,
+            "expectedEffect": "Zobrazí sa detail produktu knihy DUNA od Franka Herberta.",
+            "successSignal": "Detail knihy DUNA viditeľný.",
+            "failureSignal": "Stránka neobsahuje DUNA, alebo dôjde k chybe.",
+            "fallbackHint": "Ak sa neotvorí správna stránka produktu, skúsiť ďalší výsledok alebo požiadať o pomoc."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "runId": "50d48f7d-a696-4897-9e87-08829cbb866c",
+  "url": "https://www.nehnutelnosti.sk/",
+  "task": "Na realitnom portali nastav filtre: typ \"2-izbovy byt\", lokalita \"Bratislava – Staré Mesto\", typ ponuky \"prenajom\", maximalna cena 800 EUR mesacne. Zorad vysledky od najnovsich. Vypis nazov, cenu a m2 prvych 3 vysledkov.",
+  "runMeta": {
+    "model": "gemini-2.5-flash",
+    "difficulty": null,
+    "run": "50d48f7d-a696-4897-9e87-08829cbb866c"
+  },
+  "goalSpec": {
+    "goal": "Filter real estate listings on Nehnutelnosti.sk based on specified criteria, sort them by newest, and extract the name, price, and square meters of the first 3 results.",
+    "successCriteria": [
+      "The cookie consent overlay is no longer visible.",
+      "The search results page is displayed with the correct filters applied for type '2-izbovy byt', locality 'Bratislava – Staré Mesto', offer type 'prenajom', and maximum price 800 EUR.",
+      "The results are sorted by 'Najnovšie' (Newest).",
+      "The name, price, and m2 of the first 3 listings are extracted and provided in the final answer."
+    ],
+    "stopCondition": "The requested information for the first 3 listings is extracted and the results are sorted.",
+    "assumptions": [
+      "The website interface remains consistent during the interaction.",
+      "The sorting option 'Najnovšie' (Newest) will be available on the results page after applying filters."
+    ],
+    "constraints": [
+      "Only interact with the provided web page and its elements."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "url_contains",
+        "text": "/vysledky/"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "accept_cookie_consent",
+        "title": "Accept all cookies to dismiss the overlay.",
+        "doneWhen": "The cookie consent overlay is no longer visible.",
+        "dependsOn": []
+      },
+      {
+        "id": "set_initial_filters",
+        "title": "Set the property type to '2-izbovy byt', location to 'Bratislava – Staré Mesto', and offer type to 'prenajom'.",
+        "doneWhen": "The 'Vyberte typ nehnuteľnosti' field is set to '2-izbovy byt', the 'Vyberte mesto, obec, okres...' field is set to 'Bratislava – Staré Mesto', and the 'Vyberte typ' field is set to 'prenajom'.",
+        "dependsOn": [
+          "accept_cookie_consent"
+        ]
+      },
+      {
+        "id": "set_max_price",
+        "title": "Click the 'Filter' button to open advanced filters and set the maximum price to 800 EUR.",
+        "doneWhen": "The advanced filter section is open and the maximum price field contains '800'.",
+        "dependsOn": [
+          "set_initial_filters"
+        ]
+      },
+      {
+        "id": "apply_search_filters",
+        "title": "Click the 'Hľadať' (Search) button to apply all selected filters.",
+        "doneWhen": "The search results page is loaded, reflecting all applied filters.",
+        "dependsOn": [
+          "set_max_price"
+        ]
+      },
+      {
+        "id": "sort_results_by_newest",
+        "title": "Sort the search results by 'Najnovšie' (Newest).",
+        "doneWhen": "The search results are visibly ordered by the newest listings.",
+        "dependsOn": [
+          "apply_search_filters"
+        ]
+      },
+      {
+        "id": "extract_listing_details",
+        "title": "Extract the name, price, and m2 for the first 3 listings.",
+        "doneWhen": "The name, price, and m2 of the first 3 listings are extracted and reported.",
+        "dependsOn": [
+          "sort_results_by_newest"
+        ]
+      }
+    ]
+  },
+  "success": false,
+  "successMode": null,
+  "stopReason": "terminated_by_user",
+  "finalVerdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user",
+  "error": "terminated_by_user",
+  "failureClassification": "user_control",
+  "failureSubtype": "terminated_by_user",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "url_contains",
+        "text": "/vysledky/"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "fulfilled": [
+      "overlay_absent"
+    ],
+    "missing": [
+      "url_contains(\"/vysledky/\")",
+      "answer_visible"
+    ],
+    "evidence": [
+      "Satisfied: overlay_absent"
+    ],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": false,
+      "answer": "",
+      "evidence": [],
+      "missing": [
+        "No high-confidence visible answer detected on the current page."
+      ],
+      "confidence": "low"
+    }
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "The initial filters for property type, location, and offer type have not been set on the current page. The input fields are still empty.",
+    "evidence": []
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gemini-2.5-flash",
+    "Difficulty": null,
+    "Run": "50d48f7d-a696-4897-9e87-08829cbb866c",
+    "Success 0/1": 0,
+    "Completed_Subtasks": 0,
+    "Total_Subtasks": 6,
+    "Partial_Success": 0.333,
+    "Steps": 4,
+    "Replans": 0,
+    "Duration_seconds": 312.106,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 100124,
+    "Failure_Type": "user_control",
+    "Failure_Subtype": "terminated_by_user",
+    "Final_URL": "https://www.nehnutelnosti.sk/",
+    "Final_Verdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user"
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 3,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 4,
+    "durationSeconds": 312.106,
+    "partialSuccess": 0.333,
+    "completedSubtasksCount": 0,
+    "totalSubtasks": 6,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 87192,
+      "completionTokens": 2471,
+      "totalTokens": 100124,
+      "callCount": 13
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [],
+  "stepsExecuted": 4,
+  "finalUrl": "https://www.nehnutelnosti.sk/",
+  "helpHistory": [],
+  "blockerEvents": [],
+  "recoveryTransitions": [
+    {
+      "ts": 1776272216979,
+      "step": 2,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "execution_error",
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [],
+  "stepTrace": []
+}

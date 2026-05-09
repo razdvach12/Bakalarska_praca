@@ -1,0 +1,342 @@
+{
+  "runId": "eadd19db-0cea-42f7-ba33-641ff418e151",
+  "url": "https://reality.sk/",
+  "task": "Na realitnom portali nastav filtre: typ \"2-izbovy byt\", lokalita \"Bratislava – Staré Mesto\", typ ponuky \"prenajom\", maximalna cena 800 EUR mesacne. Vypis nazov, cenu a m2 prvych 3 vysledkov.",
+  "runMeta": {
+    "model": "gpt-4o-mini",
+    "difficulty": null,
+    "run": "eadd19db-0cea-42f7-ba33-641ff418e151"
+  },
+  "goalSpec": {
+    "goal": "Set filters for searching rental apartments in Bratislava",
+    "successCriteria": [
+      "The filter for '2-izbovy byt' is set",
+      "The filter for 'Bratislava – Staré Mesto' is set",
+      "The filter for 'prenajom' is set",
+      "The maximum price is set to 800 EUR",
+      "The titles, prices, and sizes of the first 3 results are displayed"
+    ],
+    "stopCondition": "The results are displayed after applying the filters",
+    "assumptions": [
+      "The page loads successfully",
+      "The filters are functional"
+    ],
+    "constraints": [
+      "Filters must match specified criteria",
+      "Results must be limited to the first 3 entries"
+    ],
+    "finalRequirements": [
+      {
+        "kind": "field_filled",
+        "label": "type"
+      },
+      {
+        "kind": "field_filled",
+        "label": "location"
+      },
+      {
+        "kind": "field_filled",
+        "label": "offer_type"
+      },
+      {
+        "kind": "field_filled",
+        "label": "max_price"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "set_property_type",
+        "title": "Set property type to '2-izbovy byt'",
+        "doneWhen": "The property type filter is applied",
+        "dependsOn": []
+      },
+      {
+        "id": "set_location",
+        "title": "Set location to 'Bratislava – Staré Mesto'",
+        "doneWhen": "The location filter is applied",
+        "dependsOn": [
+          "set_property_type"
+        ]
+      },
+      {
+        "id": "set_offer_type",
+        "title": "Set offer type to 'prenajom'",
+        "doneWhen": "The offer type filter is applied",
+        "dependsOn": [
+          "set_location"
+        ]
+      },
+      {
+        "id": "set_max_price",
+        "title": "Set maximum price to 800 EUR",
+        "doneWhen": "The max price filter is applied",
+        "dependsOn": [
+          "set_offer_type"
+        ]
+      },
+      {
+        "id": "search_properties",
+        "title": "Search for properties",
+        "doneWhen": "Results display titles, prices, and sizes of the first 3 entries",
+        "dependsOn": [
+          "set_max_price"
+        ]
+      }
+    ]
+  },
+  "success": false,
+  "successMode": null,
+  "stopReason": "terminated_by_user",
+  "finalVerdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user",
+  "error": "terminated_by_user",
+  "failureClassification": "user_control",
+  "failureSubtype": "terminated_by_user",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "field_filled",
+        "label": "type"
+      },
+      {
+        "kind": "field_filled",
+        "label": "location"
+      },
+      {
+        "kind": "field_filled",
+        "label": "offer_type"
+      },
+      {
+        "kind": "field_filled",
+        "label": "max_price"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "fulfilled": [],
+    "missing": [
+      "field_filled(type)",
+      "field_filled(location)",
+      "field_filled(offer_type)",
+      "field_filled(max_price)",
+      "answer_visible"
+    ],
+    "evidence": [],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": false,
+      "answer": "",
+      "evidence": [],
+      "missing": [
+        "No high-confidence visible answer detected on the current page."
+      ],
+      "confidence": "low"
+    }
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "Filters have not been applied yet, and no search results are displayed.",
+    "evidence": []
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4o-mini",
+    "Difficulty": null,
+    "Run": "eadd19db-0cea-42f7-ba33-641ff418e151",
+    "Success 0/1": 0,
+    "Completed_Subtasks": 0,
+    "Total_Subtasks": 5,
+    "Partial_Success": 0,
+    "Steps": 11,
+    "Replans": 3,
+    "Duration_seconds": 275.01,
+    "HumanHelp_Verbal": 1,
+    "HumanHelp_Actions": 1,
+    "Tokens_Total": 1083276,
+    "Failure_Type": "user_control",
+    "Failure_Subtype": "terminated_by_user",
+    "Final_URL": "https://www.reality.sk/byty/2-izbovy-byt/bratislava-ruzinov/prenajom/",
+    "Final_Verdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user"
+  },
+  "metrics": {
+    "humanHelpRequests": 1,
+    "humanHelpResponses": 1,
+    "humanHelpActions": 1,
+    "selfHealAttempts": 8,
+    "replanCount": 3,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 1,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 1,
+      "click_text_missing": 0,
+      "no_action_executed": 1
+    },
+    "stepsExecuted": 11,
+    "durationSeconds": 275.01,
+    "partialSuccess": 0,
+    "completedSubtasksCount": 0,
+    "totalSubtasks": 5,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 1079425,
+      "completionTokens": 3851,
+      "totalTokens": 1083276,
+      "callCount": 34
+    }
+  },
+  "helpRound": 1,
+  "completedSubtasks": [],
+  "stepsExecuted": 11,
+  "finalUrl": "https://www.reality.sk/byty/2-izbovy-byt/bratislava-ruzinov/prenajom/",
+  "helpHistory": [
+    "Áno"
+  ],
+  "blockerEvents": [
+    {
+      "ts": 1776289055495,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Prijať všetko"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1776289090916,
+      "step": 2,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#react-select-2-input",
+        "text": "2 izbový byt",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field 2 izbový byt contains the requested value.",
+        "successSignal": "The input value for 2 izbový byt changed.",
+        "failureSignal": "The input value for 2 izbový byt stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776289189017,
+      "step": 6,
+      "kind": "selector_safety",
+      "detail": "Selector \"#react-select-2-input\" is not grounded in the current snapshot for type.",
+      "action": {
+        "action": "type",
+        "selector": "#react-select-2-input",
+        "text": "Bratislava – Staré Mesto",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Bratislava – Staré Mesto contains the requested value.",
+        "successSignal": "The input value for Bratislava – Staré Mesto changed.",
+        "failureSignal": "The input value for Bratislava – Staré Mesto stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776289255112,
+      "step": 8,
+      "kind": "selector_safety",
+      "detail": "click action requires candidateId, a grounded selector, or visible text.",
+      "action": {
+        "action": "click",
+        "selector": null,
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking click.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Prijať všetko",
+        "reason": "Dismissing cookie consent overlay by clicking \"Prijať všetko\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    },
+    {
+      "step": 2,
+      "action": {
+        "action": "type",
+        "selector": "#react-select-2-input",
+        "text": "2 izbový byt",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field 2 izbový byt contains the requested value.",
+        "successSignal": "The input value for 2 izbový byt changed.",
+        "failureSignal": "The input value for 2 izbový byt stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"Prijať všetko\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"Prijať všetko\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Prijať všetko",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    }
+  ]
+}

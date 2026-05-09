@@ -1,0 +1,4 @@
+
+> bp_project@1.0.0 dev:api
+> tsx watch src/server/index.ts
+

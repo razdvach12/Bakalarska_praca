@@ -1,0 +1,667 @@
+{
+  "runId": "9cc76b33-5339-4400-9661-324e673f351f",
+  "url": "https://www.cd.cz/",
+  "task": "Na stranke mi VYHLADAJ spojenie z Prahy do Bratislavy. Den chcem aby bol 18.4. Na stanici viem byť 18:30 Vypíš prvé spojenie, ktoré stíham a napíš Čas odchádzam a prichádzam.",
+  "runMeta": {
+    "model": "gemini-2.5-flash",
+    "difficulty": null,
+    "run": "9cc76b33-5339-4400-9661-324e673f351f"
+  },
+  "goalSpec": {
+    "goal": "Find a train connection from Prague to Bratislava for April 18th, departing at 18:30. Identify the first suitable connection and report its departure and arrival times.",
+    "successCriteria": [
+      "The cookie consent dialog is no longer visible.",
+      "The 'ODKUD' field is filled with 'Praha'.",
+      "The 'KAM' field is filled with 'Bratislava'.",
+      "The date is set to April 18th, 2026.",
+      "The time is set to 18:30.",
+      "Train connection search results are displayed."
+    ],
+    "stopCondition": "answer_visible",
+    "assumptions": [
+      "The website is stable and its elements are consistently locatable.",
+      "There will be at least one train connection available from Prague to Bratislava on April 18th at or after 18:30."
+    ],
+    "constraints": [],
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "field_equals",
+        "label": "ODKUD",
+        "value": "Praha"
+      },
+      {
+        "kind": "field_equals",
+        "label": "KAM",
+        "value": "Bratislava"
+      },
+      {
+        "kind": "field_equals",
+        "label": "input[name=\"calendar\"]",
+        "value": "Pá 18. 4."
+      },
+      {
+        "kind": "field_equals",
+        "label": "Čas",
+        "value": "18:30"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "accept_cookies",
+        "title": "Accept all cookies to dismiss the consent overlay.",
+        "doneWhen": "overlay_absent",
+        "dependsOn": []
+      },
+      {
+        "id": "fill_origin_station",
+        "title": "Fill 'Praha' into the 'ODKUD' (From) input field.",
+        "doneWhen": "field_equals",
+        "dependsOn": [
+          "accept_cookies"
+        ]
+      },
+      {
+        "id": "fill_destination_station",
+        "title": "Fill 'Bratislava' into the 'KAM' (To) input field.",
+        "doneWhen": "field_equals",
+        "dependsOn": [
+          "fill_origin_station"
+        ]
+      },
+      {
+        "id": "set_date",
+        "title": "Set the date to April 18th, 2026.",
+        "doneWhen": "field_equals",
+        "dependsOn": [
+          "fill_destination_station"
+        ]
+      },
+      {
+        "id": "set_time",
+        "title": "Set the departure time to 18:30.",
+        "doneWhen": "field_equals",
+        "dependsOn": [
+          "set_date"
+        ]
+      },
+      {
+        "id": "search_connection",
+        "title": "Click the 'Hledat' (Search) button to find connections.",
+        "doneWhen": "url_contains",
+        "dependsOn": [
+          "set_time"
+        ]
+      },
+      {
+        "id": "extract_first_suitable_connection_details",
+        "title": "Extract the departure and arrival times of the first connection that meets the criteria.",
+        "doneWhen": "answer_visible",
+        "dependsOn": [
+          "search_connection"
+        ]
+      }
+    ]
+  },
+  "success": false,
+  "successMode": null,
+  "stopReason": "",
+  "finalVerdict": "Beh sa skoncil bez finalnej odpovede.",
+  "error": "Unexpected token 'T', \"The search\"... is not valid JSON",
+  "failureClassification": "recovery_exhausted",
+  "failureSubtype": "safe_fallback",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "field_equals",
+        "label": "ODKUD",
+        "value": "Praha"
+      },
+      {
+        "kind": "field_equals",
+        "label": "KAM",
+        "value": "Bratislava"
+      },
+      {
+        "kind": "field_equals",
+        "label": "input[name=\"calendar\"]",
+        "value": "Pá 18. 4."
+      },
+      {
+        "kind": "field_equals",
+        "label": "Čas",
+        "value": "18:30"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "fulfilled": [
+      "overlay_absent",
+      "field_equals(Čas=\"18:30\")"
+    ],
+    "missing": [
+      "field_equals(ODKUD=\"Praha\")",
+      "field_equals(KAM=\"Bratislava\")",
+      "field_equals(input[name=\"calendar\"]=\"Pá 18. 4.\")",
+      "answer_visible"
+    ],
+    "evidence": [
+      "Satisfied: overlay_absent",
+      "Satisfied: field_equals(Čas=\"18:30\")"
+    ],
+    "answerAssessment": {
+      "pageRelevant": false,
+      "answerVisible": false,
+      "answer": "",
+      "evidence": [],
+      "missing": [
+        "No high-confidence visible answer detected on the current page."
+      ],
+      "confidence": "low"
+    }
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "The search for connections has not been performed yet. The 'Hledat' button needs to be clicked.",
+    "evidence": []
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gemini-2.5-flash",
+    "Difficulty": null,
+    "Run": "9cc76b33-5339-4400-9661-324e673f351f",
+    "Success 0/1": 0,
+    "Completed_Subtasks": 5,
+    "Total_Subtasks": 7,
+    "Partial_Success": 0.714,
+    "Steps": 14,
+    "Replans": 0,
+    "Duration_seconds": 267.203,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 218482,
+    "Failure_Type": "recovery_exhausted",
+    "Failure_Subtype": "safe_fallback",
+    "Final_URL": "https://www.cd.cz/spojeni-a-jizdenka/spojeni-tam/970748da-cd80-4572-b740-9680b7901ec7",
+    "Final_Verdict": "Beh sa skoncil bez finalnej odpovede."
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 5,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 14,
+    "durationSeconds": 267.203,
+    "partialSuccess": 0.714,
+    "completedSubtasksCount": 5,
+    "totalSubtasks": 7,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 188252,
+      "completionTokens": 7503,
+      "totalTokens": 218482,
+      "callCount": 41
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "accept_cookies",
+    "fill_origin_station",
+    "fill_destination_station",
+    "set_date",
+    "set_time"
+  ],
+  "stepsExecuted": 14,
+  "finalUrl": "https://www.cd.cz/spojeni-a-jizdenka/spojeni-tam/970748da-cd80-4572-b740-9680b7901ec7",
+  "helpHistory": [],
+  "blockerEvents": [
+    {
+      "ts": 1776270503709,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Povolit všechny soubory cookie"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1776270566625,
+      "step": 1,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#connection-from",
+        "text": "Praha",
+        "reason": "Filling 'Praha' into the 'ODKUD' (From) input field as per subtask.",
+        "expectedEffect": "'Praha' should appear in the origin station field.",
+        "successSignal": "input#connection-from[value*='Praha']",
+        "failureSignal": "The input value for Praha stayed unchanged.",
+        "fallbackHint": "Check if the input field is interactive and retry typing. If not, look for an alternative way to set the origin."
+      },
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776270582458,
+      "step": 2,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#connection-from",
+        "text": "Praha",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Praha contains the requested value.",
+        "successSignal": "The input value for Praha changed.",
+        "failureSignal": "The input value for Praha stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776270582458,
+      "step": 2,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "failed_expected_effect",
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776270698945,
+      "step": 9,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "execution_error",
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776270731742,
+      "step": 12,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "execution_error",
+      "pageKind": "form"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povolit všechny soubory cookie",
+        "reason": "Dismissing cookie consent overlay by clicking \"Povolit všechny soubory cookie\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 1,
+      "action": {
+        "action": "type",
+        "selector": "#connection-from",
+        "text": "Praha",
+        "reason": "Filling 'Praha' into the 'ODKUD' (From) input field as per subtask.",
+        "expectedEffect": "'Praha' should appear in the origin station field.",
+        "successSignal": "input#connection-from[value*='Praha']",
+        "failureSignal": "The input value for Praha stayed unchanged.",
+        "fallbackHint": "Check if the input field is interactive and retry typing. If not, look for an alternative way to set the origin."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 2,
+      "action": {
+        "action": "type",
+        "selector": "#connection-from",
+        "text": "Praha",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Praha contains the requested value.",
+        "successSignal": "The input value for Praha changed.",
+        "failureSignal": "The input value for Praha stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "action": "type",
+        "selector": "#connection-from",
+        "text": "Praha",
+        "reason": "Filling 'Praha' into the 'ODKUD' (From) input field as per subtask.",
+        "expectedEffect": "Input field 'ODKUD' should display 'Praha'.",
+        "successSignal": "input[id='connection-from'][value='Praha']",
+        "failureSignal": "The input value for Praha stayed unchanged.",
+        "fallbackHint": "Could not type 'Praha' into the 'ODKUD' field. Trying click then type again."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "action": "type",
+        "selector": "#connection-to",
+        "text": "Bratislava",
+        "reason": "Filling 'Bratislava' into the 'KAM' (To) input field as required by the task.",
+        "expectedEffect": "The 'KAM' input field will display 'Bratislava'.",
+        "successSignal": "input[id=\"connection-to\"][value=\"Bratislava\"]",
+        "failureSignal": "The input value for Bratislava stayed unchanged.",
+        "fallbackHint": "If 'Bratislava' is not accepted, try selecting from a dropdown if one appears. It is a common destination, so it should be accepted."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 5,
+      "action": {
+        "action": "pickDate",
+        "selector": "input[name=\"calendar\"]",
+        "text": "2026-04-18",
+        "reason": "The date needs to be set to April 18th, 2026. The current date is 'St 15. 4.'",
+        "mayNavigate": false,
+        "expectedEffect": "The date input field will show 'Pá 18. 4.' or similar for April 18th.",
+        "successSignal": "input[name=\"calendar\"][value*=\"18. 4.\"]",
+        "failureSignal": "input[name=\"calendar\"][value*=\"15. 4.\"]",
+        "fallbackHint": "If the date picker does not open or update, try clicking the date input field first."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The pickDate target reflects the requested value (2026-04-18)."
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "action": "pickTime",
+        "selector": "input[aria-label=\"Čas\"]",
+        "text": "18:30",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The departure time will be set to 18:30.",
+        "successSignal": "input[aria-label=\"Čas\"][value=\"18:30\"]",
+        "failureSignal": "The time input does not show '18:30'.",
+        "fallbackHint": "Try typing '18:30' into the time input if the picker doesn't work."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The pickTime target reflects the requested value (18:30)."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"Povolit všechny soubory cookie\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"Povolit všechny soubory cookie\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povolit všechny soubory cookie",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    },
+    {
+      "step": 3,
+      "activeSubtaskId": "search_connection",
+      "completedSubtasks": [
+        "accept_cookies",
+        "fill_origin_station",
+        "fill_destination_station",
+        "set_date"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": "search_connection",
+        "markSubtasksDone": [
+          "accept_cookies",
+          "fill_origin_station",
+          "fill_destination_station",
+          "set_date"
+        ],
+        "needHelp": false,
+        "actions": [
+          {
+            "action": "type",
+            "selector": "#connection-from",
+            "text": "Praha",
+            "reason": "Filling 'Praha' into the 'ODKUD' (From) input field as per subtask.",
+            "expectedEffect": "Input field 'ODKUD' should display 'Praha'.",
+            "successSignal": "input[id='connection-from'][value='Praha']",
+            "fallbackHint": "Could not type 'Praha' into the 'ODKUD' field. Trying click then type again."
+          },
+          {
+            "action": "type",
+            "selector": "#connection-to",
+            "text": "Bratislava",
+            "reason": "Filling 'Bratislava' into the 'KAM' (To) input field as per subtask.",
+            "expectedEffect": "Input field 'KAM' should display 'Bratislava'.",
+            "successSignal": "input[id='connection-to'][value='Bratislava']",
+            "fallbackHint": "Could not type 'Bratislava' into the 'KAM' field. Trying click then type again."
+          },
+          {
+            "action": "pickDate",
+            "selector": "input[name=\"calendar\"]",
+            "text": "2026-04-18",
+            "reason": "Setting the date to April 18th, 2026 as per subtask.",
+            "expectedEffect": "Date field should display 'Pá 18. 4.'.",
+            "successSignal": "input[name='calendar'][value='Pá 18. 4.']",
+            "fallbackHint": "Could not set date to 2026-04-18. Trying to click the date field then type."
+          },
+          {
+            "action": "pickTime",
+            "selector": "input[aria-label=\"Čas\"]",
+            "text": "18:30",
+            "reason": "Setting the departure time to 18:30 as per subtask.",
+            "expectedEffect": "Time field should display '18:30'.",
+            "successSignal": "input[aria-label='Čas'][value='18:30']",
+            "fallbackHint": "Could not set time to 18:30. Trying to click the time field then type."
+          },
+          {
+            "action": "click",
+            "selector": "div:nth-of-type(4) > button:nth-of-type(1)",
+            "text": null,
+            "reason": "Clicking the 'Hledat' (Search) button to find connections.",
+            "mayNavigate": true,
+            "expectedEffect": "The page should navigate to search results.",
+            "successSignal": "url_contains(\"jizdni-rad/spojeni\")",
+            "failureSignal": "url_contains(\"cd.cz\") && !url_contains(\"jizdni-rad/spojeni\")",
+            "fallbackHint": "Could not click the 'Hledat' button. Attempting to find a similar search button."
+          }
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "activeSubtaskId": null,
+      "completedSubtasks": [
+        "accept_cookies",
+        "fill_origin_station",
+        "fill_destination_station",
+        "set_date"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "actions": [
+          {
+            "action": "type",
+            "selector": "#connection-to",
+            "text": "Bratislava",
+            "reason": "Filling 'Bratislava' into the 'KAM' (To) input field as required by the task.",
+            "expectedEffect": "The 'KAM' input field will display 'Bratislava'.",
+            "successSignal": "input[id=\"connection-to\"][value=\"Bratislava\"]",
+            "fallbackHint": "If 'Bratislava' is not accepted, try selecting from a dropdown if one appears. It is a common destination, so it should be accepted."
+          }
+        ]
+      }
+    },
+    {
+      "step": 5,
+      "activeSubtaskId": "set_date",
+      "completedSubtasks": [
+        "accept_cookies",
+        "fill_origin_station",
+        "fill_destination_station",
+        "set_date"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": "set_date",
+        "markSubtasksDone": [],
+        "progressNote": "Setting the date to April 18th, 2026.",
+        "needHelp": false,
+        "actions": [
+          {
+            "action": "pickDate",
+            "selector": "input[name=\"calendar\"]",
+            "text": "2026-04-18",
+            "reason": "The date needs to be set to April 18th, 2026. The current date is 'St 15. 4.'",
+            "mayNavigate": false,
+            "expectedEffect": "The date input field will show 'Pá 18. 4.' or similar for April 18th.",
+            "successSignal": "input[name=\"calendar\"][value*=\"18. 4.\"]",
+            "failureSignal": "input[name=\"calendar\"][value*=\"15. 4.\"]",
+            "fallbackHint": "If the date picker does not open or update, try clicking the date input field first."
+          }
+        ]
+      }
+    },
+    {
+      "step": 6,
+      "activeSubtaskId": "set_time",
+      "completedSubtasks": [
+        "accept_cookies",
+        "fill_origin_station",
+        "fill_destination_station",
+        "set_date"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": "set_time",
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "pickTime",
+        "selector": "input[aria-label=\"Čas\"]",
+        "text": "18:30",
+        "expectedEffect": "The departure time will be set to 18:30.",
+        "successSignal": "input[aria-label=\"Čas\"][value=\"18:30\"]",
+        "failureSignal": "The time input does not show '18:30'.",
+        "fallbackHint": "Try typing '18:30' into the time input if the picker doesn't work."
+      }
+    }
+  ]
+}

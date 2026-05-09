@@ -1,0 +1,494 @@
+{
+  "runId": "3ed25342-cb17-4861-96d7-ff5c2336e9fc",
+  "url": "https://cp.sk/vlakbusmhd/spojenie/",
+  "task": "Na stranke vyhladaj spojenie z Bratislavy do Kúty. Den chcem aby bol 18.4. Na stanici viem byť 18:30 Vypíš prvé spojenie, ktoré stíham a napíš Čas odchádzam a prichádzam.",
+  "runMeta": {
+    "model": "gpt-4.1",
+    "difficulty": null,
+    "run": "3ed25342-cb17-4861-96d7-ff5c2336e9fc"
+  },
+  "goalSpec": {
+    "goal": "Vyhľadať spojenie z Bratislavy do Kúty na 18.4. s odchodom najskôr o 18:30 a vypísať prvé možné spojenie vrátane času odchodu a príchodu.",
+    "successCriteria": [
+      "Vyplnené polia: ODKIAĽ - Bratislava, KAM - Kúty",
+      "Nastavený dátum 18.4.",
+      "Nastavený čas odchodu na 18:30",
+      "Vyhľadané spojenia",
+      "Zobrazený čas odchodu a príchodu prvého spojenia, ktoré stíhaš"
+    ],
+    "stopCondition": "Zobrazené detaily prvého možného spojenia po 18:30 s viditeľnými časmi odchodu a príchodu.",
+    "assumptions": [
+      "Používateľ chce cestovať 18.4.",
+      "Na stanici vie byť najskôr o 18:30, teda čas odchodu minimálne 18:30",
+      "Chce zobraziť prvé spojenie, ktoré môže stihnúť"
+    ],
+    "constraints": [
+      "Zadať správne mená staníc (Bratislava, Kúty)",
+      "Správny formát dátumu a času",
+      "Začiatočný čas odchodu 18:30 alebo neskôr"
+    ],
+    "finalRequirements": [
+      {
+        "kind": "field_equals",
+        "label": "ODKIAĽ",
+        "value": "Bratislava"
+      },
+      {
+        "kind": "field_equals",
+        "label": "KAM",
+        "value": "Kúty"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Date",
+        "value": "18.4."
+      },
+      {
+        "kind": "field_equals",
+        "label": "Time",
+        "value": "18:30"
+      },
+      {
+        "kind": "field_filled",
+        "label": "ODKIAĽ"
+      },
+      {
+        "kind": "field_filled",
+        "label": "KAM"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Odchod"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Príchod"
+      },
+      {
+        "kind": "overlay_absent"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "fill_from",
+        "title": "Vyplniť pole ODKIAĽ na 'Bratislava'",
+        "doneWhen": "Pole ODKIAĽ obsahuje 'Bratislava'",
+        "dependsOn": []
+      },
+      {
+        "id": "fill_to",
+        "title": "Vyplniť pole KAM na 'Kúty'",
+        "doneWhen": "Pole KAM obsahuje 'Kúty'",
+        "dependsOn": [
+          "fill_from"
+        ]
+      },
+      {
+        "id": "set_date",
+        "title": "Nastaviť dátum na 18.4.",
+        "doneWhen": "Pole dátum obsahuje hodnotu '18.4.'",
+        "dependsOn": [
+          "fill_to"
+        ]
+      },
+      {
+        "id": "set_time",
+        "title": "Nastaviť čas odchodu na 18:30",
+        "doneWhen": "Pole čas obsahuje hodnotu '18:30', voľba Odchod je zapnutá",
+        "dependsOn": [
+          "set_date"
+        ]
+      },
+      {
+        "id": "search",
+        "title": "Stlačiť HĽADAŤ na vyhľadanie spojenia",
+        "doneWhen": "Stránka zobrazí výsledky spojení",
+        "dependsOn": [
+          "set_time"
+        ]
+      },
+      {
+        "id": "extract_first_connection",
+        "title": "Zobraziť detaily prvého spojenia po 18:30 (čas odchodu aj príchodu)",
+        "doneWhen": "Viditeľné časy odchodu a príchodu pre prvé stihnuteľné spojenie",
+        "dependsOn": [
+          "search"
+        ]
+      }
+    ]
+  },
+  "success": false,
+  "successMode": null,
+  "stopReason": "terminated_by_user",
+  "finalVerdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user",
+  "error": "terminated_by_user",
+  "failureClassification": "user_control",
+  "failureSubtype": "terminated_by_user",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "field_equals",
+        "label": "ODKIAĽ",
+        "value": "Bratislava"
+      },
+      {
+        "kind": "field_equals",
+        "label": "KAM",
+        "value": "Kúty"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Date",
+        "value": "18.4."
+      },
+      {
+        "kind": "field_equals",
+        "label": "Time",
+        "value": "18:30"
+      },
+      {
+        "kind": "field_filled",
+        "label": "ODKIAĽ"
+      },
+      {
+        "kind": "field_filled",
+        "label": "KAM"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Odchod"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Príchod"
+      },
+      {
+        "kind": "overlay_absent"
+      }
+    ],
+    "fulfilled": [
+      "field_equals(ODKIAĽ=\"Bratislava\")",
+      "field_equals(KAM=\"Kúty\")",
+      "field_equals(Date=\"18.4.\")",
+      "field_equals(Time=\"18:30\")",
+      "overlay_absent"
+    ],
+    "missing": [
+      "field_filled(ODKIAĽ)",
+      "field_filled(KAM)",
+      "text_visible(\"Odchod\")",
+      "text_visible(\"Príchod\")"
+    ],
+    "evidence": [
+      "Satisfied: field_equals(ODKIAĽ=\"Bratislava\")",
+      "Satisfied: field_equals(KAM=\"Kúty\")",
+      "Satisfied: field_equals(Date=\"18.4.\")",
+      "Satisfied: field_equals(Time=\"18:30\")",
+      "Satisfied: overlay_absent"
+    ],
+    "answerAssessment": null
+  },
+  "completionCheck": null,
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4.1",
+    "Difficulty": null,
+    "Run": "3ed25342-cb17-4861-96d7-ff5c2336e9fc",
+    "Success 0/1": 0,
+    "Completed_Subtasks": 6,
+    "Total_Subtasks": 6,
+    "Partial_Success": 1,
+    "Steps": 18,
+    "Replans": 14,
+    "Duration_seconds": 245.913,
+    "HumanHelp_Verbal": 6,
+    "HumanHelp_Actions": 7,
+    "Tokens_Total": 213947,
+    "Failure_Type": "user_control",
+    "Failure_Subtype": "terminated_by_user",
+    "Final_URL": "https://cp.sk/vlakbusmhd/spojenie/vysledky/?date=18.04.2026&time=18:30&f=Bratislava&fc=1&t=K%C3%BAty&tc=1&af=true&malf=false",
+    "Final_Verdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user"
+  },
+  "metrics": {
+    "humanHelpRequests": 7,
+    "humanHelpResponses": 6,
+    "humanHelpActions": 7,
+    "selfHealAttempts": 5,
+    "replanCount": 14,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 14
+    },
+    "stepsExecuted": 18,
+    "durationSeconds": 245.913,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 6,
+    "totalSubtasks": 6,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 202817,
+      "completionTokens": 11130,
+      "totalTokens": 213947,
+      "callCount": 62
+    }
+  },
+  "helpRound": 7,
+  "completedSubtasks": [
+    "fill_from",
+    "fill_to",
+    "set_date",
+    "set_time",
+    "search",
+    "extract_first_connection"
+  ],
+  "stepsExecuted": 18,
+  "finalUrl": "https://cp.sk/vlakbusmhd/spojenie/vysledky/?date=18.04.2026&time=18:30&f=Bratislava&fc=1&t=K%C3%BAty&tc=1&af=true&malf=false",
+  "helpHistory": [
+    "Áno, zapíš tieto časy",
+    "Zapíš časy odchodu a príchodu",
+    "Zobraziť časy z prvého spojenia",
+    "Stačí, ďakujem",
+    "Dokonci ulohu z aktualneho stavu",
+    "Áno, zapíš tieto časy"
+  ],
+  "blockerEvents": [],
+  "recoveryTransitions": [
+    {
+      "ts": 1777233933696,
+      "step": 5,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "no_action_executed",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777233956286,
+      "step": 7,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "no_action_executed",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777233989172,
+      "step": 10,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "no_action_executed",
+      "pageKind": "form"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "type",
+        "selector": "#From",
+        "text": "Bratislava",
+        "reason": "Začínam plnením poľa ODKIAĽ hodnotou 'Bratislava' podľa zadanej úlohy.",
+        "expectedEffect": "Zadaná hodnota Bratislava do poľa ODKIAĽ, môže sa zobraziť ponuka miest alebo zostane zadaný text.",
+        "successSignal": "Pole ODKIAĽ obsahuje 'Bratislava', prípadne sa objaví autocomplete.",
+        "failureSignal": "Pole ODKIAĽ sa nevyplní alebo sa objaví chyba.",
+        "fallbackHint": "Ak sa zobrazí ponuka miest, kliknúť na správnu položku."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 1,
+      "action": {
+        "action": "type",
+        "selector": "#To",
+        "text": "Kúty",
+        "reason": "Zadanie cieľovej stanice je zlé – je vyplnená práve 'Nové Zámky', má byť 'Kúty'. Pokračujem opravou cieľa cesty.",
+        "mayNavigate": false,
+        "expectedEffect": "Zmení sa stanica v poli KAM na 'Kúty'. Možné zobrazenie ponuky s návrhom staníc.",
+        "successSignal": "Pole #To obsahuje hodnotu 'Kúty' alebo sa zobrazí zodpovedajúci návrh.",
+        "failureSignal": "Pole zostane neaktualizované alebo vyskočí chybová hláška.",
+        "fallbackHint": "Ak sa zobrazí návrh alebo zoznam, vyber prvý zodpovedajúci výskyt 'Kúty'."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 2,
+      "action": {
+        "action": "type",
+        "selector": "#Date",
+        "text": "18.4.",
+        "reason": "Musím ešte nastaviť dátum na 18.4. (teraz je zadaný iný dátum) a čas odchodu na 18:30, potom vyhľadám spojenia.",
+        "expectedEffect": "Pole dátum bude obsahovať hodnotu 18.4.",
+        "successSignal": "Input #Date obsahuje 18.4.",
+        "failureSignal": "Dátum zostane nezmenený alebo sa zobrazí chyba.",
+        "fallbackHint": "Skontroluj formát dátumu alebo voľ možnosti podľa kalendára, ak neprejde ručné zadanie."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "action": "type",
+        "selector": "#Time",
+        "text": "18:30",
+        "reason": "Je potrebné nastaviť čas odchodu na 18:30, pole 'Čas' je prázdne, ešte nebolo vyplnené podľa zadania.",
+        "expectedEffect": "Pole Čas bude obsahovať hodnotu 18:30.",
+        "successSignal": "Hodnota 18:30 je v poli Čas.",
+        "failureSignal": "Pole Čas ostane prázdne alebo sa objaví chybová hláška.",
+        "fallbackHint": "Ak sa čas nedá vyplniť, bude treba skontrolovať správnosť vyplnenia ostatných polí."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": "fill_from",
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Začínam plnením poľa ODKIAĽ hodnotou 'Bratislava' podľa zadanej úlohy.",
+        "activeSubtaskId": "fill_from",
+        "markSubtasksDone": [],
+        "progressNote": "Formulár na vyhľadanie spojenia je pripravený, vypĺňam prvé pole.",
+        "needHelp": false,
+        "action": "type",
+        "selector": "#From",
+        "text": "Bratislava",
+        "expectedEffect": "Zadaná hodnota Bratislava do poľa ODKIAĽ, môže sa zobraziť ponuka miest alebo zostane zadaný text.",
+        "successSignal": "Pole ODKIAĽ obsahuje 'Bratislava', prípadne sa objaví autocomplete.",
+        "failureSignal": "Pole ODKIAĽ sa nevyplní alebo sa objaví chyba.",
+        "fallbackHint": "Ak sa zobrazí ponuka miest, kliknúť na správnu položku."
+      }
+    },
+    {
+      "step": 1,
+      "activeSubtaskId": "fill_to",
+      "completedSubtasks": [
+        "fill_from"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Zadanie cieľovej stanice je zlé – je vyplnená práve 'Nové Zámky', má byť 'Kúty'. Pokračujem opravou cieľa cesty.",
+        "activeSubtaskId": "fill_to",
+        "markSubtasksDone": [
+          "fill_from"
+        ],
+        "progressNote": "Pole ODKIAĽ už obsahuje 'Bratislava'. Treba upraviť pole KAM na 'Kúty'.",
+        "needHelp": false,
+        "action": "type",
+        "selector": "#To",
+        "text": "Kúty",
+        "mayNavigate": false,
+        "expectedEffect": "Zmení sa stanica v poli KAM na 'Kúty'. Možné zobrazenie ponuky s návrhom staníc.",
+        "successSignal": "Pole #To obsahuje hodnotu 'Kúty' alebo sa zobrazí zodpovedajúci návrh.",
+        "failureSignal": "Pole zostane neaktualizované alebo vyskočí chybová hláška.",
+        "fallbackHint": "Ak sa zobrazí návrh alebo zoznam, vyber prvý zodpovedajúci výskyt 'Kúty'."
+      }
+    },
+    {
+      "step": 2,
+      "activeSubtaskId": "set_date",
+      "completedSubtasks": [
+        "fill_from",
+        "fill_to"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Musím ešte nastaviť dátum na 18.4. (teraz je zadaný iný dátum) a čas odchodu na 18:30, potom vyhľadám spojenia.",
+        "activeSubtaskId": "set_date",
+        "markSubtasksDone": [
+          "fill_to"
+        ],
+        "progressNote": "Polia ODKIAĽ a KAM sú už správne vyplnené. Treba ešte upraviť dátum a čas.",
+        "needHelp": false,
+        "action": "type",
+        "selector": "#Date",
+        "text": "18.4.",
+        "expectedEffect": "Pole dátum bude obsahovať hodnotu 18.4.",
+        "successSignal": "Input #Date obsahuje 18.4.",
+        "failureSignal": "Dátum zostane nezmenený alebo sa zobrazí chyba.",
+        "fallbackHint": "Skontroluj formát dátumu alebo voľ možnosti podľa kalendára, ak neprejde ručné zadanie."
+      }
+    },
+    {
+      "step": 3,
+      "activeSubtaskId": "set_time",
+      "completedSubtasks": [
+        "fill_from",
+        "fill_to"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Je potrebné nastaviť čas odchodu na 18:30, pole 'Čas' je prázdne, ešte nebolo vyplnené podľa zadania.",
+        "activeSubtaskId": "set_time",
+        "markSubtasksDone": [],
+        "progressNote": "ODKIAĽ, KAM a dátum sú správne, pokračujem vyplnením času odchodu na 18:30.",
+        "needHelp": false,
+        "action": "type",
+        "selector": "#Time",
+        "text": "18:30",
+        "expectedEffect": "Pole Čas bude obsahovať hodnotu 18:30.",
+        "successSignal": "Hodnota 18:30 je v poli Čas.",
+        "failureSignal": "Pole Čas ostane prázdne alebo sa objaví chybová hláška.",
+        "fallbackHint": "Ak sa čas nedá vyplniť, bude treba skontrolovať správnosť vyplnenia ostatných polí."
+      }
+    }
+  ]
+}

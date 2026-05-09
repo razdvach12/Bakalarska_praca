@@ -1,0 +1,486 @@
+{
+  "runId": "ebbe8c12-7f77-42b2-85a1-9a05d39b547b",
+  "url": "https://www.megaknihy.sk/",
+  "task": "Vyhľadajte v internetovom obchode ľubovoľnú knihu od Franka Herberta a vložte ju do košíka. Potom vyhľadajte ďalšiu knihu (ktora nemusi byt od Franka Herberta) z sekcie sci-fi a tú tiež vložte do košíka. Nakoniec otvorte košík.",
+  "runMeta": {
+    "model": "gemini-2.5-flash",
+    "difficulty": null,
+    "run": "ebbe8c12-7f77-42b2-85a1-9a05d39b547b"
+  },
+  "goalSpec": {
+    "goal": "Vyhľadajte v internetovom obchode ľubovoľnú knihu od Franka Herberta a vložte ju do košíka. Potom vyhľadajte ďalšiu knihu (ktorá nemusí byť od Franka Herberta) z sekcie sci-fi a tú tiež vložte do košíka. Nakoniec otvorte košík.",
+    "successCriteria": [
+      "Dve knihy sú v košíku.",
+      "Košík je otvorený a viditeľný."
+    ],
+    "stopCondition": "Košík obsahuje dve rôzne položky a je zobrazený na obrazovke.",
+    "assumptions": [
+      "Knihy od Franka Herberta a sci-fi knihy sú dostupné na sklade.",
+      "Webová stránka správne spracuje pridanie viacerých položiek do košíka."
+    ],
+    "constraints": [],
+    "finalRequirements": [
+      {
+        "kind": "cart_contains_product",
+        "product": "Frank Herbert"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "sci-fi"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "accept_cookies",
+        "title": "Prijať súbory cookie",
+        "doneWhen": "Prekrytie so súhlasom so súbormi cookie už nie je viditeľné.",
+        "dependsOn": []
+      },
+      {
+        "id": "search_frank_herbert",
+        "title": "Vyhľadať knihy od Franka Herberta",
+        "doneWhen": "Stránka zobrazuje výsledky vyhľadávania pre 'Frank Herbert'.",
+        "dependsOn": [
+          "accept_cookies"
+        ]
+      },
+      {
+        "id": "add_frank_herbert_to_cart",
+        "title": "Vložiť knihu od Franka Herberta do košíka",
+        "doneWhen": "Aspoň jedna kniha od Franka Herberta bola pridaná do košíka.",
+        "dependsOn": [
+          "search_frank_herbert"
+        ]
+      },
+      {
+        "id": "navigate_to_scifi",
+        "title": "Prejsť do sekcie sci-fi",
+        "doneWhen": "Aktuálna stránka je stránka kategórie 'Fantasy • scifi'.",
+        "dependsOn": [
+          "add_frank_herbert_to_cart"
+        ]
+      },
+      {
+        "id": "add_scifi_book_to_cart",
+        "title": "Vložiť ľubovoľnú sci-fi knihu do košíka",
+        "doneWhen": "Aspoň jedna sci-fi kniha bola pridaná do košíka.",
+        "dependsOn": [
+          "navigate_to_scifi"
+        ]
+      },
+      {
+        "id": "open_cart",
+        "title": "Otvoriť košík",
+        "doneWhen": "Stránka košíka je zobrazená a obsahuje dve knihy.",
+        "dependsOn": [
+          "add_scifi_book_to_cart"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "strict",
+  "stopReason": "Deterministic final requirements satisfied on the current page.",
+  "finalVerdict": "Košík nie je otvorený a obsahuje len 1 položku. Na stránke vyhľadávania pre \"Frank Herbert\" sú zobrazené knihy \"Duna\" (70,12 €) a \"Dune\". Druhá sci-fi kniha nebola pridaná do košíka a košík nie je otvorený.",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": true,
+    "finalRequirements": [
+      {
+        "kind": "cart_contains_product",
+        "product": "Frank Herbert"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "sci-fi"
+      }
+    ],
+    "fulfilled": [
+      "cart_contains_product(Frank Herbert)",
+      "cart_contains_product(sci-fi)"
+    ],
+    "missing": [],
+    "evidence": [
+      "Satisfied: cart_contains_product(Frank Herbert)",
+      "Satisfied: cart_contains_product(sci-fi)"
+    ],
+    "answerAssessment": null
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "A book by Frank Herbert appears to be in the cart (cart badge shows '1'), satisfying the subtask 'Vložiť knihu od Franka Herberta do košíka'. The next step is to navigate to the sci-fi section. The current page is a search results page for Frank Herbert, not the sci-fi category page.",
+    "evidence": []
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Vision does not contradict deterministic success, but it is not strongly confirmatory either.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gemini-2.5-flash",
+    "Difficulty": null,
+    "Run": "ebbe8c12-7f77-42b2-85a1-9a05d39b547b",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 6,
+    "Total_Subtasks": 6,
+    "Partial_Success": 1,
+    "Steps": 9,
+    "Replans": 3,
+    "Duration_seconds": 170.746,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 238196,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://www.megaknihy.sk/vyhladavanie?orderby=position&orderway=desc&search_query=Frank+Herbert&submit_search=&p=1",
+    "Final_Verdict": "Košík nie je otvorený a obsahuje len 1 položku. Na stránke vyhľadávania pre \"Frank Herbert\" sú zobrazené knihy \"Duna\" (70,12 €) a \"Dune\". Druhá sci-fi kniha nebola pridaná do košíka a košík nie je otvorený."
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 4,
+    "replanCount": 3,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 1,
+      "click_text_missing": 0,
+      "no_action_executed": 2
+    },
+    "stepsExecuted": 9,
+    "durationSeconds": 170.746,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 6,
+    "totalSubtasks": 6,
+    "deterministicGateSatisfied": true,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 221723,
+      "completionTokens": 4173,
+      "totalTokens": 238196,
+      "callCount": 26
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "accept_cookies",
+    "search_frank_herbert",
+    "add_frank_herbert_to_cart",
+    "navigate_to_scifi",
+    "add_scifi_book_to_cart",
+    "open_cart"
+  ],
+  "stepsExecuted": 9,
+  "finalUrl": "https://www.megaknihy.sk/vyhladavanie?orderby=position&orderway=desc&search_query=Frank+Herbert&submit_search=&p=1",
+  "helpHistory": [],
+  "blockerEvents": [
+    {
+      "ts": 1776260704658,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Povoliť všetko"
+    },
+    {
+      "ts": 1776260793767,
+      "step": 6,
+      "kind": "vision_overlay",
+      "detail": "Vision+DOM confirm overlay overlay.",
+      "overlayType": "overlay",
+      "action": {
+        "action": "click",
+        "selector": "a[href=\"https://www.megaknihy.sk/5886186__lombardi-alexander\"]",
+        "text": null,
+        "mayNavigate": false
+      }
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1776260767597,
+      "step": 4,
+      "kind": "post_action_verification",
+      "detail": "The page stayed unchanged after clicking and no success signal appeared.",
+      "action": {
+        "action": "click",
+        "selector": "a[href=\"https://www.megaknihy.sk/kosik?add&id_product=332328&plus_qty=1&token=0eadcceec5059a104e8494da9f30fee3\"]",
+        "text": "Do košíka",
+        "reason": "No further actions needed.",
+        "expectedEffect": "Add 'Duna' by Frank Herbert to the cart.",
+        "successSignal": "cartBadge (1)",
+        "failureSignal": "Chyba",
+        "fallbackHint": "Try adding a different Frank Herbert book to the cart."
+      },
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povoliť všetko",
+        "reason": "Dismissing cookie consent overlay by clicking \"Povoliť všetko\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 2,
+      "action": {
+        "action": "type",
+        "selector": "#search_query_top",
+        "text": "Frank Herbert",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Frank Herbert contains the requested value.",
+        "successSignal": "The input value for Frank Herbert changed.",
+        "failureSignal": "The input value for Frank Herbert stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "action": "click",
+        "selector": "button[name=\"submit_search\"]",
+        "text": null,
+        "reason": "The search query 'Frank Herbert' has been typed, and now the search needs to be submitted by clicking the search button.",
+        "expectedEffect": "Navigate to search results page for 'Frank Herbert'.",
+        "successSignal": "urlContains=search_query=Frank+Herbert",
+        "failureSignal": "text=Nenašli sa žiadne produkty",
+        "fallbackHint": "Try navigating directly to the search results page if the button click fails."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "action": "click",
+        "selector": "a[href=\"https://www.megaknihy.sk/kosik?add&id_product=332328&plus_qty=1&token=0eadcceec5059a104e8494da9f30fee3\"]",
+        "text": "Do košíka",
+        "reason": "No further actions needed.",
+        "expectedEffect": "Add 'Duna' by Frank Herbert to the cart.",
+        "successSignal": "cartBadge (1)",
+        "failureSignal": "Chyba",
+        "fallbackHint": "Try adding a different Frank Herbert book to the cart."
+      },
+      "verification": {
+        "changed": false,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The page stayed unchanged after clicking and no success signal appeared."
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "action": "click",
+        "selector": "a[href=\"https://www.megaknihy.sk/5886186__lombardi-alexander\"]",
+        "text": null,
+        "reason": "Dismissing overlay overlay via click on \"a[href=\"https://www.megaknihy.sk/5886186__lombardi-alexander\"]\".",
+        "mayNavigate": false,
+        "expectedEffect": "The blocking overlay disappears.",
+        "successSignal": "Primary page content is interactable again.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent decide the next action after re-assessing the page."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The blocker evidence changed or disappeared after the blocker action."
+      }
+    },
+    {
+      "step": 7,
+      "action": {
+        "action": "click",
+        "selector": "a[href=\"https://www.megaknihy.sk/kategoria/1535-fantasy-scifi\"]",
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking a[href=\"https://www.megaknihy.sk/kategoria/1535-fantasy-scifi\"].",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"Povoliť všetko\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"Povoliť všetko\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povoliť všetko",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    },
+    {
+      "step": 2,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 1,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "type",
+        "selector": "#search_query_top",
+        "text": "Frank Herbert"
+      }
+    },
+    {
+      "step": 3,
+      "activeSubtaskId": "search_frank_herbert",
+      "completedSubtasks": [
+        "accept_cookies"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": "search_frank_herbert",
+        "markSubtasksDone": [
+          "accept_cookies"
+        ],
+        "needHelp": false,
+        "actions": [
+          {
+            "action": "click",
+            "selector": "button[name=\"submit_search\"]",
+            "text": null,
+            "reason": "The search query 'Frank Herbert' has been typed, and now the search needs to be submitted by clicking the search button.",
+            "expectedEffect": "Navigate to search results page for 'Frank Herbert'.",
+            "successSignal": "urlContains=search_query=Frank+Herbert",
+            "failureSignal": "text=Nenašli sa žiadne produkty",
+            "fallbackHint": "Try navigating directly to the search results page if the button click fails."
+          }
+        ]
+      }
+    },
+    {
+      "step": 6,
+      "activeSubtaskId": null,
+      "completedSubtasks": [
+        "accept_cookies",
+        "search_frank_herbert"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing overlay overlay via click on \"a[href=\"https://www.megaknihy.sk/5886186__lombardi-alexander\"]\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram rusivu vrstvu (overlay).",
+        "needHelp": false,
+        "action": "click",
+        "selector": "a[href=\"https://www.megaknihy.sk/5886186__lombardi-alexander\"]",
+        "text": null,
+        "mayNavigate": false,
+        "expectedEffect": "The blocking overlay disappears.",
+        "successSignal": "Primary page content is interactable again.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent decide the next action after re-assessing the page."
+      }
+    },
+    {
+      "step": 7,
+      "activeSubtaskId": null,
+      "completedSubtasks": [
+        "accept_cookies",
+        "search_frank_herbert"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "click",
+        "selector": "a[href=\"https://www.megaknihy.sk/kategoria/1535-fantasy-scifi\"]",
+        "text": null
+      }
+    }
+  ]
+}

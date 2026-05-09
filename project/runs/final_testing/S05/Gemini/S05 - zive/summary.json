@@ -1,0 +1,303 @@
+{
+  "runId": "921fe88e-0126-46ff-9b39-fc722aadbb66",
+  "url": "https://www.zive.sk/",
+  "task": "Na spravodajskom portáli nájdi sekciu Ekonónia (ak je potrebné vyhľadaj články o ekonómii). Bez otvárania detailov vypíš nadpisy prvých 3 viditeľných článkov. Počas navigácie ignoruj cookie/subscribe/newsletter popupy.",
+  "runMeta": {
+    "model": "gemini-2.5-flash",
+    "difficulty": null,
+    "run": "921fe88e-0126-46ff-9b39-fc722aadbb66"
+  },
+  "goalSpec": {
+    "goal": "Na spravodajskom portáli nájdi sekciu Ekonómia (ak je potrebné vyhľadaj články o ekonómii). Bez otvárania detailov vypíš nadpisy prvých 3 viditeľných článkov.",
+    "successCriteria": [
+      "Successfully navigated to a page displaying articles related to 'Ekonómia' (Economy) or search results for it.",
+      "Identified and extracted the headlines of the first 3 visible articles.",
+      "The extracted headlines are presented in the final answer without navigating into article details."
+    ],
+    "stopCondition": "The first 3 visible article headlines related to 'Ekonómia' have been extracted and recorded.",
+    "assumptions": [
+      "The search functionality on the portal is operational and returns relevant results for 'Ekonómia'.",
+      "At least 3 articles related to 'Ekonómia' will be visible on the search results page or dedicated section."
+    ],
+    "constraints": [
+      "Do not open individual article details.",
+      "Ignore any cookie, subscribe, or newsletter popups that may appear during navigation."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "click_search_icon",
+        "title": "Click the 'Vyhľadávanie' (Search) link to open the search interface.",
+        "doneWhen": "A search input field is visible on the page, or the URL indicates a search page.",
+        "dependsOn": []
+      },
+      {
+        "id": "enter_search_term",
+        "title": "Enter 'Ekonómia' into the search input field.",
+        "doneWhen": "The search input field contains the text 'Ekonómia'.",
+        "dependsOn": [
+          "click_search_icon"
+        ]
+      },
+      {
+        "id": "submit_search",
+        "title": "Submit the search query to find articles about 'Ekonómia'.",
+        "doneWhen": "The page has loaded search results related to 'Ekonómia'.",
+        "dependsOn": [
+          "enter_search_term"
+        ]
+      },
+      {
+        "id": "extract_headlines",
+        "title": "Extract the titles of the first 3 visible articles from the search results or dedicated section.",
+        "doneWhen": "The titles of the first 3 visible articles related to 'Ekonómia' have been recorded.",
+        "dependsOn": [
+          "submit_search"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "llm_soft",
+  "stopReason": "1. Zomrel majiteľ najznámejšej siete pre dospelých: Aká bola jeho cesta k úspechu?\n2. TOP Poctivá diplomovka nebude problém. Tieto nástroje umelej inteligencie z vás urobia prémiového študenta\n3. Skupinu CME, ktorá vlastní aj Markízu a Novu, povedie nový šéf. Presunie sa do Prahy",
+  "finalVerdict": "1. Zomrel majiteľ najznámejšej siete pre dospelých: Aká bola jeho cesta k úspechu?\n2. TOP Poctivá diplomovka nebude problém. Tieto nástroje umelej inteligencie z vás urobia prémiového študenta\n3. Skupinu CME, ktorá vlastní aj Markízu a Novu, povedie nový šéf. Presunie sa do Prahy",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "fulfilled": [],
+    "missing": [
+      "answer_visible"
+    ],
+    "evidence": [],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": false,
+      "answer": "",
+      "evidence": [],
+      "missing": [
+        "No high-confidence visible answer detected on the current page."
+      ],
+      "confidence": "low"
+    }
+  },
+  "completionCheck": {
+    "done": true,
+    "reason": "Successfully navigated to the search results for 'Ekonómia' and identified the first three visible article headlines.",
+    "evidence": [
+      "Zomrel majiteľ najznámejšej siete pre dospelých: Aká bola jeho cesta k úspechu?",
+      "Poctivá diplomovka nebude problém. Tieto nástroje umelej inteligencie z vás urobia prémiového študenta",
+      "Skupinu CME, ktorá vlastní aj Markízu a Novu, povedie nový šéf. Presunie sa do Prahy"
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gemini-2.5-flash",
+    "Difficulty": null,
+    "Run": "921fe88e-0126-46ff-9b39-fc722aadbb66",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 4,
+    "Total_Subtasks": 4,
+    "Partial_Success": 1,
+    "Steps": 13,
+    "Replans": 2,
+    "Duration_seconds": 247.692,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 140272,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://zive.aktuality.sk/vyhladavanie/?search-input=Ekon%C3%B3mia&where=articles",
+    "Final_Verdict": "1. Zomrel majiteľ najznámejšej siete pre dospelých: Aká bola jeho cesta k úspechu?\n2. TOP Poctivá diplomovka nebude problém. Tieto nástroje umelej inteligencie z vás urobia prémiového študenta\n3. Skupinu CME, ktorá vlastní aj Markízu a Novu, povedie nový šéf. Presunie sa do Prahy"
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 10,
+    "replanCount": 2,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 1,
+      "click_text_missing": 0,
+      "no_action_executed": 1
+    },
+    "stepsExecuted": 13,
+    "durationSeconds": 247.692,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 4,
+    "totalSubtasks": 4,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": true,
+    "tokenUsage": {
+      "promptTokens": 108406,
+      "completionTokens": 6228,
+      "totalTokens": 140272,
+      "callCount": 41
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "click_search_icon",
+    "enter_search_term",
+    "submit_search",
+    "extract_headlines"
+  ],
+  "stepsExecuted": 13,
+  "finalUrl": "https://zive.aktuality.sk/vyhladavanie/?search-input=Ekon%C3%B3mia&where=articles",
+  "helpHistory": [],
+  "blockerEvents": [
+    {
+      "ts": 1776247722901,
+      "step": 4,
+      "kind": "vision_overlay",
+      "detail": "Vision+DOM confirm overlay overlay.",
+      "overlayType": "overlay",
+      "action": {
+        "action": "click",
+        "selector": "div:nth-of-type(2) > ul:nth-of-type(1) > li:nth-of-type(12) > a:nth-of-type(1)",
+        "text": null,
+        "mayNavigate": false
+      }
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1776247767133,
+      "step": 7,
+      "kind": "selector_safety",
+      "detail": "Selector \"input\" is not grounded in the current snapshot for type.",
+      "action": {
+        "action": "type",
+        "selector": "input",
+        "text": "Ekonómia",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Ekonómia contains the requested value.",
+        "successSignal": "The input value for Ekonómia changed.",
+        "failureSignal": "The input value for Ekonómia stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776247814193,
+      "step": 10,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "execution_error",
+      "pageKind": "unknown"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 8,
+      "action": {
+        "action": "type",
+        "selector": "#search-input",
+        "text": "Ekonómia",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Ekonómia contains the requested value.",
+        "successSignal": "The input value for Ekonómia changed.",
+        "failureSignal": "The input value for Ekonómia stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 11,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Hľadaj",
+        "reason": "No further actions needed.",
+        "mayNavigate": true,
+        "expectedEffect": "Page will load with search results for 'Ekonómia'.",
+        "successSignal": "The page title or URL changes to reflect search results for 'Ekonómia', or the content updates with relevant articles.",
+        "failureSignal": "The page remains unchanged or an error message appears.",
+        "fallbackHint": "If 'Hľadaj' button is not found, look for another search submission button or try pressing Enter after typing."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 8,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "unknown",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "type",
+        "selector": "#search-input",
+        "text": "Ekonómia"
+      }
+    },
+    {
+      "step": 11,
+      "activeSubtaskId": "submit_search",
+      "completedSubtasks": [
+        "click_search_icon",
+        "enter_search_term"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": "submit_search",
+        "markSubtasksDone": [],
+        "progressNote": "Submitting the search query for 'Ekonómia'.",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Hľadaj",
+        "mayNavigate": true,
+        "expectedEffect": "Page will load with search results for 'Ekonómia'.",
+        "successSignal": "The page title or URL changes to reflect search results for 'Ekonómia', or the content updates with relevant articles.",
+        "failureSignal": "The page remains unchanged or an error message appears.",
+        "fallbackHint": "If 'Hľadaj' button is not found, look for another search submission button or try pressing Enter after typing."
+      }
+    }
+  ]
+}

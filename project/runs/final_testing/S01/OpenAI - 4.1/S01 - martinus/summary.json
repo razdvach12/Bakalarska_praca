@@ -1,0 +1,306 @@
+{
+  "runId": "e781e5b7-e90c-4199-8d49-5fbe2c3e83be",
+  "url": "https://www.martinus.sk/",
+  "task": "Na webovej stránke nájdi stránku s kontaktnými údajmi. Otvor ju a vypíš e-mailovú adresu a telefónne číslo na zákaznícku podporu alebo reklamácie tovaru.",
+  "runMeta": {
+    "model": "gpt-4.1",
+    "difficulty": null,
+    "run": "e781e5b7-e90c-4199-8d49-5fbe2c3e83be"
+  },
+  "goalSpec": {
+    "goal": "Nájsť kontaktnú stránku na webe, otvoriť ju a vypísať e-mail a číslo zákazníckej podpory alebo reklamácie.",
+    "successCriteria": [
+      "Je otvorená stránka Kontakt alebo podobná sekcia s kontaktnými údajmi.",
+      "Je zobrazený e-mail na zákaznícku podporu alebo reklamácie.",
+      "Je zobrazené telefónne číslo na zákaznícku podporu alebo reklamácie."
+    ],
+    "stopCondition": "E-mail a telefónne číslo pre podporu alebo reklamácie sú viditeľné na kontaktnej stránke.",
+    "assumptions": [
+      "Odkaz na kontaktné údaje je v hlavnej navigácii alebo pätičke stránky a vedie na ich zobrazenie."
+    ],
+    "constraints": [
+      "Uprednostni údaje špecificky pre zákaznícku podporu alebo reklamácie, nie všeobecné kontakty."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "url_contains",
+        "text": "kontakt"
+      },
+      {
+        "kind": "answer_contains_email"
+      },
+      {
+        "kind": "answer_contains_phone"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "close_cookie_consent",
+        "title": "Zatvoriť alebo prijať cookies pre pokračovanie",
+        "doneWhen": "Overlay so súhlasom s cookies je odstránený",
+        "dependsOn": []
+      },
+      {
+        "id": "navigate_to_contact_page",
+        "title": "Prejsť na stránku Kontakt",
+        "doneWhen": "Je načítaná stránka s URL obsahujúcou 'kontakt' alebo sekcia s kontaktnými údajmi",
+        "dependsOn": [
+          "close_cookie_consent"
+        ]
+      },
+      {
+        "id": "find_support_contact_info",
+        "title": "Vyhľadať e-mailovú adresu a telefónne číslo na zákaznícku podporu alebo reklamácie",
+        "doneWhen": "Oba údaje (e-mail aj telefónne číslo) sú zobrazené",
+        "dependsOn": [
+          "navigate_to_contact_page"
+        ]
+      },
+      {
+        "id": "write_out_support_contacts",
+        "title": "Vypísať e-mail a telefón zákazníckej podpory alebo reklamácií",
+        "doneWhen": "Odpoveď obsahuje obidva údaje",
+        "dependsOn": [
+          "find_support_contact_info"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "llm_soft",
+  "stopReason": "LLM completion check confirmed task completion despite missing strict deterministic evidence.",
+  "finalVerdict": "Na stránke Kontakt sú tieto údaje: Pre reklamácie a vrátenie tovaru e-mail: reklamacie@martinus.sk a telefónne číslo: 043 / 4554 341, dostupné v pracovné dni od 8:00 do 15:30. Pre zákaznícku podporu e-mail: info@martinus.sk a telefón: 043 / 3260 360, dostupné v pracovné dni od 8:00 do 18:00.",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "url_contains",
+        "text": "kontakt"
+      },
+      {
+        "kind": "answer_contains_email"
+      },
+      {
+        "kind": "answer_contains_phone"
+      }
+    ],
+    "fulfilled": [
+      "url_contains(\"kontakt\")",
+      "answer_contains_email"
+    ],
+    "missing": [
+      "answer_contains_phone"
+    ],
+    "evidence": [
+      "Satisfied: url_contains(\"kontakt\")",
+      "Satisfied: answer_contains_email",
+      "Visible email found: info@martinus.sk"
+    ],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": true,
+      "answer": "info@martinus.sk",
+      "evidence": [
+        "Visible email found: info@martinus.sk"
+      ],
+      "missing": [],
+      "confidence": "high"
+    }
+  },
+  "completionCheck": {
+    "done": true,
+    "reason": "Stránka s kontaktnými údajmi je načítaná – URL obsahuje 'kontakt' a text aj vizuálne heading potvrdzuje sekciu Kontakt. Zákaznícka podpora aj reklamácie majú v textech viditeľné e-mailové adresy aj telefónne čísla.",
+    "evidence": [
+      "Aktuálna URL je https://www.martinus.sk/kontakt, čiže kontakt stránka je otvorená.",
+      "V sekcii kontaktov sa nachádza e-mail pre zákaznícku podporu: info@martinus.sk a telefónne číslo: 043 / 3260 360.",
+      "V sekcii reklamácií je e-mail: reklamacie@martinus.sk a číslo: 043 / 4554 341.",
+      "Text snapshotu jasne obsahuje požadované údaje pre podporu aj reklamácie."
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4.1",
+    "Difficulty": null,
+    "Run": "e781e5b7-e90c-4199-8d49-5fbe2c3e83be",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 4,
+    "Total_Subtasks": 4,
+    "Partial_Success": 1,
+    "Steps": 6,
+    "Replans": 2,
+    "Duration_seconds": 73.029,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 63189,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://www.martinus.sk/kontakt",
+    "Final_Verdict": "Na stránke Kontakt sú tieto údaje: Pre reklamácie a vrátenie tovaru e-mail: reklamacie@martinus.sk a telefónne číslo: 043 / 4554 341, dostupné v pracovné dni od 8:00 do 15:30. Pre zákaznícku podporu e-mail: info@martinus.sk a telefón: 043 / 3260 360, dostupné v pracovné dni od 8:00 do 18:00."
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 3,
+    "replanCount": 2,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 1,
+      "click_text_missing": 0,
+      "no_action_executed": 1
+    },
+    "stepsExecuted": 6,
+    "durationSeconds": 73.029,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 4,
+    "totalSubtasks": 4,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": true,
+    "tokenUsage": {
+      "promptTokens": 59499,
+      "completionTokens": 3690,
+      "totalTokens": 63189,
+      "callCount": 20
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "close_cookie_consent",
+    "navigate_to_contact_page",
+    "find_support_contact_info",
+    "write_out_support_contacts"
+  ],
+  "stepsExecuted": 6,
+  "finalUrl": "https://www.martinus.sk/kontakt",
+  "helpHistory": [],
+  "blockerEvents": [
+    {
+      "ts": 1777227103158,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Povoliť všetko"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1777227135365,
+      "step": 3,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "execution_error",
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povoliť všetko",
+        "reason": "Dismissing cookie consent overlay by clicking \"Povoliť všetko\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Kontakt",
+        "reason": "V hlavnej navigácii je odkaz s textom 'Kontakt'. Je potrebné kliknúť a otvoriť kontaktnú stránku, aby bolo možné nájsť a vypísať kontaktné údaje.",
+        "mayNavigate": true,
+        "expectedEffect": "Načíta sa stránka s kontaktnými údajmi alebo kontaktnou sekciou.",
+        "successSignal": "URL bude obsahovať 'kontakt' a zobrazia sa kontaktné informácie.",
+        "failureSignal": "Stránka sa nenačíta alebo sa nezobrazia žiadne kontaktné údaje.",
+        "fallbackHint": "Skontrolovať pätičku alebo inú sekciu webu pre kontaktné informácie."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"Povoliť všetko\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"Povoliť všetko\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povoliť všetko",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    },
+    {
+      "step": 4,
+      "activeSubtaskId": "navigate_to_contact_page",
+      "completedSubtasks": [
+        "close_cookie_consent"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "unknown",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "V hlavnej navigácii je odkaz s textom 'Kontakt'. Je potrebné kliknúť a otvoriť kontaktnú stránku, aby bolo možné nájsť a vypísať kontaktné údaje.",
+        "activeSubtaskId": "navigate_to_contact_page",
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Kontakt",
+        "mayNavigate": true,
+        "expectedEffect": "Načíta sa stránka s kontaktnými údajmi alebo kontaktnou sekciou.",
+        "successSignal": "URL bude obsahovať 'kontakt' a zobrazia sa kontaktné informácie.",
+        "failureSignal": "Stránka sa nenačíta alebo sa nezobrazia žiadne kontaktné údaje.",
+        "fallbackHint": "Skontrolovať pätičku alebo inú sekciu webu pre kontaktné informácie."
+      }
+    }
+  ]
+}

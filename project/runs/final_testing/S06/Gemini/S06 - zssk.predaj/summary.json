@@ -1,0 +1,480 @@
+{
+  "runId": "8a744b3e-597e-4f85-8732-0a9863ac4a6a",
+  "url": "https://predaj.zssk.sk/",
+  "task": "Na stranke mi VYHLADAJ spojenie z Prahy do Bratislavy. Den chcem aby bol 18.4. Na stanici viem byť 18:30 Vypíš prvé spojenie, ktoré stíham a napíš Čas odchádzam a prichádzam.",
+  "runMeta": {
+    "model": "gemini-2.5-flash",
+    "difficulty": null,
+    "run": "8a744b3e-597e-4f85-8732-0a9863ac4a6a"
+  },
+  "goalSpec": {
+    "goal": "Na stranke mi VYHLADAJ spojenie z Prahy do Bratislavy. Den chcem aby bol 18.4. Na stanici viem byť 18:30 Vypíš prvé spojenie, ktoré stíham a napíš Čas odchádzam a prichádzam.",
+    "successCriteria": [
+      "Vlakové spojenia z Prahy do Bratislavy na 18. apríla 2026 sú zobrazené.",
+      "Boli extrahované a vypísané časy odchodu a príchodu prvého spojenia, ktoré odchádza po 18:30."
+    ],
+    "stopCondition": "The requested departure and arrival times have been successfully extracted and provided.",
+    "assumptions": [
+      "Captcha bude úspešne vyriešená a stránka prejde na hlavný vyhľadávací formulár.",
+      "Webová stránka umožní vyhľadať spojenia na zadaný dátum.",
+      "Výsledky vyhľadávania budú prehľadne zobrazovať časy odchodu a príchodu."
+    ],
+    "constraints": [
+      "Stanica odchodu: Praha",
+      "Stanica príchodu: Bratislava",
+      "Dátum: 18. apríla 2026",
+      "Čas odchodu: Prvé spojenie, ktoré stíham (po 18:30)"
+    ],
+    "finalRequirements": [
+      {
+        "kind": "error_absent"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Praha"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Bratislava"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "solve_captcha",
+        "title": "Vyplň a odošli kód captcha 'Vk8L86' pre prístup na stránku.",
+        "doneWhen": "Captcha formulár už nie je viditeľný a stránka prešla na hlavný vyhľadávací formulár.",
+        "dependsOn": []
+      },
+      {
+        "id": "fill_origin_station",
+        "title": "Vyplň stanicu odchodu 'Praha'.",
+        "doneWhen": "Pole pre stanicu odchodu obsahuje 'Praha'.",
+        "dependsOn": [
+          "solve_captcha"
+        ]
+      },
+      {
+        "id": "fill_destination_station",
+        "title": "Vyplň stanicu príchodu 'Bratislava'.",
+        "doneWhen": "Pole pre stanicu príchodu obsahuje 'Bratislava'.",
+        "dependsOn": [
+          "solve_captcha"
+        ]
+      },
+      {
+        "id": "set_date",
+        "title": "Nastav dátum na 18. apríla 2026.",
+        "doneWhen": "Pole pre dátum zobrazuje '18.04.2026' alebo podobný formát.",
+        "dependsOn": [
+          "solve_captcha"
+        ]
+      },
+      {
+        "id": "set_time",
+        "title": "Nastav čas odchodu na 18:30.",
+        "doneWhen": "Pole pre čas zobrazuje '18:30'.",
+        "dependsOn": [
+          "solve_captcha"
+        ]
+      },
+      {
+        "id": "search_connections",
+        "title": "Vyhľadaj spojenia.",
+        "doneWhen": "Stránka zobrazuje výsledky vyhľadávania.",
+        "dependsOn": [
+          "fill_origin_station",
+          "fill_destination_station",
+          "set_date",
+          "set_time"
+        ]
+      },
+      {
+        "id": "extract_first_suitable_connection",
+        "title": "Identifikuj prvé spojenie odchádzajúce po 18:30 a vypíš jeho čas odchodu a príchodu.",
+        "doneWhen": "Časy odchodu a príchodu prvého vhodného spojenia sú extrahované a vypísané ako odpoveď.",
+        "dependsOn": [
+          "search_connections"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "llm_soft",
+  "stopReason": "LLM completion check confirmed task completion despite missing strict deterministic evidence.",
+  "finalVerdict": "Našiel som spojenie z Prahy do Bratislavy na 18.4. Prvé spojenie, ktoré stíhate, odchádza o 18:37 a prichádza o 00:10.",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "error_absent"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Praha"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Bratislava"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "fulfilled": [
+      "error_absent",
+      "text_visible(\"Praha\")",
+      "text_visible(\"Bratislava\")"
+    ],
+    "missing": [
+      "answer_visible"
+    ],
+    "evidence": [
+      "Satisfied: error_absent",
+      "Satisfied: text_visible(\"Praha\")",
+      "Satisfied: text_visible(\"Bratislava\")"
+    ],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": false,
+      "answer": "",
+      "evidence": [],
+      "missing": [
+        "No high-confidence visible answer detected on the current page."
+      ],
+      "confidence": "low"
+    }
+  },
+  "completionCheck": {
+    "done": true,
+    "reason": "Všetky kritériá vyhľadávania (Praha -> Bratislava, 18.04.2026, odchod po 18:30) boli zadané a výsledky sú zobrazené na stránke. Prvé spojenie, ktoré stíha odchod po 18:30, je o 18:37 s príchodom o 00:10. Tieto informácie sú priamo dostupné na stránke, a preto je úloha dokončená.",
+    "evidence": [
+      "18.04.2026 18:37 Praha hl.n. rj 259 22:49 Wien Hbf 23:14 Wien Hbf REX 2538 00:10 Bratislava hl.st."
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gemini-2.5-flash",
+    "Difficulty": null,
+    "Run": "8a744b3e-597e-4f85-8732-0a9863ac4a6a",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 7,
+    "Total_Subtasks": 7,
+    "Partial_Success": 1,
+    "Steps": 3,
+    "Replans": 0,
+    "Duration_seconds": 152.567,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 33811,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://predaj.zssk.sk/search",
+    "Final_Verdict": "Našiel som spojenie z Prahy do Bratislavy na 18.4. Prvé spojenie, ktoré stíhate, odchádza o 18:37 a prichádza o 00:10."
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 0,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 3,
+    "durationSeconds": 152.567,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 7,
+    "totalSubtasks": 7,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": true,
+    "tokenUsage": {
+      "promptTokens": 19180,
+      "completionTokens": 3985,
+      "totalTokens": 33811,
+      "callCount": 15
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "solve_captcha",
+    "fill_origin_station",
+    "fill_destination_station",
+    "set_date",
+    "set_time",
+    "search_connections",
+    "extract_first_suitable_connection"
+  ],
+  "stepsExecuted": 3,
+  "finalUrl": "https://predaj.zssk.sk/search",
+  "helpHistory": [],
+  "blockerEvents": [
+    {
+      "ts": 1776271615580,
+      "step": 1,
+      "kind": "vision_overlay",
+      "detail": "Vision+DOM confirm overlay overlay.",
+      "overlayType": "overlay",
+      "action": {
+        "action": "click",
+        "selector": "#menu-toggle",
+        "text": null,
+        "mayNavigate": false
+      }
+    }
+  ],
+  "recoveryTransitions": [],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "type",
+        "selector": "#fromInput",
+        "text": "Praha",
+        "reason": "Filling the origin station as per subtask `fill_origin_station`.",
+        "expectedEffect": "The origin station input field will contain 'Praha'.",
+        "successSignal": "Input field #fromInput value is 'Praha'",
+        "failureSignal": "Input field #fromInput value is not 'Praha'",
+        "fallbackHint": "Try typing 'Praha' again if it wasn't entered correctly."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 0,
+      "action": {
+        "action": "type",
+        "selector": "#toInput",
+        "text": "Bratislava",
+        "reason": "Filling the destination station as per subtask `fill_destination_station`.",
+        "expectedEffect": "The destination station input field will contain 'Bratislava'.",
+        "successSignal": "Input field #toInput value is 'Bratislava'",
+        "failureSignal": "Input field #toInput value is not 'Bratislava'",
+        "fallbackHint": "Try typing 'Bratislava' again if it wasn't entered correctly."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 0,
+      "action": {
+        "action": "pickDate",
+        "selector": "#departDate",
+        "text": "2026-04-18",
+        "reason": "Setting the departure date to April 18, 2026 as per subtask `set_date`.",
+        "expectedEffect": "The date input field will display '18. 4. 2026' or similar.",
+        "successSignal": "Input field #departDate value contains '18. 4. 2026'",
+        "failureSignal": "Input field #departDate value does not contain '18. 4. 2026'",
+        "fallbackHint": "Try clicking the date picker and selecting 18th April 2026 if the date isn't set."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The pickDate target reflects the requested value (2026-04-18)."
+      }
+    },
+    {
+      "step": 0,
+      "action": {
+        "action": "pickTime",
+        "selector": "#departTime",
+        "text": "18:30",
+        "reason": "Setting the departure time to 18:30 as per subtask `set_time`.",
+        "expectedEffect": "The time input field will display '18:30'.",
+        "successSignal": "Input field #departTime value is '18:30'",
+        "failureSignal": "Input field #departTime value is not '18:30'",
+        "fallbackHint": "Try clicking the time picker and selecting 18:30 if the time isn't set."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The pickTime target reflects the requested value (18:30)."
+      }
+    },
+    {
+      "step": 0,
+      "action": {
+        "action": "click",
+        "selector": "#actionSearchConnectionButton",
+        "text": null,
+        "reason": "Clicking the 'Vyhľadať spojenie' button to search for connections as per subtask `search_connections`.",
+        "mayNavigate": true,
+        "expectedEffect": "The page will navigate to the search results page.",
+        "successSignal": "URL changes to a search results page or search results are visible.",
+        "failureSignal": "Still on the search form page or an error message appears.",
+        "fallbackHint": "If the button click fails, try refreshing the page and re-entering the details."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 1,
+      "action": {
+        "action": "click",
+        "selector": "#menu-toggle",
+        "text": null,
+        "reason": "Dismissing overlay overlay via click on \"#menu-toggle\".",
+        "mayNavigate": false,
+        "expectedEffect": "The blocking overlay disappears.",
+        "successSignal": "Primary page content is interactable again.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent decide the next action after re-assessing the page."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The blocker evidence changed or disappeared after the blocker action."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": "fill_origin_station",
+      "completedSubtasks": [
+        "solve_captcha"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": "fill_origin_station",
+        "markSubtasksDone": [
+          "solve_captcha"
+        ],
+        "progressNote": "Filled origin, destination, date, and time. Now initiating search.",
+        "needHelp": false,
+        "actions": [
+          {
+            "action": "type",
+            "selector": "#fromInput",
+            "text": "Praha",
+            "reason": "Filling the origin station as per subtask `fill_origin_station`.",
+            "expectedEffect": "The origin station input field will contain 'Praha'.",
+            "successSignal": "Input field #fromInput value is 'Praha'",
+            "failureSignal": "Input field #fromInput value is not 'Praha'",
+            "fallbackHint": "Try typing 'Praha' again if it wasn't entered correctly."
+          },
+          {
+            "action": "type",
+            "selector": "#toInput",
+            "text": "Bratislava",
+            "reason": "Filling the destination station as per subtask `fill_destination_station`.",
+            "expectedEffect": "The destination station input field will contain 'Bratislava'.",
+            "successSignal": "Input field #toInput value is 'Bratislava'",
+            "failureSignal": "Input field #toInput value is not 'Bratislava'",
+            "fallbackHint": "Try typing 'Bratislava' again if it wasn't entered correctly."
+          },
+          {
+            "action": "pickDate",
+            "selector": "#departDate",
+            "text": "2026-04-18",
+            "reason": "Setting the departure date to April 18, 2026 as per subtask `set_date`.",
+            "expectedEffect": "The date input field will display '18. 4. 2026' or similar.",
+            "successSignal": "Input field #departDate value contains '18. 4. 2026'",
+            "failureSignal": "Input field #departDate value does not contain '18. 4. 2026'",
+            "fallbackHint": "Try clicking the date picker and selecting 18th April 2026 if the date isn't set."
+          },
+          {
+            "action": "pickTime",
+            "selector": "#departTime",
+            "text": "18:30",
+            "reason": "Setting the departure time to 18:30 as per subtask `set_time`.",
+            "expectedEffect": "The time input field will display '18:30'.",
+            "successSignal": "Input field #departTime value is '18:30'",
+            "failureSignal": "Input field #departTime value is not '18:30'",
+            "fallbackHint": "Try clicking the time picker and selecting 18:30 if the time isn't set."
+          },
+          {
+            "action": "click",
+            "selector": "#actionSearchConnectionButton",
+            "text": null,
+            "reason": "Clicking the 'Vyhľadať spojenie' button to search for connections as per subtask `search_connections`.",
+            "mayNavigate": true,
+            "expectedEffect": "The page will navigate to the search results page.",
+            "successSignal": "URL changes to a search results page or search results are visible.",
+            "failureSignal": "Still on the search form page or an error message appears.",
+            "fallbackHint": "If the button click fails, try refreshing the page and re-entering the details."
+          }
+        ]
+      }
+    },
+    {
+      "step": 1,
+      "activeSubtaskId": null,
+      "completedSubtasks": [
+        "solve_captcha"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing overlay overlay via click on \"#menu-toggle\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram rusivu vrstvu (overlay).",
+        "needHelp": false,
+        "action": "click",
+        "selector": "#menu-toggle",
+        "text": null,
+        "mayNavigate": false,
+        "expectedEffect": "The blocking overlay disappears.",
+        "successSignal": "Primary page content is interactable again.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent decide the next action after re-assessing the page."
+      }
+    }
+  ]
+}

@@ -1,0 +1,442 @@
+{
+  "runId": "73349de9-788f-49b7-a354-2996553b0ea3",
+  "url": "https://www.pantarhei.sk/",
+  "task": "Na e-shope vyhladaj knihu \"Duna\" od Franka Herberta. Ak je dostupna, pridaj ho do kosika. Nakoniec otvor kosik a napis kolko to bude stat",
+  "runMeta": {
+    "model": "gemini-2.5-flash",
+    "difficulty": null,
+    "run": "73349de9-788f-49b7-a354-2996553b0ea3"
+  },
+  "goalSpec": {
+    "goal": "Na e-shope vyhladaj knihu \"Duna\" od Franka Herberta. Ak je dostupna, pridaj ho do kosika. Nakoniec otvor kosik a napis kolko to bude stat.",
+    "successCriteria": [
+      "Kniha \"Duna\" od Franka Herberta bola pridaná do košíka.",
+      "Celková cena položiek v košíku bola zistená a oznámená."
+    ],
+    "stopCondition": "answer_visible",
+    "assumptions": [
+      "Kniha \"Duna\" od Franka Herberta je na e-shope dostupná na zakúpenie.",
+      "Celková cena bude viditeľne zobrazená na stránke košíka."
+    ],
+    "constraints": [],
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "Duna"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "accept_cookies",
+        "title": "Potvrdiť súhlas s cookies",
+        "doneWhen": "overlay_absent",
+        "dependsOn": []
+      },
+      {
+        "id": "search_for_book",
+        "title": "Vyhľadať knihu 'Duna' od Franka Herberta",
+        "doneWhen": "page_kind_is",
+        "dependsOn": [
+          "accept_cookies"
+        ]
+      },
+      {
+        "id": "add_book_to_cart",
+        "title": "Pridať knihu 'Duna' do košíka",
+        "doneWhen": "cart_contains_product",
+        "dependsOn": [
+          "search_for_book"
+        ]
+      },
+      {
+        "id": "open_cart",
+        "title": "Otvorit nákupný košík",
+        "doneWhen": "url_contains",
+        "dependsOn": [
+          "add_book_to_cart"
+        ]
+      },
+      {
+        "id": "report_total_cost",
+        "title": "Nahlásiť celkovú cenu v košíku",
+        "doneWhen": "answer_visible",
+        "dependsOn": [
+          "open_cart"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "llm_soft",
+  "stopReason": "LLM completion check confirmed task completion despite missing strict deterministic evidence.",
+  "finalVerdict": "V košíku je Kolekcia kníh DUNA od Franka Herberta. Celková cena tohto nákupu je 151,00 €. Máte dopravu zadarmo.",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "Duna"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "fulfilled": [
+      "overlay_absent",
+      "cart_contains_product(Duna)"
+    ],
+    "missing": [
+      "answer_visible"
+    ],
+    "evidence": [
+      "Satisfied: overlay_absent",
+      "Satisfied: cart_contains_product(Duna)"
+    ],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": false,
+      "answer": "",
+      "evidence": [],
+      "missing": [
+        "No high-confidence visible answer detected on the current page."
+      ],
+      "confidence": "low"
+    }
+  },
+  "completionCheck": {
+    "done": true,
+    "reason": "All subtasks are completed. The book 'Duna' by Frank Herbert is in the cart, the cart is open, and the total price is visible on the page.",
+    "evidence": [
+      "The cart contains 'Kolekcia kníh DUNA Frank Herbert' with a price of 151,00 €.",
+      "The total price in the cart is 151,00 €."
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gemini-2.5-flash",
+    "Difficulty": null,
+    "Run": "73349de9-788f-49b7-a354-2996553b0ea3",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 5,
+    "Total_Subtasks": 5,
+    "Partial_Success": 1,
+    "Steps": 10,
+    "Replans": 4,
+    "Duration_seconds": 225.527,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 79239,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://www.pantarhei.sk/checkout/cart/",
+    "Final_Verdict": "V košíku je Kolekcia kníh DUNA od Franka Herberta. Celková cena tohto nákupu je 151,00 €. Máte dopravu zadarmo."
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 6,
+    "replanCount": 4,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 2,
+      "click_text_missing": 0,
+      "no_action_executed": 2
+    },
+    "stepsExecuted": 10,
+    "durationSeconds": 225.527,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 5,
+    "totalSubtasks": 5,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": true,
+    "tokenUsage": {
+      "promptTokens": 59327,
+      "completionTokens": 5773,
+      "totalTokens": 79239,
+      "callCount": 34
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "accept_cookies",
+    "search_for_book",
+    "add_book_to_cart",
+    "open_cart",
+    "report_total_cost"
+  ],
+  "stepsExecuted": 10,
+  "finalUrl": "https://www.pantarhei.sk/checkout/cart/",
+  "helpHistory": [],
+  "blockerEvents": [
+    {
+      "ts": 1776246730899,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Súhlasím"
+    },
+    {
+      "ts": 1776246735422,
+      "step": 1,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Súhlasím"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1776246735776,
+      "step": 1,
+      "kind": "safe_fallback",
+      "detail": "Vision sees overlay, trying clickByText(\"Súhlasím\").",
+      "reason": "execution_error",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776246781465,
+      "step": 3,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#s-autocomplete",
+        "text": "Duna Frank Herbert",
+        "reason": "Typing the book title and author into the search bar as per the task.",
+        "expectedEffect": "The search bar will be populated with the query.",
+        "successSignal": "The search query 'Duna Frank Herbert' is visible in the search bar.",
+        "failureSignal": "The search bar is not visible or not typable.",
+        "fallbackHint": "Try clicking the search bar first, then type."
+      },
+      "pageKind": "product_detail"
+    },
+    {
+      "ts": 1776246810839,
+      "step": 4,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#s-autocomplete",
+        "text": "Duna",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Duna contains the requested value.",
+        "successSignal": "The input value for Duna changed.",
+        "failureSignal": "The input value for Duna stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "product_detail"
+    },
+    {
+      "ts": 1776246830832,
+      "step": 5,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#s-autocomplete",
+        "text": "Duna Frank Herbert",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Duna Frank Herbert contains the requested value.",
+        "successSignal": "The input value for Duna Frank Herbert changed.",
+        "failureSignal": "The input value for Duna Frank Herbert stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "product_detail"
+    },
+    {
+      "ts": 1776246862922,
+      "step": 7,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "no_action_executed",
+      "pageKind": "product_detail"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 2,
+      "action": {
+        "action": "click",
+        "selector": "#btn-cookie-allow",
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking #btn-cookie-allow.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "action": "type",
+        "selector": "#s-autocomplete",
+        "text": "Duna Frank Herbert",
+        "reason": "Typing the book title and author into the search bar as per the task.",
+        "expectedEffect": "The search bar will be populated with the query.",
+        "successSignal": "The search query 'Duna Frank Herbert' is visible in the search bar.",
+        "failureSignal": "The search bar is not visible or not typable.",
+        "fallbackHint": "Try clicking the search bar first, then type."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "action": "type",
+        "selector": "#s-autocomplete",
+        "text": "Duna",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Duna contains the requested value.",
+        "successSignal": "The input value for Duna changed.",
+        "failureSignal": "The input value for Duna stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 5,
+      "action": {
+        "action": "type",
+        "selector": "#s-autocomplete",
+        "text": "Duna Frank Herbert",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Duna Frank Herbert contains the requested value.",
+        "successSignal": "The input value for Duna Frank Herbert changed.",
+        "failureSignal": "The input value for Duna Frank Herbert stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 8,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "PREJSŤ DO KOŠÍKA",
+        "reason": "Proceeding to the cart to report the total cost.",
+        "mayNavigate": true,
+        "expectedEffect": "Navigate to the shopping cart page.",
+        "successSignal": "url_contains:checkout/cart",
+        "failureSignal": "overlay_present",
+        "fallbackHint": "If the cart page does not load, try closing the modal and clicking the cart icon in the header."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 2,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 1,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "click",
+        "selector": "#btn-cookie-allow",
+        "text": null
+      }
+    },
+    {
+      "step": 8,
+      "activeSubtaskId": "open_cart",
+      "completedSubtasks": [
+        "accept_cookies",
+        "search_for_book",
+        "add_book_to_cart"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "checkout_info",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Proceeding to the cart to report the total cost.",
+        "activeSubtaskId": "open_cart",
+        "markSubtasksDone": [
+          "search_for_book",
+          "add_book_to_cart"
+        ],
+        "progressNote": "Kniha 'Duna' bola pridaná do košíka. Prechádzam na stránku košíka.",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "PREJSŤ DO KOŠÍKA",
+        "mayNavigate": true,
+        "expectedEffect": "Navigate to the shopping cart page.",
+        "successSignal": "url_contains:checkout/cart",
+        "failureSignal": "overlay_present",
+        "fallbackHint": "If the cart page does not load, try closing the modal and clicking the cart icon in the header."
+      }
+    }
+  ]
+}

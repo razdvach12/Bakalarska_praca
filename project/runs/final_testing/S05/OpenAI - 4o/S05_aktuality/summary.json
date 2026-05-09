@@ -1,0 +1,190 @@
+{
+  "runId": "60cbe8da-0a6a-4b62-acea-faaad92008c1",
+  "url": "https://www.aktuality.sk/",
+  "task": "Na spravodajskom portáli nájdi sekciu Ekonónia (ak je potrebné vyhľadaj články o ekonómii). Bez otvárania detailov vypíš nadpisy prvých 3 viditeľných článkov. Počas navigácie ignoruj cookie/subscribe/newsletter popupy.",
+  "runMeta": {
+    "model": "gpt-5.4-mini",
+    "difficulty": null,
+    "run": "60cbe8da-0a6a-4b62-acea-faaad92008c1"
+  },
+  "goalSpec": {
+    "goal": "Navigate to the Economy section and retrieve the titles of the first three visible articles.",
+    "successCriteria": [
+      "The Economy section is accessed.",
+      "Three article titles are retrieved.",
+      "No cookie or newsletter popup blocks navigation."
+    ],
+    "stopCondition": "Three article titles are displayed.",
+    "assumptions": [
+      "The Economy section contains articles.",
+      "The page has loaded fully."
+    ],
+    "constraints": [
+      "Ignore cookie and subscription popups.",
+      "Do not open article details."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "text_visible",
+        "text": "EKONOMIKA"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "navigate_to_economy_section",
+        "title": "Navigate to the Economy section",
+        "doneWhen": "The Economy section is opened.",
+        "dependsOn": []
+      },
+      {
+        "id": "retrieve_article_titles",
+        "title": "Retrieve titles of the first three articles",
+        "doneWhen": "Three article titles are collected.",
+        "dependsOn": [
+          "navigate_to_economy_section"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "strict",
+  "stopReason": "Deterministic final requirements satisfied on the current page.",
+  "finalVerdict": "Na spravodajskom portáli sú v sekcii Ekonómia viditeľné nasledujúce nadpisy článkov: \"Miliónový biznis dôchodcu z tajnej služby: Investigatíva Martina Turčeka odkrýva Balciarovo realitné impérium\", \"Známa firma prepúšťa 200 ľudí. Ide o giganta z košického IT Valley\" a \"Architektka Marianna Markusková: „Fasáda nie je len farba, je to investícia do hodnoty vášho domova“.\"",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": true,
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "text_visible",
+        "text": "EKONOMIKA"
+      }
+    ],
+    "fulfilled": [
+      "overlay_absent",
+      "text_visible(\"EKONOMIKA\")"
+    ],
+    "missing": [],
+    "evidence": [
+      "Satisfied: overlay_absent",
+      "Satisfied: text_visible(\"EKONOMIKA\")"
+    ],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": false,
+      "answer": "",
+      "evidence": [],
+      "missing": [
+        "No high-confidence visible answer detected on the current page."
+      ],
+      "confidence": "low"
+    }
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "The Economy section has not been accessed yet and titles of articles have not been retrieved.",
+    "evidence": []
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Vision does not contradict deterministic success, but it is not strongly confirmatory either.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-5.4-mini",
+    "Difficulty": null,
+    "Run": "60cbe8da-0a6a-4b62-acea-faaad92008c1",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 2,
+    "Total_Subtasks": 2,
+    "Partial_Success": 1,
+    "Steps": 7,
+    "Replans": 0,
+    "Duration_seconds": 180.588,
+    "HumanHelp_Verbal": 4,
+    "HumanHelp_Actions": 3,
+    "Tokens_Total": 467743,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://www.aktuality.sk/",
+    "Final_Verdict": "Na spravodajskom portáli sú v sekcii Ekonómia viditeľné nasledujúce nadpisy článkov: \"Miliónový biznis dôchodcu z tajnej služby: Investigatíva Martina Turčeka odkrýva Balciarovo realitné impérium\", \"Známa firma prepúšťa 200 ľudí. Ide o giganta z košického IT Valley\" a \"Architektka Marianna Markusková: „Fasáda nie je len farba, je to investícia do hodnoty vášho domova“.\""
+  },
+  "metrics": {
+    "humanHelpRequests": 4,
+    "humanHelpResponses": 4,
+    "humanHelpActions": 3,
+    "selfHealAttempts": 2,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 7,
+    "durationSeconds": 180.588,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 2,
+    "totalSubtasks": 2,
+    "deterministicGateSatisfied": true,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 465984,
+      "completionTokens": 1759,
+      "totalTokens": 467743,
+      "callCount": 19
+    }
+  },
+  "helpRound": 4,
+  "completedSubtasks": [
+    "navigate_to_economy_section",
+    "retrieve_article_titles"
+  ],
+  "stepsExecuted": 7,
+  "finalUrl": "https://www.aktuality.sk/",
+  "helpHistory": [
+    "Najprv odklikni cookies Prijať všetko a až potom hľadaj sekciu Ekonomika",
+    "Prijem cookies",
+    "Áno",
+    "pokracuj dalej"
+  ],
+  "blockerEvents": [
+    {
+      "ts": 1776178450878,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Prijať všetko"
+    },
+    {
+      "ts": 1776178458255,
+      "step": 1,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Prijať všetko"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1776178534101,
+      "step": 3,
+      "kind": "safe_fallback",
+      "detail": "Vision sees overlay, trying clickByText(\"Prijať všetko\").",
+      "reason": "execution_error",
+      "pageKind": "unknown"
+    }
+  ],
+  "actionVerifications": [],
+  "stepTrace": []
+}

@@ -1,0 +1,166 @@
+{
+  "runId": "f44fc047-ddb4-4c89-8da7-26b2b4678e40",
+  "url": "https://metalindustrial.sk/",
+  "task": "Na webovej stránke nájdi stránku s kontaktnými údajmi. Otvor ju a vypíš e-mailovú adresu a telefónne číslo na zákaznícku podporu alebo reklamácie tovaru.",
+  "runMeta": {
+    "model": "gpt-4.1",
+    "difficulty": null,
+    "run": "f44fc047-ddb4-4c89-8da7-26b2b4678e40"
+  },
+  "goalSpec": {
+    "goal": "Získať e-mailovú adresu a telefónne číslo na zákaznícku podporu alebo reklamácie tovaru zo stránky s kontaktnými údajmi.",
+    "successCriteria": [
+      "Používateľ vidí e-mailovú adresu na zákaznícku podporu/reklamácie.",
+      "Používateľ vidí telefónne číslo na zákaznícku podporu/reklamácie.",
+      "Obe informácie pochádzajú z kontaktných údajov firmy."
+    ],
+    "stopCondition": "Obe, e-mailová adresa aj telefónne číslo pre zákaznícku podporu alebo reklamácie, sú vypísané.",
+    "assumptions": [
+      "Kontaktné informácie sú verejne prístupné a viditeľné na stránke alebo na podstránke Kontakt.",
+      "Údaje sú určené pre všeobecnú zákaznícku podporu a/alebo reklamácie."
+    ],
+    "constraints": [
+      "Zobrazená musí byť oficiálna e-mailová adresa a telefón na firme.",
+      "Kontaktné údaje nesmú byť súkromné alebo nesúvisiace s podporou/reklamáciami."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "answer_contains_email"
+      },
+      {
+        "kind": "answer_contains_phone"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "close_cookie_consent",
+        "title": "Zatvoriť alebo akceptovať cookie lištu pre nerušené prehliadanie.",
+        "doneWhen": "Banner súhlasím/nesúhlasím zmizne",
+        "dependsOn": []
+      },
+      {
+        "id": "open_contact_page",
+        "title": "Otvoriť stránku Kontakt v hlavnom menu.",
+        "doneWhen": "Na stránke je jasne zobrazený nadpis alebo sekcia Kontakt/Kontaktné údaje",
+        "dependsOn": [
+          "close_cookie_consent"
+        ]
+      },
+      {
+        "id": "find_and_list_contact_info",
+        "title": "Vyhľadať a vypísať e-mail a telefón na zákaznícku podporu alebo reklamácie.",
+        "doneWhen": "Vypísané sú oba údaje – e-mail a telefónne číslo",
+        "dependsOn": [
+          "open_contact_page"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "strict",
+  "stopReason": "Visible answer found: info@metalindustrial.sk",
+  "finalVerdict": "E-mailová adresa na zákaznícku podporu je info@metalindustrial.sk. Telefónne číslo je +421 919 457 815. Oba kontakty sú uvedené priamo na stránke s kontaktnými údajmi firmy.",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": true,
+    "finalRequirements": [
+      {
+        "kind": "answer_contains_email"
+      },
+      {
+        "kind": "answer_contains_phone"
+      }
+    ],
+    "fulfilled": [
+      "answer_contains_email",
+      "answer_contains_phone"
+    ],
+    "missing": [],
+    "evidence": [
+      "Satisfied: answer_contains_email",
+      "Satisfied: answer_contains_phone",
+      "Visible email found: info@metalindustrial.sk"
+    ],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": true,
+      "answer": "info@metalindustrial.sk",
+      "evidence": [
+        "Visible email found: info@metalindustrial.sk"
+      ],
+      "missing": [],
+      "confidence": "high"
+    }
+  },
+  "completionCheck": null,
+  "visualFinalVerdict": {
+    "verdict": "confirmed",
+    "reason": "Vision signals support the deterministic success decision.",
+    "evidence": [
+      "Vision page type: catalog",
+      "Visible answer assessment supports success."
+    ]
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4.1",
+    "Difficulty": null,
+    "Run": "f44fc047-ddb4-4c89-8da7-26b2b4678e40",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 3,
+    "Total_Subtasks": 3,
+    "Partial_Success": 1,
+    "Steps": 1,
+    "Replans": 0,
+    "Duration_seconds": 24.07,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 10534,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://metalindustrial.sk/",
+    "Final_Verdict": "E-mailová adresa na zákaznícku podporu je info@metalindustrial.sk. Telefónne číslo je +421 919 457 815. Oba kontakty sú uvedené priamo na stránke s kontaktnými údajmi firmy."
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 0,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 1,
+    "durationSeconds": 24.07,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 3,
+    "totalSubtasks": 3,
+    "deterministicGateSatisfied": true,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 9585,
+      "completionTokens": 949,
+      "totalTokens": 10534,
+      "callCount": 4
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "close_cookie_consent",
+    "open_contact_page",
+    "find_and_list_contact_info"
+  ],
+  "stepsExecuted": 1,
+  "finalUrl": "https://metalindustrial.sk/",
+  "helpHistory": [],
+  "blockerEvents": [],
+  "recoveryTransitions": [],
+  "actionVerifications": [],
+  "stepTrace": []
+}

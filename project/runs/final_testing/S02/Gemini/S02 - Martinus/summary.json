@@ -1,0 +1,450 @@
+{
+  "runId": "4ad50eaa-ed95-477f-ab13-781c16c5b626",
+  "url": "https://www.martinus.sk/",
+  "task": "Na e-shope vyhladaj knihu \"Duna\" od Franka Herberta. Ak je dostupna, pridaj ho do kosika. Nakoniec otvor kosik a napis kolko to bude stat",
+  "runMeta": {
+    "model": "gemini-2.5-flash",
+    "difficulty": null,
+    "run": "4ad50eaa-ed95-477f-ab13-781c16c5b626"
+  },
+  "goalSpec": {
+    "goal": "Na e-shope vyhľadať knihu \"Duna\" od Franka Herberta, ak je dostupná, pridať ju do košíka a nakoniec otvoriť košík a napísať celkovú cenu.",
+    "successCriteria": [
+      "Cookie banner bol prijatý a zmizol.",
+      "Kniha 'Duna' od Franka Herberta bola vyhľadaná a nájdená.",
+      "Kniha 'Duna' bola pridaná do košíka.",
+      "Košík je otvorený a je zobrazená celková cena."
+    ],
+    "stopCondition": "The cart total cost has been successfully reported.",
+    "assumptions": [
+      "The book 'Duna' by Frank Herbert is available on the website."
+    ],
+    "constraints": [],
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "Duna"
+      },
+      {
+        "kind": "page_kind_is",
+        "pageKind": "cart"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "accept_cookies",
+        "title": "Prijať súhlas s cookies, ak je zobrazený.",
+        "doneWhen": "The cookie consent overlay is no longer visible.",
+        "dependsOn": []
+      },
+      {
+        "id": "search_for_book",
+        "title": "Vyhľadať knihu 'Duna' od Franka Herberta.",
+        "doneWhen": "The search results page for 'Duna Frank Herbert' is displayed.",
+        "dependsOn": [
+          "accept_cookies"
+        ]
+      },
+      {
+        "id": "add_book_to_cart",
+        "title": "Nájsť knihu 'Duna' od Franka Herberta a pridať ju do košíka.",
+        "doneWhen": "The book 'Duna' by Frank Herbert has been added to the cart.",
+        "dependsOn": [
+          "search_for_book"
+        ]
+      },
+      {
+        "id": "open_cart",
+        "title": "Otvoriť košík.",
+        "doneWhen": "The shopping cart page is displayed.",
+        "dependsOn": [
+          "add_book_to_cart"
+        ]
+      },
+      {
+        "id": "report_total_cost",
+        "title": "Zistiť a napísať celkovú cenu v košíku.",
+        "doneWhen": "The total cost from the cart is extracted and provided as the answer.",
+        "dependsOn": [
+          "open_cart"
+        ]
+      }
+    ]
+  },
+  "success": false,
+  "successMode": null,
+  "stopReason": "",
+  "finalVerdict": "Beh sa skoncil bez finalnej odpovede.",
+  "error": "Help timeout (180000ms) for 4ad50eaa-ed95-477f-ab13-781c16c5b626:fe796669-b8b5-47ba-a87a-0296ac1bbacc",
+  "failureClassification": "recovery_exhausted",
+  "failureSubtype": "selector_safety",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "Duna"
+      },
+      {
+        "kind": "page_kind_is",
+        "pageKind": "cart"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "fulfilled": [
+      "overlay_absent",
+      "cart_contains_product(Duna)"
+    ],
+    "missing": [
+      "page_kind_is(cart)",
+      "answer_visible"
+    ],
+    "evidence": [
+      "Satisfied: overlay_absent",
+      "Satisfied: cart_contains_product(Duna)"
+    ],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": false,
+      "answer": "",
+      "evidence": [],
+      "missing": [
+        "No high-confidence visible answer detected on the current page."
+      ],
+      "confidence": "low"
+    }
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "The book 'Duna' by Frank Herbert has been found and is available, but it has not yet been added to the cart. The next step is to click the 'VLOŽIŤ DO KOŠÍKA' button.",
+    "evidence": []
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gemini-2.5-flash",
+    "Difficulty": null,
+    "Run": "4ad50eaa-ed95-477f-ab13-781c16c5b626",
+    "Success 0/1": 0,
+    "Completed_Subtasks": 2,
+    "Total_Subtasks": 5,
+    "Partial_Success": 0.5,
+    "Steps": 17,
+    "Replans": 0,
+    "Duration_seconds": 581.627,
+    "HumanHelp_Verbal": 4,
+    "HumanHelp_Actions": 5,
+    "Tokens_Total": 170314,
+    "Failure_Type": "recovery_exhausted",
+    "Failure_Subtype": "selector_safety",
+    "Final_URL": "https://www.martinus.sk/2879359-kolekcia-knih-duna-frank-herbert/kniha",
+    "Final_Verdict": "Beh sa skoncil bez finalnej odpovede."
+  },
+  "metrics": {
+    "humanHelpRequests": 5,
+    "humanHelpResponses": 4,
+    "humanHelpActions": 5,
+    "selfHealAttempts": 6,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 17,
+    "durationSeconds": 581.627,
+    "partialSuccess": 0.5,
+    "completedSubtasksCount": 2,
+    "totalSubtasks": 5,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 141428,
+      "completionTokens": 7705,
+      "totalTokens": 170314,
+      "callCount": 50
+    }
+  },
+  "helpRound": 5,
+  "completedSubtasks": [
+    "accept_cookies",
+    "search_for_book"
+  ],
+  "stepsExecuted": 17,
+  "finalUrl": "https://www.martinus.sk/2879359-kolekcia-knih-duna-frank-herbert/kniha",
+  "helpHistory": [
+    "Nie, len jednu knihu.",
+    "Áno, pridaj kolekciu",
+    "Áno",
+    "Áno, je to v poriadku"
+  ],
+  "blockerEvents": [
+    {
+      "ts": 1776242045437,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Povoliť všetko"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1776242154362,
+      "step": 3,
+      "kind": "selector_safety",
+      "detail": "Selector \"div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > a:nth-of-type(1)\" is not grounded in the current snapshot.",
+      "action": {
+        "action": "click",
+        "selector": "div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > a:nth-of-type(1)",
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > a:nth-of-type(1).",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776242237626,
+      "step": 6,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "execution_error",
+      "pageKind": "product_detail"
+    },
+    {
+      "ts": 1776242268834,
+      "step": 8,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "execution_error",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776242329401,
+      "step": 11,
+      "kind": "selector_safety",
+      "detail": "clickByText requires visible text.",
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking clickByText.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "product_detail"
+    },
+    {
+      "ts": 1776242397260,
+      "step": 14,
+      "kind": "selector_safety",
+      "detail": "clickByText requires visible text.",
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking clickByText.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "product_detail"
+    },
+    {
+      "ts": 1776242397261,
+      "step": 14,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "selector_safety",
+      "pageKind": "product_detail"
+    },
+    {
+      "ts": 1776242403645,
+      "step": 15,
+      "kind": "selector_safety",
+      "detail": "clickByText requires visible text.",
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking clickByText.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povoliť všetko",
+        "reason": "Dismissing cookie consent overlay by clicking \"Povoliť všetko\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 1,
+      "action": {
+        "action": "type",
+        "selector": "#search-in-header",
+        "text": "Duna Frank Herbert",
+        "reason": "Proceeding to search for the book 'Duna' by Frank Herbert.",
+        "mayNavigate": false,
+        "expectedEffect": "The search query 'Duna Frank Herbert' will be entered into the search bar.",
+        "successSignal": "The text 'Duna Frank Herbert' appears in the search input.",
+        "failureSignal": "The text does not appear or an error message regarding input appears.",
+        "fallbackHint": "Re-attempt typing the search query."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Kolekcia kníh DUNA Frank Herbert",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking Kolekcia kníh DUNA Frank Herbert.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"Povoliť všetko\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"Povoliť všetko\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povoliť všetko",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    },
+    {
+      "step": 1,
+      "activeSubtaskId": "search_for_book",
+      "completedSubtasks": [
+        "accept_cookies"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Proceeding to search for the book 'Duna' by Frank Herbert.",
+        "activeSubtaskId": "search_for_book",
+        "markSubtasksDone": [
+          "accept_cookies"
+        ],
+        "progressNote": "No cookie banner was detected, marking the cookie subtask as done. Now searching for the book.",
+        "needHelp": false,
+        "action": "type",
+        "selector": "#search-in-header",
+        "text": "Duna Frank Herbert",
+        "mayNavigate": false,
+        "expectedEffect": "The search query 'Duna Frank Herbert' will be entered into the search bar.",
+        "successSignal": "The text 'Duna Frank Herbert' appears in the search input.",
+        "failureSignal": "The text does not appear or an error message regarding input appears.",
+        "fallbackHint": "Re-attempt typing the search query."
+      }
+    },
+    {
+      "step": 4,
+      "activeSubtaskId": null,
+      "completedSubtasks": [
+        "accept_cookies"
+      ],
+      "stalePageCount": 1,
+      "pageKind": "product_detail",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "click",
+        "selector": "a[text*=\"Kolekcia kníh DUNA Frank Herbert\"]",
+        "text": "Kolekcia kníh DUNA Frank Herbert"
+      }
+    }
+  ]
+}

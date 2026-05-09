@@ -1,0 +1,783 @@
+{
+  "runId": "80b45946-8d66-4ac2-b86a-8d5ec277f743",
+  "url": "https://m.byty.sk/",
+  "task": "Na realitnom portali nastav filtre: typ \"2-izbovy byt\", lokalita \"Bratislava – Staré Mesto\", typ ponuky \"prenajom\", maximalna cena 800 EUR mesacne. Zorad vysledky od najnovsich. Vypis nazov, cenu a m2 prvych 3 vysledkov.",
+  "runMeta": {
+    "model": "gemini-2.5-flash",
+    "difficulty": null,
+    "run": "80b45946-8d66-4ac2-b86a-8d5ec277f743"
+  },
+  "goalSpec": {
+    "goal": "Na realitnom portali Byty.sk nastaviť filtre: typ \"2-izbový byt\", lokalita \"Bratislava – Staré Mesto\", typ ponuky \"prenájom\", maximálna cena 800 EUR mesačne. Zoradiť výsledky od najnovších. Následne vypísať názov, cenu a m2 prvých 3 výsledkov.",
+    "successCriteria": [
+      "Cookie súhlas bol prijatý a overlay je zatvorený.",
+      "Filter 'Typ nehnuteľnosti' je nastavený na '2-izbový byt'.",
+      "Filter 'Lokalita' je nastavený na 'Bratislava – Staré Mesto'.",
+      "Filter 'Typ ponuky' je nastavený na 'Prenájom'.",
+      "Filter 'Maximálna cena' je nastavený na '800'.",
+      "Stránka zobrazuje výsledky vyhľadávania."
+    ],
+    "stopCondition": "Boli vypísané informácie o prvých troch inzerátoch.",
+    "assumptions": [
+      "Webová stránka je funkčná a reaguje na vstupy.",
+      "Všetky požadované filtre sú dostupné na stránke."
+    ],
+    "constraints": [
+      "Použiť iba dostupné prvky na webovej stránke.",
+      "Extrahovať iba požadované informácie (názov, cena, m2) pre prvé 3 výsledky."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Čo hľadáte...",
+        "value": "2 izbový byt"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Kde hľadáte...",
+        "value": "Bratislava – Staré Mesto"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Kúpiť, prenajať ...",
+        "value": "Prenájom"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Cena do...",
+        "value": "800"
+      },
+      {
+        "kind": "url_contains",
+        "text": "/inzercia"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "accept_cookies",
+        "title": "Prijať všetky cookies pre pokračovanie v používaní stránky.",
+        "doneWhen": "Cookie consent overlay je zatvorený.",
+        "dependsOn": []
+      },
+      {
+        "id": "set_apartment_type",
+        "title": "Nastaviť filter 'Typ nehnuteľnosti' na '2 izbový byt'.",
+        "doneWhen": "Dropdown 'Čo hľadáte...' má vybranú hodnotu '2 izbový byt'.",
+        "dependsOn": [
+          "accept_cookies"
+        ]
+      },
+      {
+        "id": "set_location",
+        "title": "Zadať lokalitu 'Bratislava – Staré Mesto' do poľa 'Kde hľadáte...'.",
+        "doneWhen": "Textové pole 'Kde hľadáte...' obsahuje 'Bratislava – Staré Mesto'.",
+        "dependsOn": [
+          "accept_cookies"
+        ]
+      },
+      {
+        "id": "set_offer_type",
+        "title": "Nastaviť filter 'Typ ponuky' na 'Prenájom'.",
+        "doneWhen": "Dropdown 'Kúpiť, prenajať ...' má vybranú hodnotu 'Prenájom'.",
+        "dependsOn": [
+          "accept_cookies"
+        ]
+      },
+      {
+        "id": "set_max_price",
+        "title": "Zadať maximálnu cenu '800' do poľa 'Cena do...'.",
+        "doneWhen": "Textové pole 'Cena do...' obsahuje hodnotu '800'.",
+        "dependsOn": [
+          "accept_cookies"
+        ]
+      },
+      {
+        "id": "search_listings",
+        "title": "Vyhľadať inzeráty po nastavení filtrov.",
+        "doneWhen": "Načítali sa výsledky vyhľadávania.",
+        "dependsOn": [
+          "set_apartment_type",
+          "set_location",
+          "set_offer_type",
+          "set_max_price"
+        ]
+      },
+      {
+        "id": "sort_by_newest",
+        "title": "Zoradiť výsledky vyhľadávania od najnovších.",
+        "doneWhen": "Výsledky sú zobrazené zoradené podľa dátumu pridania (najnovšie).",
+        "dependsOn": [
+          "search_listings"
+        ]
+      },
+      {
+        "id": "extract_results",
+        "title": "Vypísať názov, cenu a m2 prvých 3 výsledkov.",
+        "doneWhen": "Názov, cena a metráž prvých troch inzerátov sú vypísané.",
+        "dependsOn": [
+          "sort_by_newest"
+        ]
+      }
+    ]
+  },
+  "success": false,
+  "successMode": null,
+  "stopReason": "terminated_by_user",
+  "finalVerdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user",
+  "error": "terminated_by_user",
+  "failureClassification": "user_control",
+  "failureSubtype": "terminated_by_user",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Čo hľadáte...",
+        "value": "2 izbový byt"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Kde hľadáte...",
+        "value": "Bratislava – Staré Mesto"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Kúpiť, prenajať ...",
+        "value": "Prenájom"
+      },
+      {
+        "kind": "field_equals",
+        "label": "Cena do...",
+        "value": "800"
+      },
+      {
+        "kind": "url_contains",
+        "text": "/inzercia"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "fulfilled": [
+      "overlay_absent"
+    ],
+    "missing": [
+      "field_equals(Čo hľadáte...=\"2 izbový byt\")",
+      "field_equals(Kde hľadáte...=\"Bratislava – Staré Mesto\")",
+      "field_equals(Kúpiť, prenajať ...=\"Prenájom\")",
+      "field_equals(Cena do...=\"800\")",
+      "url_contains(\"/inzercia\")",
+      "answer_visible"
+    ],
+    "evidence": [
+      "Satisfied: overlay_absent"
+    ],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": false,
+      "answer": "",
+      "evidence": [],
+      "missing": [
+        "No high-confidence visible answer detected on the current page."
+      ],
+      "confidence": "low"
+    }
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "The filters for 'Typ nehnuteľnosti' (2-izbovy byt), 'Typ ponuky' (prenajom), and 'Maximálna cena' (800 EUR mesacne) are not yet applied. The page displays listings with different apartment types (e.g., 3-izbový, 4-izbový, 1-izbový), different offer types (e.g., for sale at 520 000 € and for rent at 2 400 €/mes.), and prices exceeding 800 EUR/month.",
+    "evidence": []
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gemini-2.5-flash",
+    "Difficulty": null,
+    "Run": "80b45946-8d66-4ac2-b86a-8d5ec277f743",
+    "Success 0/1": 0,
+    "Completed_Subtasks": 6,
+    "Total_Subtasks": 8,
+    "Partial_Success": 0.75,
+    "Steps": 23,
+    "Replans": 0,
+    "Duration_seconds": 419.998,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 313403,
+    "Failure_Type": "user_control",
+    "Failure_Subtype": "terminated_by_user",
+    "Final_URL": "https://m.byty.sk/bratislava-ii-stare-mesto/",
+    "Final_Verdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user"
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 14,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 23,
+    "durationSeconds": 419.998,
+    "partialSuccess": 0.75,
+    "completedSubtasksCount": 6,
+    "totalSubtasks": 8,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 245721,
+      "completionTokens": 13360,
+      "totalTokens": 313403,
+      "callCount": 71
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "accept_cookies",
+    "set_apartment_type",
+    "set_location",
+    "set_offer_type",
+    "set_max_price",
+    "search_listings"
+  ],
+  "stepsExecuted": 23,
+  "finalUrl": "https://m.byty.sk/bratislava-ii-stare-mesto/",
+  "helpHistory": [],
+  "blockerEvents": [
+    {
+      "ts": 1776284494695,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Prijať všetko"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1776284522414,
+      "step": 1,
+      "kind": "post_action_verification",
+      "detail": "The page stayed unchanged after clicking and no success signal appeared.",
+      "action": {
+        "action": "click",
+        "candidateId": "c21",
+        "selector": "#category-select",
+        "text": "2 izbový byt",
+        "targetLabel": "Čo hľadáte...",
+        "reason": "Setting apartment type to '2 izbový byt' as per task.",
+        "expectedEffect": "Dropdown value changes to '2 izbový byt'.",
+        "successSignal": "Dropdown shows '2 izbový byt'.",
+        "failureSignal": "Dropdown value does not change.",
+        "fallbackHint": "Try selecting from the dropdown again."
+      },
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776284553151,
+      "step": 2,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#category-select",
+        "text": "2 izbový byt",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field 2 izbový byt contains the requested value.",
+        "successSignal": "The input value for 2 izbový byt changed.",
+        "failureSignal": "The input value for 2 izbový byt stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs.",
+        "candidateId": "c21"
+      },
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776284574326,
+      "step": 3,
+      "kind": "selector_safety",
+      "detail": "click action requires candidateId, a grounded selector, or visible text.",
+      "action": {
+        "action": "click",
+        "selector": null,
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking click.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776284581864,
+      "step": 4,
+      "kind": "selector_safety",
+      "detail": "Selector \"[object Object]\" is not grounded in the current snapshot for type.",
+      "action": {
+        "action": "type",
+        "selector": "[object Object]",
+        "text": "Prenájom",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Prenájom contains the requested value.",
+        "successSignal": "The input value for Prenájom changed.",
+        "failureSignal": "The input value for Prenájom stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776284581865,
+      "step": 4,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "selector_safety",
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776284605269,
+      "step": 5,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "candidateId": "c20",
+        "selector": "input[placeholder=\"Kde hľadáte...\"]",
+        "text": "Bratislava – Staré Mesto",
+        "targetLabel": "Kde hľadáte...",
+        "reason": "Setting location filter as per subtask.",
+        "expectedEffect": "Autocompletion suggestions might appear, or text will be set.",
+        "successSignal": "Text field contains 'Bratislava – Staré Mesto'.",
+        "failureSignal": "Text field is empty or contains wrong text.",
+        "fallbackHint": "Try to click the input first then type."
+      },
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776284632241,
+      "step": 6,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "candidateId": "c22",
+        "selector": "select[name=\"p[param3]\"]",
+        "text": "Prenájom",
+        "targetLabel": null,
+        "expectedEffect": "The field Prenájom contains the requested value.",
+        "successSignal": "The input value for Prenájom changed.",
+        "failureSignal": "The input value for Prenájom stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776284709281,
+      "step": 10,
+      "kind": "selector_safety",
+      "detail": "click action requires candidateId, a grounded selector, or visible text.",
+      "action": {
+        "action": "click",
+        "selector": null,
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking click.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776284720420,
+      "step": 11,
+      "kind": "selector_safety",
+      "detail": "Selector \"button:text('HĽADAŤ INZERÁTY')\" is not grounded in the current snapshot.",
+      "action": {
+        "action": "click",
+        "selector": "button:text('HĽADAŤ INZERÁTY')",
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking button:text('HĽADAŤ INZERÁTY').",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776284727923,
+      "step": 12,
+      "kind": "selector_safety",
+      "detail": "Selector \"button:text('HĽADAŤ INZERÁTY')\" is not grounded in the current snapshot.",
+      "action": {
+        "action": "click",
+        "selector": "button:text('HĽADAŤ INZERÁTY')",
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking button:text('HĽADAŤ INZERÁTY').",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776284727924,
+      "step": 12,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "selector_safety",
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776284769165,
+      "step": 14,
+      "kind": "selector_safety",
+      "detail": "click action requires candidateId, a grounded selector, or visible text.",
+      "action": {
+        "action": "click",
+        "selector": null,
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking click.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776284786605,
+      "step": 15,
+      "kind": "selector_safety",
+      "detail": "click action requires candidateId, a grounded selector, or visible text.",
+      "action": {
+        "action": "click",
+        "selector": null,
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking click.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776284798516,
+      "step": 16,
+      "kind": "selector_safety",
+      "detail": "click action requires candidateId, a grounded selector, or visible text.",
+      "action": {
+        "action": "click",
+        "selector": null,
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking click.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776284798517,
+      "step": 16,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "selector_safety",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776284816664,
+      "step": 17,
+      "kind": "selector_safety",
+      "detail": "click action requires candidateId, a grounded selector, or visible text.",
+      "action": {
+        "action": "click",
+        "selector": null,
+        "text": null,
+        "reason": "Open sorting options to sort by newest listings.",
+        "mayNavigate": false,
+        "expectedEffect": "A dropdown or overlay with sorting options appears.",
+        "successSignal": "Sorting options are visible.",
+        "failureSignal": "No sorting options appear.",
+        "fallbackHint": "Try clicking the 'ZORADIŤ' button again or check for other sorting controls."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776284830705,
+      "step": 18,
+      "kind": "selector_safety",
+      "detail": "click action requires candidateId, a grounded selector, or visible text.",
+      "action": {
+        "action": "click",
+        "selector": null,
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking click.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776284830706,
+      "step": 18,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "selector_safety",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776284841691,
+      "step": 19,
+      "kind": "selector_safety",
+      "detail": "click action requires candidateId, a grounded selector, or visible text.",
+      "action": {
+        "action": "click",
+        "selector": null,
+        "text": null,
+        "reason": "To apply the sorting filter. This button likely reveals or applies sorting options.",
+        "mayNavigate": false,
+        "expectedEffect": "Sorting options dropdown or menu will appear, or results will be re-sorted.",
+        "successSignal": "A dropdown with sort options is visible.",
+        "failureSignal": "Nothing happens or the page navigates unexpectedly.",
+        "fallbackHint": "Try clicking UPRAVIŤ to see if sorting is part of the main filters."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776284853904,
+      "step": 20,
+      "kind": "selector_safety",
+      "detail": "click action requires candidateId, a grounded selector, or visible text.",
+      "action": {
+        "action": "click",
+        "selector": null,
+        "text": null,
+        "reason": "Clicking sort button to reveal sorting options.",
+        "mayNavigate": false,
+        "expectedEffect": "Sorting options dropdown/modal appears.",
+        "successSignal": "New sorting options are visible.",
+        "failureSignal": "No sorting options appear.",
+        "fallbackHint": "Try clicking the 'ZORADIŤ' text directly."
+      },
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Prijať všetko",
+        "reason": "Dismissing cookie consent overlay by clicking \"Prijať všetko\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    },
+    {
+      "step": 1,
+      "action": {
+        "action": "click",
+        "candidateId": "c21",
+        "selector": "#category-select",
+        "text": "2 izbový byt",
+        "targetLabel": "Čo hľadáte...",
+        "reason": "Setting apartment type to '2 izbový byt' as per task.",
+        "expectedEffect": "Dropdown value changes to '2 izbový byt'.",
+        "successSignal": "Dropdown shows '2 izbový byt'.",
+        "failureSignal": "Dropdown value does not change.",
+        "fallbackHint": "Try selecting from the dropdown again."
+      },
+      "verification": {
+        "changed": false,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The page stayed unchanged after clicking and no success signal appeared."
+      }
+    },
+    {
+      "step": 2,
+      "action": {
+        "action": "type",
+        "selector": "#category-select",
+        "text": "2 izbový byt",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field 2 izbový byt contains the requested value.",
+        "successSignal": "The input value for 2 izbový byt changed.",
+        "failureSignal": "The input value for 2 izbový byt stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs.",
+        "candidateId": "c21"
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 5,
+      "action": {
+        "action": "type",
+        "candidateId": "c20",
+        "selector": "input[placeholder=\"Kde hľadáte...\"]",
+        "text": "Bratislava – Staré Mesto",
+        "targetLabel": "Kde hľadáte...",
+        "reason": "Setting location filter as per subtask.",
+        "expectedEffect": "Autocompletion suggestions might appear, or text will be set.",
+        "successSignal": "Text field contains 'Bratislava – Staré Mesto'.",
+        "failureSignal": "Text field is empty or contains wrong text.",
+        "fallbackHint": "Try to click the input first then type."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "action": "type",
+        "candidateId": "c22",
+        "selector": "select[name=\"p[param3]\"]",
+        "text": "Prenájom",
+        "targetLabel": null,
+        "expectedEffect": "The field Prenájom contains the requested value.",
+        "successSignal": "The input value for Prenájom changed.",
+        "failureSignal": "The input value for Prenájom stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 8,
+      "action": {
+        "action": "type",
+        "selector": "input[name=\"p[param1][to]\"]",
+        "text": "800",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field 800 contains the requested value.",
+        "successSignal": "The input value for 800 changed.",
+        "failureSignal": "The input value for 800 stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs.",
+        "candidateId": "c24"
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "form",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"Prijať všetko\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"Prijať všetko\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Prijať všetko",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    },
+    {
+      "step": 8,
+      "activeSubtaskId": null,
+      "completedSubtasks": [
+        "accept_cookies",
+        "set_apartment_type"
+      ],
+      "stalePageCount": 1,
+      "pageKind": "form",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "type",
+        "candidateId": null,
+        "selector": "c24",
+        "text": "800",
+        "targetLabel": null
+      }
+    }
+  ]
+}

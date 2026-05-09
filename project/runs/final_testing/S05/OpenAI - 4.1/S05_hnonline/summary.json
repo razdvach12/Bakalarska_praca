@@ -1,0 +1,282 @@
+{
+  "runId": "a35368af-b12c-4301-a6ce-e0610682c1cc",
+  "url": "https://www.hnonline.sk/",
+  "task": "Na spravodajskom portáli nájdi sekciu Ekonónia (ak je potrebné vyhľadaj články o ekonómii). Bez otvárania detailov vypíš nadpisy prvých 3 viditeľných článkov. Počas navigácie ignoruj cookie/subscribe/newsletter popupy.",
+  "runMeta": {
+    "model": "gpt-4.1",
+    "difficulty": null,
+    "run": "a35368af-b12c-4301-a6ce-e0610682c1cc"
+  },
+  "goalSpec": {
+    "goal": "Nájsť sekciu Ekonomika na spravodajskom portáli a vypísať nadpisy prvých 3 viditeľných článkov bez otvárania detailov.",
+    "successCriteria": [
+      "Podarilo sa prejsť do sekcie Ekonomika alebo ekvivalentnej sekcie o ekonómii.",
+      "Viditeľné sú aspoň tri články (nadpisy) v tejto sekcii.",
+      "Nadpisy prvých troch článkov sú vypísané bez otvárania detailu."
+    ],
+    "stopCondition": "Nadpisy prvých troch článkov v sekcii Ekonomika sú vypísané.",
+    "assumptions": [
+      "Sekcia Ekonomika môže byť označená aj ako 'Ekonomika a financie', 'Finweb' a pod.",
+      "Nebudú otvárané detailné stránky článkov, iba nadpisy na výpise.",
+      "Cookie/subscribe/newsletter popupy sú ignorované a nezabraňujú navigácii."
+    ],
+    "constraints": [
+      "Nadpisy článkov vypísať priamo z prehľadu, neotvárať jednotlivé články.",
+      "Nevšímať si a nemanipulovať s cookie alebo newsletter modálne okná.",
+      "Nenavigovať do sekcií nesúvisiacich s ekonómiou."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "url_contains",
+        "text": "finweb"
+      },
+      {
+        "kind": "overlay_absent"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "navigate_economy_section",
+        "title": "Prejdi do sekcie Ekonomika a financie (alebo podobnej, napr. Finweb)",
+        "doneWhen": "Nachádzaš sa v sekcii Ekonomika/Finweb (over url alebo nadpis sekcie)",
+        "dependsOn": []
+      },
+      {
+        "id": "wait_dismiss_overlay",
+        "title": "Ignoruj/preskoč prípadný cookie/subscribe/newsletter overlay",
+        "doneWhen": "Overlay nie je v ceste alebo je ignorovaný podľa zadania",
+        "dependsOn": []
+      },
+      {
+        "id": "collect_article_headlines",
+        "title": "Nájdi a vypíš nadpisy prvých troch viditeľných článkov",
+        "doneWhen": "Získané a vypísané nadpisy troch viditeľných článkov bez otvárania detailu",
+        "dependsOn": [
+          "navigate_economy_section"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "strict",
+  "stopReason": "Deterministic final requirements satisfied on the current page.",
+  "finalVerdict": "Nachádzate sa v sekcii Ekonomika (FinWeb). Prvé tri viditeľné nadpisy článkov sú: 1. Analytici očakávajú, že Bank of England zatiaľ úroky nezvýši napriek vojne v Iráne 2. Agroobchod hlási mierne zlepšenie. Záporné saldo v januári kleslo o 2,6 percenta 3. Taiwan prudko zvýšil vývoz dronov, najviac ich smerovalo do Česka",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": true,
+    "finalRequirements": [
+      {
+        "kind": "url_contains",
+        "text": "finweb"
+      },
+      {
+        "kind": "overlay_absent"
+      }
+    ],
+    "fulfilled": [
+      "url_contains(\"finweb\")",
+      "overlay_absent"
+    ],
+    "missing": [],
+    "evidence": [
+      "Satisfied: url_contains(\"finweb\")",
+      "Satisfied: overlay_absent"
+    ],
+    "answerAssessment": null
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "Síce sa už nachádzame v sekcii 'FinWeb', ktorá je ekvivalentom sekcie Ekonomika/Financie a URL obsahuje 'finweb', ale stále je aktívny overlay (modal), ktorý blokuje väčšinu obsahu. Nie je teda garantované, že nadpisy troch článkov boli správne identifikované a sú naozaj prvé a najviditeľnejšie. Podľa zadania overlay musí byť absent. Nadpisy troch najviditeľnejších článkov ešte nie sú korektne vypísané.",
+    "evidence": [
+      "currentSnapshot.pageMeta.modalOpen=true",
+      "currentVisionNotes.overlay.present=true a approxAreaPct=65",
+      "currentVisionNotes.hints: 'Main content is heavily obscured.'",
+      "Nadpisy článkov z textu môžu byť nekompletné alebo nenachádzať sa v poradí podľa reálneho zobrazenia."
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Vision does not contradict deterministic success, but it is not strongly confirmatory either.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4.1",
+    "Difficulty": null,
+    "Run": "a35368af-b12c-4301-a6ce-e0610682c1cc",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 3,
+    "Total_Subtasks": 3,
+    "Partial_Success": 1,
+    "Steps": 5,
+    "Replans": 2,
+    "Duration_seconds": 125.265,
+    "HumanHelp_Verbal": 1,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 56075,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://hnonline.sk/finweb",
+    "Final_Verdict": "Nachádzate sa v sekcii Ekonomika (FinWeb). Prvé tri viditeľné nadpisy článkov sú: 1. Analytici očakávajú, že Bank of England zatiaľ úroky nezvýši napriek vojne v Iráne 2. Agroobchod hlási mierne zlepšenie. Záporné saldo v januári kleslo o 2,6 percenta 3. Taiwan prudko zvýšil vývoz dronov, najviac ich smerovalo do Česka"
+  },
+  "metrics": {
+    "humanHelpRequests": 1,
+    "humanHelpResponses": 1,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 1,
+    "replanCount": 2,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 2
+    },
+    "stepsExecuted": 5,
+    "durationSeconds": 125.265,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 3,
+    "totalSubtasks": 3,
+    "deterministicGateSatisfied": true,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 51751,
+      "completionTokens": 4324,
+      "totalTokens": 56075,
+      "callCount": 19
+    }
+  },
+  "helpRound": 1,
+  "completedSubtasks": [
+    "navigate_economy_section",
+    "wait_dismiss_overlay",
+    "collect_article_headlines"
+  ],
+  "stepsExecuted": 5,
+  "finalUrl": "https://hnonline.sk/finweb",
+  "helpHistory": [
+    "Ignorovať a pokračovať"
+  ],
+  "blockerEvents": [
+    {
+      "ts": 1777233683553,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Súhlasím"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1777233764533,
+      "step": 3,
+      "kind": "safe_fallback",
+      "detail": "Vision sees overlay, trying clickByText(\"POVOLIŤ\").",
+      "reason": "no_action_executed",
+      "pageKind": "unknown"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Súhlasím",
+        "reason": "Dismissing cookie consent overlay by clicking \"Súhlasím\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 1,
+      "action": {
+        "action": "click",
+        "selector": "a[href=\"https://hnonline.sk/finweb\"]",
+        "text": null,
+        "reason": "Na úvodnej stránke je v navigačnom menu sekcia 'Ekonomika a financie'. Ďalším krokom je prejsť do tejto sekcie, aby bolo možné zobraziť a vypísať titulky článkov.",
+        "mayNavigate": true,
+        "expectedEffect": "Načíta sa sekcia Ekonomika a financie (Finweb), zobrazia sa články z tejto oblasti.",
+        "successSignal": "Stránka alebo nadpis sekcie obsahuje Ekonomika, Finweb alebo články s ekonomickou tematikou.",
+        "failureSignal": "Sekcia sa nenačíta alebo sa nezobrazí ekonomická tematika.",
+        "fallbackHint": "Skontroluj dostupnosť sekcie alebo použi vyhľadávanie."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "unknown",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"Súhlasím\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"Súhlasím\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Súhlasím",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    },
+    {
+      "step": 1,
+      "activeSubtaskId": "navigate_economy_section",
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Na úvodnej stránke je v navigačnom menu sekcia 'Ekonomika a financie'. Ďalším krokom je prejsť do tejto sekcie, aby bolo možné zobraziť a vypísať titulky článkov.",
+        "activeSubtaskId": "navigate_economy_section",
+        "markSubtasksDone": [],
+        "progressNote": "Sekcia Ekonomika a financie je dostupná v hlavnom menu.",
+        "needHelp": false,
+        "action": "click",
+        "selector": "a[href=\"https://hnonline.sk/finweb\"]",
+        "text": null,
+        "mayNavigate": true,
+        "expectedEffect": "Načíta sa sekcia Ekonomika a financie (Finweb), zobrazia sa články z tejto oblasti.",
+        "successSignal": "Stránka alebo nadpis sekcie obsahuje Ekonomika, Finweb alebo články s ekonomickou tematikou.",
+        "failureSignal": "Sekcia sa nenačíta alebo sa nezobrazí ekonomická tematika.",
+        "fallbackHint": "Skontroluj dostupnosť sekcie alebo použi vyhľadávanie."
+      }
+    }
+  ]
+}

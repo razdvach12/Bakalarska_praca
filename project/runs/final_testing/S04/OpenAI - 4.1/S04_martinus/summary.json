@@ -1,0 +1,380 @@
+{
+  "runId": "dd048b74-1990-4ebc-947f-d71e9658d334",
+  "url": "https://www.martinus.sk/",
+  "task": "Vyhľadajte v internetovom obchode ľubovoľnú knihu od Franka Herberta a vložte ju do košíka. Potom vyhľadajte ďalšiu knihu (ktora nemusi byt od Franka Herberta) z sekcie sci-fi a tú tiež vložte do košíka. Nakoniec otvorte košík.",
+  "runMeta": {
+    "model": "gpt-4.1",
+    "difficulty": null,
+    "run": "dd048b74-1990-4ebc-947f-d71e9658d334"
+  },
+  "goalSpec": {
+    "goal": "Vyhľadať knihu od Franka Herberta a vložiť ju do košíka, potom hľadať knihu zo sekcie sci-fi a tú tiež pridať, nakoniec otvoriť košík.",
+    "successCriteria": [
+      "Kniha od Franka Herberta je pridaná do košíka.",
+      "Ľubovoľná kniha zo sekcie sci-fi je pridaná do košíka.",
+      "Košík je otvorený a viditeľný.",
+      "Žiadny prekážajúci overlay nezakrýva stránku."
+    ],
+    "stopCondition": "Košík je otvorený a obsahuje aspoň dve knihy podľa zadania.",
+    "assumptions": [
+      "Obchod je prístupný bez nutnosti loginu.",
+      "Overlay je potrebné najprv odmietnuť alebo prijať.",
+      "Vyhľadávanie kníh je možné cez viditeľný vyhľadávací formulár.",
+      "Sci-fi sekcia je dostupná cez hlavné menu alebo vyhľadávanie."
+    ],
+    "constraints": [
+      "Musí byť pridaná presne jedna kniha od Franka Herberta.",
+      "Druhá kniha musí byť zo sekcie sci-fi (autor môže byť ľubovoľný).",
+      "Ak je overlay viditeľný, je interakciu blokujúci – najprv odstrániť."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "Frank Herbert"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "sci-fi"
+      },
+      {
+        "kind": "url_contains",
+        "text": "/cart"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "dismiss_cookie_overlay",
+        "title": "Odmietnuť alebo prijať cookies overlay",
+        "doneWhen": "Overlay cookies nie je viditeľný",
+        "dependsOn": []
+      },
+      {
+        "id": "search_frank_herbert",
+        "title": "Vyhľadať knihu od Franka Herberta",
+        "doneWhen": "Výsledky pre Frank Herbert sú zobrazené",
+        "dependsOn": [
+          "dismiss_cookie_overlay"
+        ]
+      },
+      {
+        "id": "add_frank_herbert_to_cart",
+        "title": "Pridať knihu od Franka Herberta do košíka",
+        "doneWhen": "Košík obsahuje knihu od Franka Herberta",
+        "dependsOn": [
+          "search_frank_herbert"
+        ]
+      },
+      {
+        "id": "navigate_to_scifi_section",
+        "title": "Prejsť do sekcie sci-fi alebo vyhľadať sci-fi knihu",
+        "doneWhen": "Výsledky sci-fi kníh sú zobrazené",
+        "dependsOn": [
+          "add_frank_herbert_to_cart"
+        ]
+      },
+      {
+        "id": "add_scifi_book_to_cart",
+        "title": "Pridať ľubovoľnú sci-fi knihu do košíka",
+        "doneWhen": "Košík obsahuje sci-fi knihu",
+        "dependsOn": [
+          "navigate_to_scifi_section"
+        ]
+      },
+      {
+        "id": "open_cart",
+        "title": "Otvoriť košík a skontrolovať",
+        "doneWhen": "Stránka košíka je otvorená",
+        "dependsOn": [
+          "add_scifi_book_to_cart"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "llm_soft",
+  "stopReason": "LLM completion check confirmed task completion despite missing strict deterministic evidence.",
+  "finalVerdict": "V košíku máte knihu Kolekcia kníh DUNA od Franka Herberta za 149,00 €. Pridaná je aj kniha Zlatý syn (Pierce Brown) zo sekcie sci-fi za 25,97 €. Košík je otvorený a všetky položky sú viditeľné.",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "overlay_absent"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "Frank Herbert"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "sci-fi"
+      },
+      {
+        "kind": "url_contains",
+        "text": "/cart"
+      }
+    ],
+    "fulfilled": [
+      "overlay_absent",
+      "cart_contains_product(Frank Herbert)",
+      "url_contains(\"/cart\")"
+    ],
+    "missing": [
+      "cart_contains_product(sci-fi)"
+    ],
+    "evidence": [
+      "Satisfied: overlay_absent",
+      "Satisfied: cart_contains_product(Frank Herbert)",
+      "Satisfied: url_contains(\"/cart\")"
+    ],
+    "answerAssessment": null
+  },
+  "completionCheck": {
+    "done": true,
+    "reason": "Košík je otvorený a viditeľný, obsahuje dve knihy podľa zadania: „Kolekcia kníh DUNA Frank Herbert“ (autora Frank Herbert) a „Zlatý syn“ (táto kniha je zo žánru sci-fi, autor Pierce Brown). Nezostáva žiadny povinný krok. Overlay nie je prekážajúci. URL obsahuje '/cart', takže sme na stránke košíka.",
+    "evidence": [
+      "URL je https://www.martinus.sk/cart, čo je stránka košíka.",
+      "V košíku je položka 'Kolekcia kníh DUNA Frank Herbert' (od Franka Herberta).",
+      "V košíku je aj kniha 'Zlatý syn', podľa autora a predchádzajúcich znalostí patrí do sci-fi.",
+      "Počet položiek v košíku je 2.",
+      "Nezobrazuje sa žiadny blokujúci overlay podľa popisu a vizuálnych poznámok.",
+      "Stránka je označená ako typ 'cart', viditeľný je nadpis 'Váš košík'."
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4.1",
+    "Difficulty": null,
+    "Run": "dd048b74-1990-4ebc-947f-d71e9658d334",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 6,
+    "Total_Subtasks": 6,
+    "Partial_Success": 1,
+    "Steps": 18,
+    "Replans": 7,
+    "Duration_seconds": 282.811,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 241851,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://www.martinus.sk/cart",
+    "Final_Verdict": "V košíku máte knihu Kolekcia kníh DUNA od Franka Herberta za 149,00 €. Pridaná je aj kniha Zlatý syn (Pierce Brown) zo sekcie sci-fi za 25,97 €. Košík je otvorený a všetky položky sú viditeľné."
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 12,
+    "replanCount": 7,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 2,
+      "click_text_missing": 0,
+      "no_action_executed": 5
+    },
+    "stepsExecuted": 18,
+    "durationSeconds": 282.811,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 6,
+    "totalSubtasks": 6,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": true,
+    "tokenUsage": {
+      "promptTokens": 231036,
+      "completionTokens": 10815,
+      "totalTokens": 241851,
+      "callCount": 54
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "dismiss_cookie_overlay",
+    "search_frank_herbert",
+    "add_frank_herbert_to_cart",
+    "navigate_to_scifi_section",
+    "add_scifi_book_to_cart",
+    "open_cart"
+  ],
+  "stepsExecuted": 18,
+  "finalUrl": "https://www.martinus.sk/cart",
+  "helpHistory": [],
+  "blockerEvents": [
+    {
+      "ts": 1777374108997,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Povoliť všetko",
+      "attempt": 1
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1777374154848,
+      "step": 3,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "no_action_executed",
+      "pageKind": "product_detail"
+    },
+    {
+      "ts": 1777374187739,
+      "step": 6,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "execution_error",
+      "pageKind": "product_detail"
+    },
+    {
+      "ts": 1777374231016,
+      "step": 10,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "execution_error",
+      "pageKind": "cart"
+    },
+    {
+      "ts": 1777374280146,
+      "step": 12,
+      "kind": "selector_safety",
+      "detail": "Selector \"div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)\" is not grounded in the current snapshot.",
+      "action": {
+        "action": "click",
+        "selector": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > button:nth-of-type(1)",
+        "text": null,
+        "reason": "Klik na ikonu košíka pri knihe 'Zlatý syn', čím sa kniha pridá do košíka.",
+        "mayNavigate": false,
+        "expectedEffect": "Kniha 'Zlatý syn' bude pridaná do košíka.",
+        "successSignal": "Signalizácia, že kniha bola pridaná do košíka (napr. zmena ikony, notifikácia, zvýšený počet položiek v košíku).",
+        "failureSignal": "Žiadna spätná väzba o pridaní.",
+        "fallbackHint": "Ak je viac tlačidiel košíka, zvoliť dostupnú papierovú verziu alebo vybrať inú knihu."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1777374334622,
+      "step": 15,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "no_action_executed",
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povoliť všetko",
+        "reason": "Dismissing cookie consent overlay by clicking \"Povoliť všetko\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 11,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Sci-fi",
+        "reason": "Kniha od Franka Herberta je už v košíku. Ďalším krokom je vyhľadať alebo nájsť ľubovoľnú knihu zo sekcie sci-fi a pridať ju do košíka.",
+        "mayNavigate": true,
+        "expectedEffect": "Prejde sa do sekcie sci-fi a zobrazia sa sci-fi knihy.",
+        "successSignal": "Výsledky sci-fi kníh sú zobrazené.",
+        "failureSignal": "Sekcia sci-fi sa neotvorí alebo sa nezobrazia knihy.",
+        "fallbackHint": "Použijeme hlavné menu, ak je k dispozícii odkaz na sci-fi, alebo môžeme vyhľadať sci-fi knihy vyhľadávačom."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"Povoliť všetko\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"Povoliť všetko\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Povoliť všetko",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    },
+    {
+      "step": 11,
+      "activeSubtaskId": "navigate_to_scifi_section",
+      "completedSubtasks": [
+        "dismiss_cookie_overlay",
+        "search_frank_herbert",
+        "add_frank_herbert_to_cart"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Kniha od Franka Herberta je už v košíku. Ďalším krokom je vyhľadať alebo nájsť ľubovoľnú knihu zo sekcie sci-fi a pridať ju do košíka.",
+        "activeSubtaskId": "navigate_to_scifi_section",
+        "markSubtasksDone": [],
+        "progressNote": "Frank Herbert kniha už pridaná. Teraz treba vyhľadať sci-fi knihu.",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Sci-fi",
+        "mayNavigate": true,
+        "expectedEffect": "Prejde sa do sekcie sci-fi a zobrazia sa sci-fi knihy.",
+        "successSignal": "Výsledky sci-fi kníh sú zobrazené.",
+        "failureSignal": "Sekcia sci-fi sa neotvorí alebo sa nezobrazia knihy.",
+        "fallbackHint": "Použijeme hlavné menu, ak je k dispozícii odkaz na sci-fi, alebo môžeme vyhľadať sci-fi knihy vyhľadávačom."
+      }
+    }
+  ]
+}

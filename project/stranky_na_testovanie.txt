@@ -1,0 +1,77 @@
+https://the-internet.herokuapp.com/checkboxes
+http://the-internet.herokuapp.com/
+https://uitestingplayground.com/progressbar
+https://www.saucedemo.com/
+http://uitestingplayground.com/sampleapp
+https://the-internet.herokuapp.com/login
+
+TASK 1
+
+URL:
+https://the-internet.herokuapp.com
+
+TASK:
+Perform the following steps: 
+1. Click the 'Login' button. 
+2. Wait for the login page or popup to load. 
+3. When you enter link https://the-internet.herokuapp.com/login, locate the username and password fields. 
+4. Fill them in and click the submit button.
+
+MAX_STEPS: 
+25
+=================================================================================================================================================================================================
+EXAMPLE TASKS:
+
+1 Login + simple navigation (Swag Labs) - DONE
+
+https://www.saucedemo.com/,
+Ahoj prihlas sa na tejto stranke. Niekde by si tam mohol najst prihlasovacie meno a aj heslo. Potom najdi na stranke product ktory sa vola "Sauce Labs Backpack" a otvor si detail produktu. To je vsetko.
+
+2 Login + add to cart + checkout (Swag Labs) - NEVIE SA DAT DO CHECKUOT
+
+Go to https://www.saucedemo.com/,
+log in with username "standard_user" and password "secret_sauce".
+Then add any two products to the cart, open the cart page,
+and continue to the checkout step where first name, last name and postal code are required.
+Fill the checkout form with:
+first name "David", last name "Vach", postal code "81101".
+Stop when the overview page is visible.
+====================================================================================================================================================================
+EASY TASKS:
+
+1
+Open https://www.saucedemo.com/
+Do not log in. Just confirm that the login page is visible.
+Stop when you can see the username and password fields.
+
+2
+Go to https://www.saucedemo.com/
+Log in with username "standard_user" and password "secret_sauce".
+Stop when the products page is visible (inventory).
+
+3
+Open https://www.saucedemo.com/
+Log in with username "standard_user" and password "secret_sauce".
+On the products page, open the product detail for "Sauce Labs Backpack".
+Stop when the product detail page is visible.
+
+4
+Open https://www.saucedemo.com/
+Log in with username "standard_user" and password "secret_sauce".
+Add "Sauce Labs Backpack" to the cart.
+Stop when the cart badge shows "1".
+
+5
+Open https://www.saucedemo.com/
+Log in with username "standard_user" and password "secret_sauce".
+Add any one product to the cart.
+Open the cart page.
+Stop when the cart page is visible (URL contains /cart.html).
+
+6 HARD HARD
+Open https://automationexercise.com/
+Click "Products".
+Use the search to search for "dress".
+Open any product that contains "Dress" in its name.
+Stop when the product detail page is open.
+

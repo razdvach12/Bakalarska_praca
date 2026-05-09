@@ -1,0 +1,484 @@
+{
+  "runId": "6291afee-c54e-4606-ba2c-344cb537ed1d",
+  "url": "https://www.knihyprekazdeho.sk/",
+  "task": "Vyhľadajte v internetovom obchode ľubovoľnú knihu od Franka Herberta a vložte ju do košíka. Potom vyhľadajte ďalšiu knihu (ktora nemusi byt od Franka Herberta) z sekcie sci-fi a tú tiež vložte do košíka. Nakoniec otvorte košík.",
+  "runMeta": {
+    "model": "gpt-4o-mini",
+    "difficulty": null,
+    "run": "6291afee-c54e-4606-ba2c-344cb537ed1d"
+  },
+  "goalSpec": {
+    "goal": "Search for a Frank Herbert book, add it to the cart, search for another sci-fi book, add that to the cart, and then open the cart.",
+    "successCriteria": [
+      "A book by Frank Herbert is added to the cart.",
+      "An additional sci-fi book is added to the cart.",
+      "The cart displays both books."
+    ],
+    "stopCondition": "The cart is opened.",
+    "assumptions": [
+      "The website supports search functionality.",
+      "Books can be added to the cart."
+    ],
+    "constraints": [
+      "Both books must be available for purchase."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "field_filled",
+        "label": "searchcb"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "Frank Herbert"
+      },
+      {
+        "kind": "field_filled",
+        "label": "searchcb"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "sci-fi book"
+      },
+      {
+        "kind": "text_visible",
+        "text": "košík"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "search_frank_herbert",
+        "title": "Search for a book by Frank Herbert",
+        "doneWhen": "A book by Frank Herbert is selected.",
+        "dependsOn": []
+      },
+      {
+        "id": "add_frank_herbert_to_cart",
+        "title": "Add the selected Frank Herbert book to the cart",
+        "doneWhen": "The cart reflects the addition of the Frank Herbert book.",
+        "dependsOn": [
+          "search_frank_herbert"
+        ]
+      },
+      {
+        "id": "search_sci_fi_book",
+        "title": "Search for a sci-fi book",
+        "doneWhen": "A sci-fi book is selected.",
+        "dependsOn": []
+      },
+      {
+        "id": "add_sci_fi_book_to_cart",
+        "title": "Add the selected sci-fi book to the cart",
+        "doneWhen": "The cart reflects the addition of the sci-fi book.",
+        "dependsOn": [
+          "search_sci_fi_book"
+        ]
+      },
+      {
+        "id": "open_cart",
+        "title": "Open the cart",
+        "doneWhen": "The cart page is displayed with both books.",
+        "dependsOn": [
+          "add_frank_herbert_to_cart",
+          "add_sci_fi_book_to_cart"
+        ]
+      }
+    ]
+  },
+  "success": true,
+  "successMode": "llm_soft",
+  "stopReason": "LLM completion check confirmed task completion despite missing strict deterministic evidence.",
+  "finalVerdict": "Do košíka bola pridaná kniha \"Dreamer of Dune: The Biography of Frank Herbert\" za cenu 20,85 € a kolekcia kníh DUNA za 141,55 €. Celková cena v košíku je 162,40 €. Môžete prejsť do pokladne alebo sa vrátiť do obchodu.",
+  "failureClassification": "completed",
+  "failureSubtype": null,
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "field_filled",
+        "label": "searchcb"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "Frank Herbert"
+      },
+      {
+        "kind": "field_filled",
+        "label": "searchcb"
+      },
+      {
+        "kind": "cart_contains_product",
+        "product": "sci-fi book"
+      },
+      {
+        "kind": "text_visible",
+        "text": "košík"
+      }
+    ],
+    "fulfilled": [
+      "cart_contains_product(Frank Herbert)",
+      "text_visible(\"košík\")"
+    ],
+    "missing": [
+      "field_filled(searchcb)",
+      "field_filled(searchcb)",
+      "cart_contains_product(sci-fi book)"
+    ],
+    "evidence": [
+      "Satisfied: cart_contains_product(Frank Herbert)",
+      "Satisfied: text_visible(\"košík\")"
+    ],
+    "answerAssessment": null
+  },
+  "completionCheck": {
+    "done": true,
+    "reason": "The cart is opened and contains both the Frank Herbert book and an additional sci-fi book.",
+    "evidence": [
+      "The cart page displays 'Dreamer of Dune: The Biography of Frank Herbert' and other items.",
+      "The total in the cart reflects multiple items."
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4o-mini",
+    "Difficulty": null,
+    "Run": "6291afee-c54e-4606-ba2c-344cb537ed1d",
+    "Success 0/1": 1,
+    "Completed_Subtasks": 5,
+    "Total_Subtasks": 5,
+    "Partial_Success": 1,
+    "Steps": 8,
+    "Replans": 0,
+    "Duration_seconds": 168.397,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 539608,
+    "Failure_Type": "completed",
+    "Failure_Subtype": null,
+    "Final_URL": "https://www.knihyprekazdeho.sk/vysledky-vyhladavania?searchterm=Frank%20Herbert&lb.f%5B%5D=author%3AFrank%20Herbert",
+    "Final_Verdict": "Do košíka bola pridaná kniha \"Dreamer of Dune: The Biography of Frank Herbert\" za cenu 20,85 € a kolekcia kníh DUNA za 141,55 €. Celková cena v košíku je 162,40 €. Môžete prejsť do pokladne alebo sa vrátiť do obchodu."
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 1,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 8,
+    "durationSeconds": 168.397,
+    "partialSuccess": 1,
+    "completedSubtasksCount": 5,
+    "totalSubtasks": 5,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": true,
+    "tokenUsage": {
+      "promptTokens": 536727,
+      "completionTokens": 2881,
+      "totalTokens": 539608,
+      "callCount": 22
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "search_frank_herbert",
+    "add_frank_herbert_to_cart",
+    "search_sci_fi_book",
+    "add_sci_fi_book_to_cart",
+    "open_cart"
+  ],
+  "stepsExecuted": 8,
+  "finalUrl": "https://www.knihyprekazdeho.sk/vysledky-vyhladavania?searchterm=Frank%20Herbert&lb.f%5B%5D=author%3AFrank%20Herbert",
+  "helpHistory": [],
+  "blockerEvents": [
+    {
+      "ts": 1776085523383,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "SÚHLASÍM SO VŠETKÝMI"
+    }
+  ],
+  "recoveryTransitions": [],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "SÚHLASÍM SO VŠETKÝMI",
+        "reason": "Dismissing cookie consent overlay by clicking \"SÚHLASÍM SO VŠETKÝMI\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 1,
+      "action": {
+        "action": "type",
+        "selector": "#searchcb",
+        "text": "Frank Herbert",
+        "reason": "Searching for a Frank Herbert book to add to the cart.",
+        "expectedEffect": "The field Frank Herbert contains the requested value.",
+        "successSignal": "The input value for Frank Herbert changed.",
+        "failureSignal": "The input value for Frank Herbert stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 2,
+      "action": {
+        "action": "clickByText",
+        "selector": "pridať do košíka",
+        "text": "pridať do košíka",
+        "reason": "Waiting to add Frank Herbert's book to the cart.",
+        "expectedEffect": "The visible UI changes after clicking pridať do košíka.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "action": "type",
+        "selector": "#searchcb",
+        "text": "sci-fi",
+        "reason": "A book by Frank Herbert has been added to the cart, but the next steps to search for another sci-fi book and open the cart need to be executed.",
+        "expectedEffect": "The field sci-fi contains the requested value.",
+        "successSignal": "The input value for sci-fi changed.",
+        "failureSignal": "The input value for sci-fi stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The target input contains the expected value after typing."
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "action": "clickByText",
+        "selector": "div:nth-of-type(2) > div:nth-of-type(1) > ul:nth-of-type(1) > li:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "text": "Frank Herbert (27)",
+        "reason": "Need to add a Frank Herbert book to the cart and then search for another sci-fi book.",
+        "mayNavigate": false,
+        "expectedEffect": "Select a Frank Herbert book from the list.",
+        "successSignal": "A Frank Herbert book is selected.",
+        "failureSignal": "Unable to select a Frank Herbert book.",
+        "fallbackHint": "Try selecting a different Frank Herbert book if this one doesn't work."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    },
+    {
+      "step": 5,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "pridať do košíka",
+        "reason": "Need to select a book by Frank Herbert",
+        "mayNavigate": true,
+        "expectedEffect": "The selected Frank Herbert book will be added to the cart.",
+        "successSignal": "A new page state, URL, title, or later workflow stage becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"SÚHLASÍM SO VŠETKÝMI\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"SÚHLASÍM SO VŠETKÝMI\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "SÚHLASÍM SO VŠETKÝMI",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    },
+    {
+      "step": 1,
+      "activeSubtaskId": "search_frank_herbert",
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Searching for a Frank Herbert book to add to the cart.",
+        "activeSubtaskId": "search_frank_herbert",
+        "markSubtasksDone": [],
+        "progressNote": "Typing 'Frank Herbert' into the search bar.",
+        "needHelp": false,
+        "action": "type",
+        "selector": "#searchcb",
+        "text": "Frank Herbert"
+      }
+    },
+    {
+      "step": 2,
+      "activeSubtaskId": "add_frank_herbert_to_cart",
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Waiting to add Frank Herbert's book to the cart.",
+        "activeSubtaskId": "add_frank_herbert_to_cart",
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": "pridať do košíka",
+        "text": "pridať do košíka"
+      }
+    },
+    {
+      "step": 3,
+      "activeSubtaskId": "search_sci_fi_book",
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "A book by Frank Herbert has been added to the cart, but the next steps to search for another sci-fi book and open the cart need to be executed.",
+        "activeSubtaskId": "search_sci_fi_book",
+        "markSubtasksDone": [],
+        "progressNote": "Typing 'sci-fi' to search for another sci-fi book.",
+        "needHelp": false,
+        "action": "type",
+        "selector": "#searchcb",
+        "text": "sci-fi"
+      }
+    },
+    {
+      "step": 4,
+      "activeSubtaskId": "add_frank_herbert_to_cart",
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Need to add a Frank Herbert book to the cart and then search for another sci-fi book.",
+        "activeSubtaskId": "add_frank_herbert_to_cart",
+        "markSubtasksDone": [],
+        "progressNote": "Typed 'sci-fi' in the search box but have not added any books to the cart yet.",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": "div:nth-of-type(2) > div:nth-of-type(1) > ul:nth-of-type(1) > li:nth-of-type(1) > label:nth-of-type(1) > input:nth-of-type(1)",
+        "text": "Frank Herbert (27)",
+        "mayNavigate": false,
+        "expectedEffect": "Select a Frank Herbert book from the list.",
+        "successSignal": "A Frank Herbert book is selected.",
+        "failureSignal": "Unable to select a Frank Herbert book.",
+        "fallbackHint": "Try selecting a different Frank Herbert book if this one doesn't work."
+      }
+    },
+    {
+      "step": 5,
+      "activeSubtaskId": "search_frank_herbert",
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Need to select a book by Frank Herbert",
+        "activeSubtaskId": "search_frank_herbert",
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "pridať do košíka",
+        "mayNavigate": true,
+        "expectedEffect": "The selected Frank Herbert book will be added to the cart."
+      }
+    }
+  ]
+}

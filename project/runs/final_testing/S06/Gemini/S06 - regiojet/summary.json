@@ -1,0 +1,349 @@
+{
+  "runId": "ed9c76f2-6105-4d31-a1d1-75cc4d70e863",
+  "url": "https://www.regiojet.sk/",
+  "task": "Na stranke mi VYHLADAJ spojenie z Prahy do Bratislavy. Den chcem aby bol 18.4. Na stanici viem byť 18:30 Vypíš prvé spojenie, ktoré stíham a napíš Čas odchádzam a prichádzam.",
+  "runMeta": {
+    "model": "gemini-2.5-flash",
+    "difficulty": null,
+    "run": "ed9c76f2-6105-4d31-a1d1-75cc4d70e863"
+  },
+  "goalSpec": {
+    "goal": "Na stránke vyhľadaj spojenie z Prahy do Bratislavy na 18. apríla 2026, s odchodom po 18:30. Vypíš čas odchodu a príchodu prvého spojenia, ktoré stíham.",
+    "successCriteria": [
+      "Našla som spojenie z Prahy do Bratislavy na požadovaný dátum a čas.",
+      "Boli vypísané časy odchodu a príchodu prvého vhodného spojenia."
+    ],
+    "stopCondition": "The first available connection after 18:30 from Prague to Bratislava on 2026-04-18 is found and its departure and arrival times are extracted.",
+    "assumptions": [
+      "The search form is on the main page.",
+      "The date picker allows selecting future dates.",
+      "The search results will include departure and arrival times."
+    ],
+    "constraints": [
+      "Departing from 'Praha'",
+      "Arriving at 'Bratislava'",
+      "Departure date: 18.04.2026",
+      "Departure time: after 18:30"
+    ],
+    "finalRequirements": [
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "accept_cookies",
+        "title": "Prijať súbory cookie, ak sú prítomné.",
+        "doneWhen": "Overlay s cookies už nie je viditeľný.",
+        "dependsOn": []
+      },
+      {
+        "id": "fill_origin",
+        "title": "Vyplniť pole 'Odkiaľ' s hodnotou 'Praha'.",
+        "doneWhen": "Pole 'Odkiaľ' obsahuje text 'Praha'.",
+        "dependsOn": [
+          "accept_cookies"
+        ]
+      },
+      {
+        "id": "fill_destination",
+        "title": "Vyplniť pole 'Kam' s hodnotou 'Bratislava'.",
+        "doneWhen": "Pole 'Kam' obsahuje text 'Bratislava'.",
+        "dependsOn": [
+          "fill_origin"
+        ]
+      },
+      {
+        "id": "select_date",
+        "title": "Vybrať dátum odchodu na 18. apríla 2026.",
+        "doneWhen": "Dátum odchodu je nastavený na '18.4.' alebo '18. apríla 2026'.",
+        "dependsOn": [
+          "fill_destination"
+        ]
+      },
+      {
+        "id": "search_connections",
+        "title": "Kliknúť na tlačidlo 'Vyhľadať'.",
+        "doneWhen": "Stránka zobrazuje výsledky vyhľadávania spojení.",
+        "dependsOn": [
+          "select_date"
+        ]
+      },
+      {
+        "id": "find_first_suitable_connection",
+        "title": "Nájsť prvé spojenie s odchodom po 18:30 a vypísať jeho časy odchodu a príchodu.",
+        "doneWhen": "Čas odchodu a príchodu prvého vhodného spojenia (po 18:30) sú zistené a zapísané.",
+        "dependsOn": [
+          "search_connections"
+        ]
+      }
+    ]
+  },
+  "success": false,
+  "successMode": null,
+  "stopReason": "terminated_by_user",
+  "finalVerdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user",
+  "error": "terminated_by_user",
+  "failureClassification": "user_control",
+  "failureSubtype": "terminated_by_user",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "fulfilled": [],
+    "missing": [
+      "answer_visible"
+    ],
+    "evidence": [],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": false,
+      "answer": "",
+      "evidence": [],
+      "missing": [
+        "No high-confidence visible answer detected on the current page."
+      ],
+      "confidence": "low"
+    }
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "No connection departing after 18:30 on April 18, 2026, is visible on the current page. The latest connection shown for this date departs at 17:01. There might be more connections available by clicking 'Ďalšie spoje'.",
+    "evidence": []
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gemini-2.5-flash",
+    "Difficulty": null,
+    "Run": "ed9c76f2-6105-4d31-a1d1-75cc4d70e863",
+    "Success 0/1": 0,
+    "Completed_Subtasks": 3,
+    "Total_Subtasks": 6,
+    "Partial_Success": 0.5,
+    "Steps": 14,
+    "Replans": 0,
+    "Duration_seconds": 444.386,
+    "HumanHelp_Verbal": 0,
+    "HumanHelp_Actions": 0,
+    "Tokens_Total": 271626,
+    "Failure_Type": "user_control",
+    "Failure_Subtype": "terminated_by_user",
+    "Final_URL": "https://regiojet.sk/?departureDate=2026-04-18&tariffs=REGULAR&fromLocationId=372825000&fromLocationType=STATION&toLocationId=1841058000&toLocationType=STATION",
+    "Final_Verdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user"
+  },
+  "metrics": {
+    "humanHelpRequests": 0,
+    "humanHelpResponses": 0,
+    "humanHelpActions": 0,
+    "selfHealAttempts": 8,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 14,
+    "durationSeconds": 444.386,
+    "partialSuccess": 0.5,
+    "completedSubtasksCount": 3,
+    "totalSubtasks": 6,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 239205,
+      "completionTokens": 8493,
+      "totalTokens": 271626,
+      "callCount": 40
+    }
+  },
+  "helpRound": 0,
+  "completedSubtasks": [
+    "accept_cookies",
+    "fill_origin",
+    "fill_destination"
+  ],
+  "stepsExecuted": 14,
+  "finalUrl": "https://regiojet.sk/?departureDate=2026-04-18&tariffs=REGULAR&fromLocationId=372825000&fromLocationType=STATION&toLocationId=1841058000&toLocationType=STATION",
+  "helpHistory": [],
+  "blockerEvents": [
+    {
+      "ts": 1776268251207,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "PRIJAŤ VŠETKY"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1776268327032,
+      "step": 1,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#react-select-2-input",
+        "text": "Praha",
+        "reason": "Filling the origin field as per the task.",
+        "expectedEffect": "Input field 'Odkiaľ' should be filled with 'Praha'.",
+        "successSignal": "The input with ariaLabel 'Odkiaľ' contains 'Praha'.",
+        "failureSignal": "No visible element containing 'Praha' appeared after typing, or the input value did not change.",
+        "fallbackHint": "Try clicking the input field first if typing doesn't work."
+      },
+      "pageKind": "unknown"
+    },
+    {
+      "ts": 1776268461491,
+      "step": 6,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "execution_error",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776268536516,
+      "step": 10,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "execution_error",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776268603536,
+      "step": 12,
+      "kind": "safe_fallback",
+      "detail": "Trying generic expand action before human help.",
+      "reason": "execution_error",
+      "pageKind": "unknown"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "PRIJAŤ VŠETKY",
+        "reason": "Dismissing cookie consent overlay by clicking \"PRIJAŤ VŠETKY\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 1,
+      "action": {
+        "action": "type",
+        "selector": "#react-select-2-input",
+        "text": "Praha",
+        "reason": "Filling the origin field as per the task.",
+        "expectedEffect": "Input field 'Odkiaľ' should be filled with 'Praha'.",
+        "successSignal": "The input with ariaLabel 'Odkiaľ' contains 'Praha'.",
+        "failureSignal": "No visible element containing 'Praha' appeared after typing, or the input value did not change.",
+        "fallbackHint": "Try clicking the input field first if typing doesn't work."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 2,
+      "action": {
+        "action": "click",
+        "selector": "a[href=\"https://regiojet.sk/?toLocationType=STATION&toLocationId=1841058000&fromLocationType=STATION&departureDate=2022-10-30&fromLocationId=372825000&fromLocationName=&toLocationName=\"]",
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking a[href=\"https://regiojet.sk/?toLocationType=STATION&toLocationId=1841058000&fromLocationType=STATION&departureDate=2022-10-30&fromLocationId=372825000&fromLocationName=&toLocationName=\"].",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 0,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"PRIJAŤ VŠETKY\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"PRIJAŤ VŠETKY\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "PRIJAŤ VŠETKY",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    },
+    {
+      "step": 2,
+      "activeSubtaskId": null,
+      "completedSubtasks": [
+        "accept_cookies"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "product_detail",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "click",
+        "selector": "a[href=\"https://regiojet.sk/?toLocationType=STATION&toLocationId=1841058000&fromLocationType=STATION&departureDate=2022-10-30&fromLocationId=372825000&fromLocationName=&toLocationName=\"]",
+        "text": null
+      }
+    }
+  ]
+}

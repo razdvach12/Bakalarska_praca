@@ -1,0 +1,281 @@
+{
+  "runId": "4524e4ec-3cbf-4b5b-8d6e-8b03ecc7c33a",
+  "url": "https://reality.sk/",
+  "task": "Na realitnom portali nastav filtre: typ \"2-izbovy byt\", lokalita \"Bratislava – Staré Mesto\", typ ponuky \"prenajom\", maximalna cena 800 EUR mesacne. Zorad vysledky od najnovsich. Vypis nazov, cenu a m2 prvych 3 vysledkov",
+  "runMeta": {
+    "model": "gemini-2.5-flash",
+    "difficulty": null,
+    "run": "4524e4ec-3cbf-4b5b-8d6e-8b03ecc7c33a"
+  },
+  "goalSpec": null,
+  "success": false,
+  "successMode": null,
+  "stopReason": "",
+  "finalVerdict": "Beh sa skoncil bez finalnej odpovede.",
+  "error": "Unexpected token 'I', \"It seems t\"... is not valid JSON",
+  "failureClassification": "recovery_exhausted",
+  "failureSubtype": "safe_fallback",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [],
+    "fulfilled": [],
+    "missing": [],
+    "evidence": [],
+    "answerAssessment": null
+  },
+  "completionCheck": null,
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gemini-2.5-flash",
+    "Difficulty": null,
+    "Run": "4524e4ec-3cbf-4b5b-8d6e-8b03ecc7c33a",
+    "Success 0/1": 0,
+    "Completed_Subtasks": 0,
+    "Total_Subtasks": 0,
+    "Partial_Success": 0,
+    "Steps": 10,
+    "Replans": 2,
+    "Duration_seconds": 382.946,
+    "HumanHelp_Verbal": 1,
+    "HumanHelp_Actions": 1,
+    "Tokens_Total": 340953,
+    "Failure_Type": "recovery_exhausted",
+    "Failure_Subtype": "safe_fallback",
+    "Final_URL": "https://www.reality.sk/byty/2-izbovy-byt/bratislava/",
+    "Final_Verdict": "Beh sa skoncil bez finalnej odpovede."
+  },
+  "metrics": {
+    "humanHelpRequests": 1,
+    "humanHelpResponses": 1,
+    "humanHelpActions": 1,
+    "selfHealAttempts": 5,
+    "replanCount": 2,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 2
+    },
+    "stepsExecuted": 10,
+    "durationSeconds": 382.946,
+    "partialSuccess": 0,
+    "completedSubtasksCount": 0,
+    "totalSubtasks": 0,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 306601,
+      "completionTokens": 5837,
+      "totalTokens": 340953,
+      "callCount": 26
+    }
+  },
+  "helpRound": 1,
+  "completedSubtasks": [],
+  "stepsExecuted": 10,
+  "finalUrl": "https://www.reality.sk/byty/2-izbovy-byt/bratislava/",
+  "helpHistory": [
+    "uz mas vsetky stlac vyhladavanie a pokracuj dalej"
+  ],
+  "blockerEvents": [],
+  "recoveryTransitions": [
+    {
+      "ts": 1776278011911,
+      "step": 0,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "candidateId": "c125",
+        "selector": "#react-select-2-input",
+        "text": "Bratislava – Staré Mesto",
+        "targetLabel": null,
+        "reason": "Typing the specified location 'Bratislava – Staré Mesto' into the location input.",
+        "expectedEffect": "Location input field will contain 'Bratislava – Staré Mesto'.",
+        "successSignal": "The input field 'c125' will have the value 'Bratislava – Staré Mesto'.",
+        "failureSignal": "Input field is not found or cannot be typed into.",
+        "fallbackHint": "Check if the input field is present and visible. If not, look for an alternative location input or a search bar."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776278040890,
+      "step": 2,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "no_action_executed",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776278131843,
+      "step": 4,
+      "kind": "selector_safety",
+      "detail": "clickByText requires visible text.",
+      "action": {
+        "action": "clickByText",
+        "selector": "Druh",
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking Druh.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776278143794,
+      "step": 5,
+      "kind": "selector_safety",
+      "detail": "Selector \"div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1)\" is not grounded in the current snapshot.",
+      "action": {
+        "action": "click",
+        "selector": "div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1)",
+        "text": null,
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1).",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776278143795,
+      "step": 5,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "selector_safety",
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 0,
+      "action": {
+        "action": "type",
+        "candidateId": "c125",
+        "selector": "#react-select-2-input",
+        "text": "Bratislava – Staré Mesto",
+        "targetLabel": null,
+        "reason": "Typing the specified location 'Bratislava – Staré Mesto' into the location input.",
+        "expectedEffect": "Location input field will contain 'Bratislava – Staré Mesto'.",
+        "successSignal": "The input field 'c125' will have the value 'Bratislava – Staré Mesto'.",
+        "failureSignal": "Input field is not found or cannot be typed into.",
+        "fallbackHint": "Check if the input field is present and visible. If not, look for an alternative location input or a search bar."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "action": "clickByText",
+        "candidateId": null,
+        "selector": null,
+        "text": "Všetky transakcie",
+        "targetLabel": null,
+        "reason": "Clicking on the 'Transakcia' dropdown to select 'prenajom'.",
+        "mayNavigate": false,
+        "expectedEffect": "A dropdown menu with transaction types should appear.",
+        "successSignal": "The dropdown menu with options like 'Predaj', 'Prenájom' is visible.",
+        "failureSignal": "The dropdown menu did not appear or an error occurred.",
+        "fallbackHint": "Look for a different clickable element that opens the transaction type dropdown."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "action": "clickByText",
+        "candidateId": null,
+        "selector": null,
+        "text": "Prenájom",
+        "targetLabel": null,
+        "reason": "Selecting 'prenajom' from the 'Transakcia' dropdown.",
+        "mayNavigate": false,
+        "expectedEffect": "The 'Transakcia' dropdown should update to 'Prenájom'.",
+        "successSignal": "The text 'Prenájom' is visible in the 'Transakcia' dropdown.",
+        "failureSignal": "The option 'Prenájom' was not found or clicked.",
+        "fallbackHint": "Try to scroll down the dropdown or look for alternative wording for 'rent'."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 8,
+      "action": {
+        "action": "click",
+        "selector": "a[href=\"/byty/2-izbovy-byt/bratislava/\"]",
+        "text": null,
+        "reason": "Applied human guidance to open \"2 izbový byt Bratislava\" from the current page.",
+        "mayNavigate": true,
+        "expectedEffect": "The page advances after clicking a[href=\"/byty/2-izbovy-byt/bratislava/\"].",
+        "successSignal": "A new page state, URL, title, or later workflow stage becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 8,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "product_detail",
+      "decisionSource": "human_guided",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Applied human guidance to open \"2 izbový byt Bratislava\" from the current page.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Klikam na detail podla rady od pouzivatela: 2 izbový byt Bratislava.",
+        "needHelp": false,
+        "action": "click",
+        "selector": "a[href=\"/byty/2-izbovy-byt/bratislava/\"]",
+        "text": null,
+        "mayNavigate": true
+      }
+    }
+  ]
+}

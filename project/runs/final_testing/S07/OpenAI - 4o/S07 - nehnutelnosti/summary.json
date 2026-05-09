@@ -1,0 +1,492 @@
+{
+  "runId": "438cb1f6-7803-49fd-9943-bd35d2fc823b",
+  "url": "https://www.nehnutelnosti.sk/",
+  "task": "Na realitnom portali nastav filtre: typ \"2-izbovy byt\", lokalita \"Bratislava – Staré Mesto\", typ ponuky \"prenajom\", maximalna cena 800 EUR mesacne. Zorad vysledky od najnovsich. Vypis nazov, cenu a m2 prvych 3 vysledkov.",
+  "runMeta": {
+    "model": "gpt-4o-mini",
+    "difficulty": null,
+    "run": "438cb1f6-7803-49fd-9943-bd35d2fc823b"
+  },
+  "goalSpec": {
+    "goal": "Nastaviť filtre na realitnom portáli a získať 3 najnovšie výsledky.",
+    "successCriteria": [
+      "Filtre sú nastavené na typ '2-izbový byt', lokalitu 'Bratislava – Staré Mesto', typ ponuky 'prenájom' a maximálnu cenu 800 EUR mesačne.",
+      "Výsledky sú zoradené od najnovších.",
+      "Zobrazené sú názov, cena a m² prvých 3 výsledkov."
+    ],
+    "stopCondition": "Zobrazené prvé 3 výsledky podľa nastavených filtrov.",
+    "assumptions": [
+      "Portál je funkčný a dostupný.",
+      "Filtre sú dostupné na stránke."
+    ],
+    "constraints": [
+      "Maximálna cena 800 EUR mesačne."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "text_visible",
+        "text": "Bratislava – Staré Mesto"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Vyberte mesto, obec, okres..."
+      },
+      {
+        "kind": "field_filled",
+        "label": "Vyberte typ"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Vyberte typ nehnuteľnosti"
+      },
+      {
+        "kind": "field_filled",
+        "label": "maximálna cena"
+      },
+      {
+        "kind": "url_contains",
+        "text": "vysledky"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Zoradiť od najnovších"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "set_location_filter",
+        "title": "Nastav lokalitu na Bratislava – Staré Mesto",
+        "doneWhen": "Lokalita je nastavená na 'Bratislava – Staré Mesto'",
+        "dependsOn": []
+      },
+      {
+        "id": "set_type_filter",
+        "title": "Nastav typ nehnuteľnosti na 2-izbový byt",
+        "doneWhen": "Typ je nastavený na '2-izbový byt'",
+        "dependsOn": []
+      },
+      {
+        "id": "set_offering_type_filter",
+        "title": "Nastav typ ponuky na prenájom",
+        "doneWhen": "Typ ponuky je nastavený na 'prenájom'",
+        "dependsOn": []
+      },
+      {
+        "id": "set_price_filter",
+        "title": "Nastav maximálnu cenu na 800 EUR",
+        "doneWhen": "Maximálna cena je nastavená na 800 EUR",
+        "dependsOn": []
+      },
+      {
+        "id": "submit_search",
+        "title": "Odoslať vyhľadávanie",
+        "doneWhen": "Zobrazia sa výsledky vyhľadávania",
+        "dependsOn": [
+          "set_location_filter",
+          "set_type_filter",
+          "set_offering_type_filter",
+          "set_price_filter"
+        ]
+      },
+      {
+        "id": "fetch_first_three_results",
+        "title": "Získať názov, cenu a m² prvých 3 výsledkov",
+        "doneWhen": "Prvé 3 výsledky obsahujú údaje o názve, cene a m².",
+        "dependsOn": [
+          "submit_search"
+        ]
+      }
+    ]
+  },
+  "success": false,
+  "successMode": null,
+  "stopReason": "terminated_by_user",
+  "finalVerdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user",
+  "error": "terminated_by_user",
+  "failureClassification": "user_control",
+  "failureSubtype": "terminated_by_user",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "text_visible",
+        "text": "Bratislava – Staré Mesto"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Vyberte mesto, obec, okres..."
+      },
+      {
+        "kind": "field_filled",
+        "label": "Vyberte typ"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Vyberte typ nehnuteľnosti"
+      },
+      {
+        "kind": "field_filled",
+        "label": "maximálna cena"
+      },
+      {
+        "kind": "url_contains",
+        "text": "vysledky"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Zoradiť od najnovších"
+      }
+    ],
+    "fulfilled": [],
+    "missing": [
+      "text_visible(\"Bratislava – Staré Mesto\")",
+      "field_filled(Vyberte mesto, obec, okres...)",
+      "field_filled(Vyberte typ)",
+      "field_filled(Vyberte typ nehnuteľnosti)",
+      "field_filled(maximálna cena)",
+      "url_contains(\"vysledky\")",
+      "text_visible(\"Zoradiť od najnovších\")"
+    ],
+    "evidence": [],
+    "answerAssessment": null
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "Filtre nejsou nastavené a nebyla odeslána žádost o vyhledávání.",
+    "evidence": []
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-4o-mini",
+    "Difficulty": null,
+    "Run": "438cb1f6-7803-49fd-9943-bd35d2fc823b",
+    "Success 0/1": 0,
+    "Completed_Subtasks": 0,
+    "Total_Subtasks": 6,
+    "Partial_Success": 0,
+    "Steps": 12,
+    "Replans": 0,
+    "Duration_seconds": 522.135,
+    "HumanHelp_Verbal": 1,
+    "HumanHelp_Actions": 2,
+    "Tokens_Total": 1011915,
+    "Failure_Type": "user_control",
+    "Failure_Subtype": "terminated_by_user",
+    "Final_URL": "https://www.reality.sk/byty/2-izbovy-byt/bratislava-ruzinov/prenajom/",
+    "Final_Verdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user"
+  },
+  "metrics": {
+    "humanHelpRequests": 1,
+    "humanHelpResponses": 1,
+    "humanHelpActions": 2,
+    "selfHealAttempts": 8,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 12,
+    "durationSeconds": 522.135,
+    "partialSuccess": 0,
+    "completedSubtasksCount": 0,
+    "totalSubtasks": 6,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 1007323,
+      "completionTokens": 4592,
+      "totalTokens": 1011915,
+      "callCount": 33
+    }
+  },
+  "helpRound": 1,
+  "completedSubtasks": [],
+  "stepsExecuted": 12,
+  "finalUrl": "https://www.reality.sk/byty/2-izbovy-byt/bratislava-ruzinov/prenajom/",
+  "helpHistory": [
+    "Áno"
+  ],
+  "blockerEvents": [
+    {
+      "ts": 1776288738500,
+      "step": 1,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Prijať všetko"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1776288822605,
+      "step": 3,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#_R_1ekoqeeta3bav9fl9batb_",
+        "text": "Bratislava – Staré Mesto",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Bratislava – Staré Mesto contains the requested value.",
+        "successSignal": "The input value for Bratislava – Staré Mesto changed.",
+        "failureSignal": "The input value for Bratislava – Staré Mesto stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776288837313,
+      "step": 4,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#_R_akpaeeta3bav9fl9batb_",
+        "text": "2-izbový byt",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field 2-izbový byt contains the requested value.",
+        "successSignal": "The input value for 2-izbový byt changed.",
+        "failureSignal": "The input value for 2-izbový byt stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776288859909,
+      "step": 6,
+      "kind": "post_action_verification",
+      "detail": "The page stayed unchanged after clicking and no success signal appeared.",
+      "action": {
+        "action": "click",
+        "selector": "a[href=\"https://www.nehnutelnosti.sk/detail/Jul-Kri13p5/na-predaj-krasny-a-priestranny-2-izbovy-byt-v-skalici\"]",
+        "text": null,
+        "reason": "Applied human guidance to open \"NA PREDAJ | Krásny a priestranný 2-izbový byt v Skalici SKALICA, Skalica, okres Skalica 2 izb. 56 m² 113 000 € 2 017,86 €/m²\" from the current page.",
+        "mayNavigate": true,
+        "expectedEffect": "The page advances after clicking a[href=\"https://www.nehnutelnosti.sk/detail/Jul-Kri13p5/na-predaj-krasny-a-priestranny-2-izbovy-byt-v-skalici\"].",
+        "successSignal": "A new page state, URL, title, or later workflow stage becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776288901858,
+      "step": 8,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "execution_error",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776289165977,
+      "step": 11,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#_R_akpaeeta3bav9fl9batb_",
+        "text": "prenájom",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field prenájom contains the requested value.",
+        "successSignal": "The input value for prenájom changed.",
+        "failureSignal": "The input value for prenájom stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 1,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Prijať všetko",
+        "reason": "Dismissing cookie consent overlay by clicking \"Prijať všetko\".",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 3,
+      "action": {
+        "action": "type",
+        "selector": "#_R_1ekoqeeta3bav9fl9batb_",
+        "text": "Bratislava – Staré Mesto",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Bratislava – Staré Mesto contains the requested value.",
+        "successSignal": "The input value for Bratislava – Staré Mesto changed.",
+        "failureSignal": "The input value for Bratislava – Staré Mesto stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "action": "type",
+        "selector": "#_R_akpaeeta3bav9fl9batb_",
+        "text": "2-izbový byt",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field 2-izbový byt contains the requested value.",
+        "successSignal": "The input value for 2-izbový byt changed.",
+        "failureSignal": "The input value for 2-izbový byt stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "action": "click",
+        "selector": "a[href=\"https://www.nehnutelnosti.sk/detail/Jul-Kri13p5/na-predaj-krasny-a-priestranny-2-izbovy-byt-v-skalici\"]",
+        "text": null,
+        "reason": "Applied human guidance to open \"NA PREDAJ | Krásny a priestranný 2-izbový byt v Skalici SKALICA, Skalica, okres Skalica 2 izb. 56 m² 113 000 € 2 017,86 €/m²\" from the current page.",
+        "mayNavigate": true,
+        "expectedEffect": "The page advances after clicking a[href=\"https://www.nehnutelnosti.sk/detail/Jul-Kri13p5/na-predaj-krasny-a-priestranny-2-izbovy-byt-v-skalici\"].",
+        "successSignal": "A new page state, URL, title, or later workflow stage becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": false,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The page stayed unchanged after clicking and no success signal appeared."
+      }
+    },
+    {
+      "step": 9,
+      "action": {
+        "action": "click",
+        "selector": "a[href=\"https://www.nehnutelnosti.sk/detail/Jul-Kri13p5/na-predaj-krasny-a-priestranny-2-izbovy-byt-v-skalici\"]",
+        "text": null,
+        "reason": "Applied human guidance to open \"NA PREDAJ | Krásny a priestranný 2-izbový byt v Skalici SKALICA, Skalica, okres Skalica 2 izb. 56 m² 113 000 € 2 017,86 €/m²\" from the current page.",
+        "mayNavigate": true,
+        "expectedEffect": "The page advances after clicking a[href=\"https://www.nehnutelnosti.sk/detail/Jul-Kri13p5/na-predaj-krasny-a-priestranny-2-izbovy-byt-v-skalici\"].",
+        "successSignal": "A new page state, URL, title, or later workflow stage becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 11,
+      "action": {
+        "action": "type",
+        "selector": "#_R_akpaeeta3bav9fl9batb_",
+        "text": "prenájom",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field prenájom contains the requested value.",
+        "successSignal": "The input value for prenájom changed.",
+        "failureSignal": "The input value for prenájom stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 1,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "self_heal",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Dismissing cookie consent overlay by clicking \"Prijať všetko\".",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Zatvaram cookies kliknutim na \"Prijať všetko\".",
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Prijať všetko",
+        "mayNavigate": false,
+        "expectedEffect": "The cookie overlay disappears.",
+        "successSignal": "The overlay is no longer visible.",
+        "failureSignal": "The overlay remains visible.",
+        "fallbackHint": "Let the agent handle it normally."
+      }
+    },
+    {
+      "step": 9,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "human_guided",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Applied human guidance to open \"NA PREDAJ | Krásny a priestranný 2-izbový byt v Skalici SKALICA, Skalica, okres Skalica 2 izb. 56 m² 113 000 € 2 017,86 €/m²\" from the current page.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "progressNote": "Klikam na detail podla rady od pouzivatela: NA PREDAJ | Krásny a priestranný 2-izbový byt v Skalici SKALICA, Skalica, okres Skalica 2 izb. 56 m² 113 000 € 2 017,86 €/m².",
+        "needHelp": false,
+        "action": "click",
+        "selector": "a[href=\"https://www.nehnutelnosti.sk/detail/Jul-Kri13p5/na-predaj-krasny-a-priestranny-2-izbovy-byt-v-skalici\"]",
+        "text": null,
+        "mayNavigate": true
+      }
+    }
+  ]
+}

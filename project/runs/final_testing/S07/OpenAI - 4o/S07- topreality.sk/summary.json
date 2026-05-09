@@ -1,0 +1,738 @@
+{
+  "runId": "0403f8b7-e9b3-4d37-93f6-4accfd024964",
+  "url": "https://www.topreality.sk/",
+  "task": "Na realitnom portali nastav filtre: typ \"2-izbovy byt\", lokalita \"Bratislava – Staré Mesto\", typ ponuky \"prenajom\", maximalna cena 800 EUR mesacne. Vypis nazov, cenu a m2 prvych 3 vysledkov.",
+  "runMeta": {
+    "model": "gpt-5.4-mini",
+    "difficulty": null,
+    "run": "0403f8b7-e9b3-4d37-93f6-4accfd024964"
+  },
+  "goalSpec": {
+    "goal": "Set filters for real estate search and display results.",
+    "successCriteria": [
+      "Filters set correctly: type '2-izbovy byt', location 'Bratislava – Staré Mesto', offer type 'prenajom', max price 800 EUR.",
+      "Results displayed for the search.",
+      "First 3 results show name, price, and area in m2."
+    ],
+    "stopCondition": "Results are displayed on the page.",
+    "assumptions": [
+      "User can interact with the filter options.",
+      "Search results can be displayed after applying filters."
+    ],
+    "constraints": [
+      "Max price must not exceed 800 EUR."
+    ],
+    "finalRequirements": [
+      {
+        "kind": "field_filled",
+        "label": "Typ"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Lokalita"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Typ ponuky"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Cena celkom v €"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Zobraziť :"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "subtasks": [
+      {
+        "id": "set_property_type",
+        "title": "Select property type",
+        "doneWhen": "Property type '2-izbovy byt' is selected.",
+        "dependsOn": []
+      },
+      {
+        "id": "set_location",
+        "title": "Enter location",
+        "doneWhen": "Location 'Bratislava – Staré Mesto' is entered.",
+        "dependsOn": []
+      },
+      {
+        "id": "set_offer_type",
+        "title": "Select offer type",
+        "doneWhen": "Offer type 'prenajom' is selected.",
+        "dependsOn": []
+      },
+      {
+        "id": "set_max_price",
+        "title": "Set maximum price",
+        "doneWhen": "Maximum price is set to 800 EUR.",
+        "dependsOn": []
+      },
+      {
+        "id": "submit_search",
+        "title": "Submit search",
+        "doneWhen": "Search results are displayed.",
+        "dependsOn": [
+          "set_property_type",
+          "set_location",
+          "set_offer_type",
+          "set_max_price"
+        ]
+      },
+      {
+        "id": "display_results",
+        "title": "Extract first 3 results",
+        "doneWhen": "First 3 results show name, price, and area in m2.",
+        "dependsOn": [
+          "submit_search"
+        ]
+      }
+    ]
+  },
+  "success": false,
+  "successMode": null,
+  "stopReason": "terminated_by_user",
+  "finalVerdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user",
+  "error": "terminated_by_user",
+  "failureClassification": "user_control",
+  "failureSubtype": "terminated_by_user",
+  "allowHumanHelp": true,
+  "finalGate": {
+    "satisfied": false,
+    "finalRequirements": [
+      {
+        "kind": "field_filled",
+        "label": "Typ"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Lokalita"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Typ ponuky"
+      },
+      {
+        "kind": "field_filled",
+        "label": "Cena celkom v €"
+      },
+      {
+        "kind": "text_visible",
+        "text": "Zobraziť :"
+      },
+      {
+        "kind": "answer_visible"
+      }
+    ],
+    "fulfilled": [
+      "field_filled(Typ)",
+      "text_visible(\"Zobraziť :\")"
+    ],
+    "missing": [
+      "field_filled(Lokalita)",
+      "field_filled(Typ ponuky)",
+      "field_filled(Cena celkom v €)",
+      "answer_visible"
+    ],
+    "evidence": [
+      "Satisfied: field_filled(Typ)",
+      "Satisfied: text_visible(\"Zobraziť :\")"
+    ],
+    "answerAssessment": {
+      "pageRelevant": true,
+      "answerVisible": false,
+      "answer": "",
+      "evidence": [],
+      "missing": [
+        "No high-confidence visible answer detected on the current page."
+      ],
+      "confidence": "low"
+    }
+  },
+  "completionCheck": {
+    "done": false,
+    "reason": "Not all required filters are set and results are not displayed.",
+    "evidence": [
+      "Filters for type, location, offer type, and max price are not set yet."
+    ]
+  },
+  "visualFinalVerdict": {
+    "verdict": "inconclusive",
+    "reason": "Deterministic final gate is not yet satisfied.",
+    "evidence": []
+  },
+  "benchmarkRow": {
+    "Model": "gpt-5.4-mini",
+    "Difficulty": null,
+    "Run": "0403f8b7-e9b3-4d37-93f6-4accfd024964",
+    "Success 0/1": 0,
+    "Completed_Subtasks": 1,
+    "Total_Subtasks": 6,
+    "Partial_Success": 0.333,
+    "Steps": 17,
+    "Replans": 0,
+    "Duration_seconds": 418.526,
+    "HumanHelp_Verbal": 1,
+    "HumanHelp_Actions": 1,
+    "Tokens_Total": 1598519,
+    "Failure_Type": "user_control",
+    "Failure_Subtype": "terminated_by_user",
+    "Final_URL": "https://www.topreality.sk/",
+    "Final_Verdict": "Ulohu sa nepodarilo dokoncit: terminated_by_user"
+  },
+  "metrics": {
+    "humanHelpRequests": 1,
+    "humanHelpResponses": 1,
+    "humanHelpActions": 1,
+    "selfHealAttempts": 9,
+    "replanCount": 0,
+    "replanReasons": {
+      "backward_subtask_blocked": 0,
+      "pending_human_guidance_replan": 0,
+      "need_help_suppressed_later_workflow": 0,
+      "selector_missing": 0,
+      "click_text_missing": 0,
+      "no_action_executed": 0
+    },
+    "stepsExecuted": 17,
+    "durationSeconds": 418.526,
+    "partialSuccess": 0.333,
+    "completedSubtasksCount": 1,
+    "totalSubtasks": 6,
+    "deterministicGateSatisfied": false,
+    "llmCompletionDone": false,
+    "tokenUsage": {
+      "promptTokens": 1591829,
+      "completionTokens": 6690,
+      "totalTokens": 1598519,
+      "callCount": 60
+    }
+  },
+  "helpRound": 1,
+  "completedSubtasks": [
+    "set_offer_type"
+  ],
+  "stepsExecuted": 17,
+  "finalUrl": "https://www.topreality.sk/",
+  "helpHistory": [
+    "Prijať"
+  ],
+  "blockerEvents": [
+    {
+      "ts": 1776329858806,
+      "step": 0,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Prijať všetko"
+    },
+    {
+      "ts": 1776329865500,
+      "step": 1,
+      "kind": "vision_overlay",
+      "detail": "Vision sees cookie_consent overlay.",
+      "overlayType": "cookie_consent",
+      "acceptText": "Prijať všetko"
+    }
+  ],
+  "recoveryTransitions": [
+    {
+      "ts": 1776329881641,
+      "step": 2,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#n_srch_typ",
+        "text": "Prenájom",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Prenájom contains the requested value.",
+        "successSignal": "The input value for Prenájom changed.",
+        "failureSignal": "The input value for Prenájom stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "form"
+    },
+    {
+      "ts": 1776330011748,
+      "step": 8,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#n_srch_typ",
+        "text": "Prenájom",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Prenájom contains the requested value.",
+        "successSignal": "The input value for Prenájom changed.",
+        "failureSignal": "The input value for Prenájom stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776330075760,
+      "step": 10,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#n_srch_typ",
+        "text": "Prenájom",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Prenájom contains the requested value.",
+        "successSignal": "The input value for Prenájom changed.",
+        "failureSignal": "The input value for Prenájom stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776330111898,
+      "step": 11,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "#n_srch_typ",
+        "text": "Prenájom",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Prenájom contains the requested value.",
+        "successSignal": "The input value for Prenájom changed.",
+        "failureSignal": "The input value for Prenájom stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776330111898,
+      "step": 11,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "failed_expected_effect",
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776330135346,
+      "step": 12,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "input[placeholder=\"Okres, obec\"]",
+        "text": "Bratislava – Staré Mesto",
+        "reason": "Need to set location and max price, then submit search and read results.",
+        "mayNavigate": false,
+        "expectedEffect": "Location field gets the entered locality.",
+        "successSignal": "The location input shows the typed text or a matching suggestion appears.",
+        "failureSignal": "Text does not appear or the field is not editable.",
+        "fallbackHint": "If autocomplete suggestions appear, select the matching Bratislava – Staré Mesto option."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776330169267,
+      "step": 13,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "input[placeholder=\"Okres, obec\"]",
+        "text": "Bratislava – Staré Mesto",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Bratislava – Staré Mesto contains the requested value.",
+        "successSignal": "The input value for Bratislava – Staré Mesto changed.",
+        "failureSignal": "The input value for Bratislava – Staré Mesto stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776330216217,
+      "step": 14,
+      "kind": "post_action_verification",
+      "detail": "The target input did not reflect the requested value after typing.",
+      "action": {
+        "action": "type",
+        "selector": "input[placeholder=\"Okres, obec\"]",
+        "text": "Bratislava – Staré Mesto",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Bratislava – Staré Mesto contains the requested value.",
+        "successSignal": "The input value for Bratislava – Staré Mesto changed.",
+        "failureSignal": "The input value for Bratislava – Staré Mesto stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "pageKind": "inventory"
+    },
+    {
+      "ts": 1776330216217,
+      "step": 14,
+      "kind": "safe_fallback",
+      "detail": "Trying generic short scroll before human help.",
+      "reason": "failed_expected_effect",
+      "pageKind": "inventory"
+    }
+  ],
+  "actionVerifications": [
+    {
+      "step": 2,
+      "action": {
+        "action": "type",
+        "selector": "#n_srch_typ",
+        "text": "Prenájom",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Prenájom contains the requested value.",
+        "successSignal": "The input value for Prenájom changed.",
+        "failureSignal": "The input value for Prenájom stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 4,
+      "action": {
+        "action": "clickByText",
+        "selector": null,
+        "text": "Prenájom",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The visible UI changes after clicking Prenájom.",
+        "successSignal": "The targeted UI state changes or new content becomes visible.",
+        "failureSignal": "The same page state remains unchanged and the same clickable control still appears available.",
+        "fallbackHint": "Reobserve the page, then try a safer grounded action or alternate visible target."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The page visibly advanced after clicking."
+      }
+    },
+    {
+      "step": 5,
+      "action": {
+        "action": "click",
+        "selector": "a[href=\"/\"]",
+        "text": null,
+        "reason": "The page is currently on an individual listing, not the filter/search results page. I need to return to the search filters to set the requested criteria before extracting the first 3 results.",
+        "mayNavigate": true,
+        "expectedEffect": "Return to the main TopReality search page with filters visible.",
+        "successSignal": "Search/filter panel is visible again.",
+        "failureSignal": "Stays on listing page or navigation fails.",
+        "fallbackHint": "If the home link does not bring back filters, use browser back to the previous search page."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 6,
+      "action": {
+        "action": "click",
+        "selector": "#druh_ms",
+        "text": null,
+        "reason": "Open the property type dropdown to choose 2-izbovy byt.",
+        "mayNavigate": false,
+        "expectedEffect": "Dropdown options become visible.",
+        "successSignal": "A list of property types is shown.",
+        "failureSignal": "Dropdown does not open or no options appear.",
+        "fallbackHint": "If the dropdown opens with grouped options, choose the visible 2-izbovy byt entry by text."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "The visible page state changed after clicking."
+      }
+    },
+    {
+      "step": 8,
+      "action": {
+        "action": "type",
+        "selector": "#n_srch_typ",
+        "text": "Prenájom",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Prenájom contains the requested value.",
+        "successSignal": "The input value for Prenájom changed.",
+        "failureSignal": "The input value for Prenájom stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 10,
+      "action": {
+        "action": "type",
+        "selector": "#n_srch_typ",
+        "text": "Prenájom",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Prenájom contains the requested value.",
+        "successSignal": "The input value for Prenájom changed.",
+        "failureSignal": "The input value for Prenájom stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 11,
+      "action": {
+        "action": "type",
+        "selector": "#n_srch_typ",
+        "text": "Prenájom",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Prenájom contains the requested value.",
+        "successSignal": "The input value for Prenájom changed.",
+        "failureSignal": "The input value for Prenájom stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": false,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 12,
+      "action": {
+        "action": "type",
+        "selector": "input[placeholder=\"Okres, obec\"]",
+        "text": "Bratislava – Staré Mesto",
+        "reason": "Need to set location and max price, then submit search and read results.",
+        "mayNavigate": false,
+        "expectedEffect": "Location field gets the entered locality.",
+        "successSignal": "The location input shows the typed text or a matching suggestion appears.",
+        "failureSignal": "Text does not appear or the field is not editable.",
+        "fallbackHint": "If autocomplete suggestions appear, select the matching Bratislava – Staré Mesto option."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 13,
+      "action": {
+        "action": "type",
+        "selector": "input[placeholder=\"Okres, obec\"]",
+        "text": "Bratislava – Staré Mesto",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Bratislava – Staré Mesto contains the requested value.",
+        "successSignal": "The input value for Bratislava – Staré Mesto changed.",
+        "failureSignal": "The input value for Bratislava – Staré Mesto stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 14,
+      "action": {
+        "action": "type",
+        "selector": "input[placeholder=\"Okres, obec\"]",
+        "text": "Bratislava – Staré Mesto",
+        "reason": "No further actions needed.",
+        "expectedEffect": "The field Bratislava – Staré Mesto contains the requested value.",
+        "successSignal": "The input value for Bratislava – Staré Mesto changed.",
+        "failureSignal": "The input value for Bratislava – Staré Mesto stayed unchanged.",
+        "fallbackHint": "Refresh the snapshot and reassess dynamic suggestions or alternate visible inputs."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": false,
+        "failureMatched": false,
+        "expectationMissed": true,
+        "outcome": "failed",
+        "reason": "The target input did not reflect the requested value after typing."
+      }
+    },
+    {
+      "step": 15,
+      "action": {
+        "action": "scroll",
+        "selector": null,
+        "text": null,
+        "reason": "The page is scrolled to the bottom and the search/filter controls are not currently visible. Need to return to the top to set the remaining filters.",
+        "mayNavigate": false,
+        "expectedEffect": "Move back toward the search filters at the top of the page.",
+        "successSignal": "Filter controls become visible.",
+        "failureSignal": "Still at footer or filters remain hidden.",
+        "fallbackHint": "Scroll upward to the top section where Typ, Lokalita, and Cena fields are shown."
+      },
+      "verification": {
+        "changed": true,
+        "hadExpectation": true,
+        "successMatched": true,
+        "failureMatched": false,
+        "expectationMissed": false,
+        "outcome": "confirmed",
+        "reason": "Visible page content changed after scrolling."
+      }
+    }
+  ],
+  "stepTrace": [
+    {
+      "step": 4,
+      "activeSubtaskId": null,
+      "completedSubtasks": [],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "human_guided",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "No further actions needed.",
+        "activeSubtaskId": null,
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "action": "clickByText",
+        "selector": null,
+        "text": "Prenájom"
+      }
+    },
+    {
+      "step": 5,
+      "activeSubtaskId": "set_property_type",
+      "completedSubtasks": [
+        "set_offer_type"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "The page is currently on an individual listing, not the filter/search results page. I need to return to the search filters to set the requested criteria before extracting the first 3 results.",
+        "activeSubtaskId": "set_property_type",
+        "markSubtasksDone": [
+          "set_offer_type"
+        ],
+        "progressNote": "Offer type appears already set to Prenájom on the current state; moving back to complete the remaining filters.",
+        "needHelp": false,
+        "action": "click",
+        "selector": "a[href=\"/\"]",
+        "text": null,
+        "mayNavigate": true,
+        "expectedEffect": "Return to the main TopReality search page with filters visible.",
+        "successSignal": "Search/filter panel is visible again.",
+        "failureSignal": "Stays on listing page or navigation fails.",
+        "fallbackHint": "If the home link does not bring back filters, use browser back to the previous search page."
+      }
+    },
+    {
+      "step": 6,
+      "activeSubtaskId": "set_property_type",
+      "completedSubtasks": [
+        "set_offer_type"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "inventory",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "Need to set filters starting with property type on the visible search form.",
+        "activeSubtaskId": "set_property_type",
+        "markSubtasksDone": [],
+        "needHelp": false,
+        "actions": [
+          {
+            "action": "click",
+            "selector": "#druh_ms",
+            "text": null,
+            "reason": "Open the property type dropdown to choose 2-izbovy byt.",
+            "mayNavigate": false,
+            "expectedEffect": "Dropdown options become visible.",
+            "successSignal": "A list of property types is shown.",
+            "failureSignal": "Dropdown does not open or no options appear.",
+            "fallbackHint": "If the dropdown opens with grouped options, choose the visible 2-izbovy byt entry by text."
+          }
+        ]
+      }
+    },
+    {
+      "step": 15,
+      "activeSubtaskId": "set_property_type",
+      "completedSubtasks": [
+        "set_offer_type"
+      ],
+      "stalePageCount": 0,
+      "pageKind": "unknown",
+      "decisionSource": "agent",
+      "pendingHumanDirective": null,
+      "decision": {
+        "done": false,
+        "reason": "The page is scrolled to the bottom and the search/filter controls are not currently visible. Need to return to the top to set the remaining filters.",
+        "activeSubtaskId": "set_property_type",
+        "markSubtasksDone": [
+          "set_offer_type"
+        ],
+        "progressNote": "Offer type already set; need to navigate back to the filter controls.",
+        "needHelp": false,
+        "action": "scroll",
+        "selector": null,
+        "text": null,
+        "mayNavigate": false,
+        "expectedEffect": "Move back toward the search filters at the top of the page.",
+        "successSignal": "Filter controls become visible.",
+        "failureSignal": "Still at footer or filters remain hidden.",
+        "fallbackHint": "Scroll upward to the top section where Typ, Lokalita, and Cena fields are shown."
+      }
+    }
+  ]
+}
